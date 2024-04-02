@@ -1,0 +1,591 @@
+<div class="container--large {% unless section.settings.remove_margin %} container--vertical-space {% endunless %} {% if section.settings.section_background_color != "rgba(0,0,0,0)" %} container--has-background {% endif %}">
+  {%- render 'section-heading',
+    heading: section.settings.heading,
+    subheading: section.settings.subheading,
+    heading_tag: section.settings.seo_h_tag,
+    layout: section.settings.section_heading_layout
+  -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="swiper-container">
+      <div class="promo-card grid grid--layout {{ section.settings.layout }} ">
+        {%- for block in section.blocks -%}
+          <div id="element-{{ block.id }}" class="modal_vid_elem promo-card_slider card" {{ block.shopify_attributes }}>
+            <div class="promo_slideShow">
+              {% if block.settings.videofile1 %}
+                <div class="card_motion-content">
+                  <video autoplay loop muted playsinline width="100%">
+                    <source src="{{ block.settings.videofile1 }}" type="video/mp4" id="{{ section.id }}">
+                  </video>
+                </div>
+              {% endif %}
+            </div>
+            <div
+              class="
+                card__text
+                {% if section.settings.layout contains 'grid-4' %}
+                  gutter--regular
+                {% else %}
+                  gutter--large
+                {% endif %}
+                spacing--large
+                {{ section.settings.text_alignment }} remove-empty-space
+              "
+            >
+              {%- unless block.settings.caption == blank -%}
+                <span class="text-size--{{ section.settings.caption_size }}">
+                  {{- block.settings.caption | escape -}}
+                </span>
+              {%- endunless -%}
+
+              {%- unless block.settings.title == blank -%}
+                <{{ block.settings.seo_h_tag }} class="{{ section.settings.title_size }}" style="display:block">
+                  {{- block.settings.title | escape -}}
+                </{{ block.settings.seo_h_tag }}>
+              {%- endunless -%}
+
+              {%- unless block.settings.subtitle == blank -%}
+                <span class="capp text-size--{{ section.settings.subtitle_size }}">{{ block.settings.subtitle }}</span>
+              {%- endunless -%}
+            </div>
+            {%- if block.settings.button_label != blank -%}
+              <div class="increased-spacing promo_spacing-btn">
+                <button class="modalBtn button {% unless section.settings.layout contains 'grid-2' %} button--fullwidth {% endunless %} button--{{ section.settings.button_size }} button--{{ section.settings.button_style }}">
+                  {{ block.settings.button_label | escape }}
+                </button>
+              </div>
+            {%- endif -%}
+
+            <!-- Custom Modal -->
+            <div id="myModal-{{ block.id }}" class="custom-modal">
+              <div class="custom-modal-content">
+                <span class="custom-close">&times;</span>
+                <div class="modalContent">
+                  <div class="modalMeida">
+                    <div class="modalMediaNav">
+                      <div class="mNavImg">
+                        {% if block.settings.modalImg != blank %}
+                          <img src="{{ block.settings.modalImg | img_url:"large" }}" class="mNavFeaturedImage">
+                        {% else %}
+                          <img
+                            src="https://cdn.shopify.com/s/files/1/0308/0857/1963/files/modal.webp"
+                            class="mNavFeaturedImage"
+                          >
+                        {% endif %}
+                      </div>
+                      <div class="mNavthumbnails">
+                        {% if block.settings.timg1 != blank %}
+                          <img src="{{ block.settings.timg1 | img_url: "large" }}" class="mNavthumbImages">
+                        {% else %}
+                          <img
+                            src="https://cdn.shopify.com/s/files/1/0308/0857/1963/files/Rectangle_1-7.webp"
+                            class="mNavthumbImages"
+                          >
+                        {% endif %}
+                        {% if block.settings.timg2 != blank %}
+                          <img src="{{ block.settings.timg2 | img_url: "large" }}" class="mNavthumbImages">
+                        {% else %}
+                          <img
+                            src="https://cdn.shopify.com/s/files/1/0308/0857/1963/files/CoatedblueGusset.webp"
+                            class="mNavthumbImages"
+                          >
+                        {% endif %}
+                        {% if block.settings.timg3 != blank %}
+                          <img src="{{ block.settings.timg3 | img_url: "large" }}" class="mNavthumbImages">
+                        {% else %}
+                          <img
+                            src="https://cdn.shopify.com/s/files/1/0308/0857/1963/files/Rectangle_1-7.webp"
+                            class="mNavthumbImages"
+                          >
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modalData">
+                    <h2>{{ block.settings.headings }}</h2>
+                    <span>{{ block.settings.description }}</span>
+                    <a
+                      href="{{ block.settings.mbtnl }}"
+                      class="modalBtn-1 button button--fullwidth button--regular button--outline"
+                    >
+                      {{ block.settings.mbtnt }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Custom Modal -->
+
+            {%- render 'custom-colors',
+              id: block.id,
+              text: block.settings.color_text_main,
+              background: block.settings.color_background_main,
+              accent: block.settings.color_accent_main,
+              borders: block.settings.color_borders_main,
+              shadow: block.settings.color_shadow_main,
+              hide_borders: block.settings.color_hide_borders,
+              hide_shadow: block.settings.color_hide_shadow
+            -%}
+          </div>
+        {%- endfor %}
+      </div>
+  {%- endif -%}
+</div>
+
+{%- if section.settings.section_background_color != 'rgba(0,0,0,0)' -%}
+  {% style %}
+    #shopify-section-{{ section.id }} .container--has-background {
+      --color-background-section: {{ section.settings.section_background_color }};
+    }
+  {% endstyle %}
+{%- endif -%}
+
+{%- if section.settings.section_heading_color != 'rgba(0,0,0,0)' -%}
+  {% style %}
+    #shopify-section-{{ section.id }} {
+      --color-text-main: {{ section.settings.section_heading_color }};
+    }
+  {% endstyle %}
+{%- endif -%}
+{% render 'custom-script' %}
+{% schema %}
+{
+  "name": "Promotion Video Cards",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:local-march-update.labels.heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.local-extra-words.sections.headings.heading",
+      "default": "Promotion cards"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:sections.local-extra-words.sections.headings.subheading",
+      "default": "Share your best offers"
+    },
+    {
+      "type": "select",
+      "id": "section_heading_layout",
+      "label": "t:sections.rich-text.settings.text_alignment.label",
+      "options": [
+        {
+          "value": "section-heading--left",
+          "label": "t:sections.rich-text.settings.text_alignment.options__1.label"
+        },
+        {
+          "value": "section-heading--center",
+          "label": "t:sections.rich-text.settings.text_alignment.options__2.label"
+        }
+      ],
+      "default": "section-heading--left"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-article.blocks.content.name"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:sections.local-extra-words.sections.columns.name",
+      "info": "t:sections.local-extra-words.sections.columns.info",
+      "options": [
+        {
+          "value": "grid-2 grid-lap-1",
+          "label": "t:sections.local-extra-words.sections.columns.option__1"
+        },
+        {
+          "value": "grid-3 grid-lap-1",
+          "label": "t:sections.local-extra-words.sections.columns.option__2"
+        },
+        {
+          "value": "grid-4 grid-portable-2 grid-lap-1",
+          "label": "t:sections.local-extra-words.sections.columns.option__3"
+        }
+      ],
+      "default": "grid-3 grid-lap-1"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "t:settings_schema.product-grid.settings.aspect_ratio.label",
+      "options": [
+        {
+          "value": "1.33333",
+          "label": "t:sections.gallery.settings.aspect_ratio.options__1.label"
+        },
+        {
+          "value": "1",
+          "label": "t:sections.gallery.settings.aspect_ratio.options__2.label"
+        },
+        {
+          "value": "0.83333",
+          "label": "t:sections.gallery.settings.aspect_ratio.options__3.label"
+        },
+        {
+          "value": "0.666667",
+          "label": "t:sections.gallery.settings.aspect_ratio.options__4.label"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.local-extra-words.sections.headings.text_style"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "t:sections.image-with-text.settings.text_alignment.label",
+      "options": [
+        {
+          "value": "text-align--left",
+          "label": "t:sections.rich-text.settings.text_alignment.options__1.label"
+        },
+        {
+          "value": "text-align--center",
+          "label": "t:sections.rich-text.settings.text_alignment.options__2.label"
+        },
+        {
+          "value": "text-align--right",
+          "label": "t:sections.rich-text.settings.text_alignment.options__3.label"
+        }
+      ],
+      "default": "text-align--center"
+    },
+    {
+      "type": "select",
+      "id": "caption_size",
+      "label": "t:sections.local-extra-words.sections.slideshow.settings.caption_size",
+      "options": [
+        {
+          "value": "small increased-spacing",
+          "label": "t:sections.local-extra-words.sections.media-with-text-overlay.settings.option__1"
+        },
+        {
+          "value": "regular",
+          "label": "t:sections.local-extra-words.sections.media-with-text-overlay.settings.option__5"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.local-extra-words.sections.media-with-text-overlay.settings.option__2"
+        }
+      ],
+      "default": "regular"
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "label": "t:sections.local-extra-words.sections.main-header.settings.promotion_block.title.size",
+      "options": [
+        {
+          "value": "h3",
+          "label": "t:sections.local-extra-words.sections.media-with-text-overlay.settings.option__1"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.local-extra-words.sections.media-with-text-overlay.settings.option__5"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.local-extra-words.sections.media-with-text-overlay.settings.option__2"
+        }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "select",
+      "id": "subtitle_size",
+      "label": "t:sections.local-extra-words.sections.main-header.settings.promotion_block.subtitle.size",
+      "options": [
+        {
+          "value": "regular",
+          "label": "t:sections.local-extra-words.sections.media-with-text-overlay.settings.option__5"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.local-extra-words.sections.media-with-text-overlay.settings.option__2"
+        }
+      ],
+      "default": "regular"
+    },
+    {
+      "type": "select",
+      "id": "button_size",
+      "label": "t:sections.local-extra-words.sections.main-header.settings.promotion_block.button.size",
+      "options": [
+        {
+          "value": "regular",
+          "label": "t:sections.local-extra-words.sections.media-with-text-overlay.settings.option__5"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.local-extra-words.sections.media-with-text-overlay.settings.option__2"
+        }
+      ],
+      "default": "large"
+    },
+    {
+      "id": "button_style",
+      "label": "t:sections.local-extra-words.sections.buttons.style.label",
+      "type": "select",
+      "options": [
+        {
+          "value": "outline",
+          "label": "t:sections.local-extra-words.sections.buttons.style.option__1"
+        },
+        {
+          "value": "solid",
+          "label": "t:sections.local-extra-words.sections.buttons.style.option__2"
+        }
+      ],
+      "default": "outline"
+    },
+    {
+      "type": "header",
+      "content": "t:local-march-update.labels.section_design"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "t:sections.local-extra-words.settings_schema.product-card.badges.custom_badges.color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "section_heading_color",
+      "label": "t:local-223.heading_text_color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_margin",
+      "label": "t:sections.local-extra-words.sections.rich-text.settings.remove_margin.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.refactor_words.seo.name"
+    },
+    {
+      "type": "select",
+      "id": "seo_h_tag",
+      "label": "t:sections.refactor_words.seo.label",
+      "info": "t:sections.refactor_words.seo.info",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "span",
+          "label": "span"
+        }
+      ],
+      "default": "h2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "t:sections.local-extra-words.sections.promotion-cards.blocks.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "videofile1",
+          "label": "Video URL",
+          "default": "https://cdn.shopify.com/s/files/1/2018/8867/files/ice.mp4"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.local-extra-words.sections.headings.text_content"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "t:sections.local-extra-words.sections.headings.caption",
+          "default": "Introducing"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.local-extra-words.sections.headings.title",
+          "default": "Your best promotion yet"
+        },
+        {
+          "type": "richtext",
+          "id": "subtitle",
+          "label": "t:sections.local-extra-words.sections.headings.subtitle",
+          "default": "<p>Write about it</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.image-with-text.blocks.image.settings.button_label.label",
+          "default": "Show more"
+        },
+        {
+          "type": "header",
+          "content": "Pop-up Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "modalImg",
+          "label": "Main Image"
+        },
+        {
+          "type": "header",
+          "content": "thumbnail Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "timg1",
+          "label": "Thumbnail Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "timg2",
+          "label": "Thumbnail Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "timg3",
+          "label": "Thumbnail Image"
+        },
+        {
+          "type": "text",
+          "id": "headings",
+          "label": "Heading",
+          "default": "Your Best"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Modal Content",
+          "default": "<p>The passage experienced a surge in popularity during the 1960s when Letraset used it on their dry-transfer sheets, and again during the 90s as desktop publishers bundled the text with their software. Today it's seen all around the web; on templates, websites, and stock designs. Use our generator to get your own, or read on for the authoritative history of lorem ipsum.</p>"
+        },
+        {
+          "type": "url",
+          "id": "mbtnl",
+          "label": "Button Link"
+        },
+        {
+          "type": "text",
+          "id": "mbtnt",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.local-extra-words.sections.headings.custom_colors"
+        },
+        {
+          "type": "color",
+          "id": "color_background_main",
+          "label": "t:sections.split-extra-words.settings_schema.colors.settings.background",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "color_text_main",
+          "label": "t:sections.split-extra-words.settings_schema.colors.settings.text",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "color_accent_main",
+          "label": "t:sections.local-extra-words.settings_schema.colors.settings.accent",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "color_borders_main",
+          "label": "t:sections.local-extra-words.settings_schema.colors.settings.borders",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "color_shadow_main",
+          "label": "t:local-march-update.shadows.label",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "checkbox",
+          "id": "color_hide_borders",
+          "label": "t:sections.local-extra-words.settings_schema.colors.settings.hide_border",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "color_hide_shadow",
+          "label": "t:local-march-update.shadows.hide",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "t:sections.refactor_words.seo.name"
+        },
+        {
+          "type": "select",
+          "id": "seo_h_tag",
+          "label": "t:sections.refactor_words.seo.label",
+          "info": "t:sections.refactor_words.seo.info",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "span",
+              "label": "span"
+            }
+          ],
+          "default": "h3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promotion Video Cards",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}
