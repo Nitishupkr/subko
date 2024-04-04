@@ -1,65 +1,7 @@
 /*
  *  1.0. Mixins
 */
-/*
- *  1.0. Mixins
-*/
-toggle-tab {
-  display: block;
-  margin-bottom: 0 !important;
-}
-toggle-tab:not(.toggle--table) + toggle-tab {
-  border-top: 1px solid var(--color-borders-main);
-}
-toggle-tab.opened .toggle__title {
-  cursor: pointer;
-  pointer-events: all;
-}
-toggle-tab.opened .toggle__title .toggle__icon {
-  transform: rotate(180deg);
-}
-toggle-tab.opened .toggle__title + .toggle__content {
-  display: block;
-}
 
-.toggle__title {
-  width: 100%;
-  position: relative;
-  padding: 1.1875rem 0;
-  cursor: pointer;
-  font-weight: var(--font-weight-body-bold);
-  transition: all 100ms linear;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.toggle__title .toggle__icon {
-  flex-shrink: 0;
-}
-.toggle__title .toggle__icon svg * {
-  transition: all 100ms linear;
-  fill: var(--color-text-main);
-}
-.toggle__title + .toggle__content {
-  padding-bottom: 1.1875rem;
-  display: none;
-}
-
-.toggle__content {
-  overflow-x: auto;
-}
-
-.toggle__content-inner {
-  display: flex;
-  gap: 1rem; /* Adjust the gap between image and content as needed */
-}
-
-.toggle__image {
-  max-width: 200px; /* Adjust the maximum width of the image as needed */
-  flex-shrink: 0; /* Prevent the image from shrinking */
-}
-
-/* Rest of the CSS remains the same */
 toggle-tab {
   display: block;
   margin-bottom: 0 !important;
