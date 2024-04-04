@@ -51,6 +51,94 @@
                   </div>
 
                   <div id="toggle--{{ block.id }}" data-js-content class="toggle__content rte remove-empty-space" role="region">
+                    <div class="toggle__content-inner">
+                      {%- liquid
+                        unless block.settings.image == blank
+                          if section.settings.form_enable
+                            assign sizes = 'sizes="(max-width: 1023px) calc(100vw - 100px), (max-width: 1360px) 60vw, 760px"'
+                          else
+                            assign sizes = 'sizes="(max-width: 1023px) calc(100vw - 100px), (max-width: 1360px) calc(100vw - 150px), 1200px"'
+                          endif
+                          render 'lazy-image', image: block.settings.image, alt: block.settings.title, sizes: sizes, class: 'element--border-radius toggle__image'
+                        endunless
+                      -%}
+                      {{ block.settings.body }}
+                    </div>
+                  </div>
+
+                </toggle-tab>
+              {%- endif -%}
+            
+            {%- endfor -%}
+          </toggle-group>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.settings.form_enable -%}
+
+      {# The rest of the Liquid code remains the same #}
+
+    {%- endif -%}
+  </div>
+</div>
+
+<script src="{{ 'component-toggle.js' | asset_url }}" defer></script>
+
+{# The rest of the schema code remains the same #}
+{{ 'component-toggle.css' | asset_url | stylesheet_tag }}
+
+<div class="container--large container--vertical-space">
+
+  {%- render 'section-heading', heading: section.settings.heading, subheading: section.settings.subheading, heading_tag: section.settings.seo_h_tag, layout: section.settings.section_heading_layout -%}
+
+  <div class="{%- if section.settings.form_enable -%} faq-layout grid--no-stretch {%- endif -%}">
+    <div class="faq-items">
+      <div class="element--border-radius element--has-border">
+        {%- if section.blocks.size > 0 -%}
+          <toggle-group>
+            {%- for block in section.blocks -%}
+
+              {%- liquid
+                assign show_block = true
+                if block.settings.hide_block_if == true 
+                  if block.settings.image == blank and block.settings.body == blank
+                    assign show_block = false
+                  endif
+                endif
+              -%}
+
+              {%- if show_block -%}
+                
+                <toggle-tab class="toggle toggle--faq {% if forloop.index == 1 and section.settings.open_first %}opened{% endif %}" 
+                data-togglepack-alternate
+                {{ block.shopify_attributes }}
+                >
+
+                  <div class="toggle__title" data-js-title tabindex="0" aria-expanded="false" role="button" aria-controls="toggle-{{ block.id }}">
+                    
+                    <div class="toggle__heading">
+
+                      <span class="text-weight--bold">{{ block.settings.title | escape }}</span>
+                  
+                      {%- if block.settings.subtitle -%}
+                      <div class="toggle__subtitle">
+                        {%- liquid
+                          if block.settings.icon
+                            render 'icon-pack', icon: block.settings.icon
+                          endif 
+                        -%}
+                        <span class="text-size--small">{{ block.settings.subtitle | escape }}</span>
+                      </div>
+                      {% endif %}
+                    </div>
+
+                    {%- if block.settings.button_label != blank -%}
+                      <a href="{{ block.settings.button_link }}" class="button button--solid button--regular">{{ block.settings.button_label | escape }}</a>
+                    {%- endif -%}
+                  </div>
+
+                  <div id="toggle--{{ block.id }}" data-js-content class="toggle__content rte remove-empty-space" role="region">
                     
                     {{ block.settings.body }}
 
