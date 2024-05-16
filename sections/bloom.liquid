@@ -1,0 +1,131 @@
+<div class="image-recipe-container">
+  <div class="image-section">
+    {% if section.settings.image != blank %}
+      <img src="{{ section.settings.image | img_url: 'master' }}" alt="Image">
+    {% else %}
+      <div class="placeholder-image">
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="recipe-dropdown">
+    {% for block in section.blocks %}
+      {% if block.type == 'recipe' %}
+        <div class="recipe-heading">
+          <h3>{{ block.settings.title }}</h3>
+          <span class="dropdown-arrow">&#9660;</span>
+        </div>
+        <div class="recipe-content">
+          <div>{{ block.settings.description }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .image-recipe-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .image-section {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+
+  .image-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .recipe-dropdown {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 2rem;
+  }
+
+  .recipe-heading {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .recipe-heading:hover {
+    background-color: #f0f0f0;
+  }
+
+  .recipe-heading h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+  }
+
+  .dropdown-arrow {
+    font-size: 16px;
+    color: #999;
+    transition: transform 0.3s ease;
+  }
+
+  .recipe-content {
+    margin-top: 1rem;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+    color: #333333;
+    font-size: 16px;
+  }
+
+  .recipe-content.show {
+    display: block;
+  }
+
+  .recipe-content.show + .recipe-heading .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  @media (max-width: 768px) {
+    .image-recipe-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-section,
+    .recipe-dropdown {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    .recipe-dropdown {
+      padding-left: 0;
+      margin-top: 2rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var recipeHeadings = document.querySelectorAll('.recipe-heading');
+
+    recipeHeadings.forEach(function(heading) {
+      heading.addEventListener('click', function() {
+        var recipeContent = this.nextElementSibling;
+        recipeContent.classList.toggle('show');
+      });
+    });
+  });
+</script>
