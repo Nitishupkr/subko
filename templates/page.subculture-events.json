@@ -192,24 +192,6 @@
     },
     "171740601980b475ee": {
       "type": "apps",
-      "blocks": {
-        "the_shop_calendar_the_shop_calendar_VgmhWa": {
-          "type": "shopify:\/\/apps\/the-shop-calendar\/blocks\/the_shop_calendar\/217451ff-da34-48a6-90b4-e904111bb75a",
-          "settings": {
-            "title": "LEARN AND BREW GUIDES",
-            "calendar_uuid": "",
-            "center_header_text": true,
-            "list_calendar": true,
-            "accordion_calendar": false,
-            "width": 100,
-            "padding_top": 0,
-            "padding_bottom": 0
-          }
-        }
-      },
-      "block_order": [
-        "the_shop_calendar_the_shop_calendar_VgmhWa"
-      ],
       "settings": {
         "full_width": false,
         "remove_margin": false
