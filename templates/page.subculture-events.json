@@ -1,1 +1,227 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"center":false}},"slideshow_PUwkU8":{"type":"slideshow","blocks":{"image_neEwg8":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Subculture_3.1.jpg","mobile_image":"shopify:\/\/shop_images\/Subculture_3.jpg","caption":"","title":"","link":"","open_in_new_window":false,"button_label":"","color_background_main":"rgba(0,0,0,0)","color_text_main":"rgba(0,0,0,0)","seo_h_tag":"h3"}}},"block_order":["image_neEwg8"],"custom_css":[],"settings":{"desktop_height":"80vh","mobile_height":"60vh","is_auto_height":true,"autorotate_enable":false,"autorotate_interval":5,"alignment":"horizontal-left align-content--vertical-bottom","text_size":"regular","title_size":"h2","button_size":"regular","button_style":"outline","is_fullwidth":true,"section_background_color":"rgba(0,0,0,0)","section_heading_color":"rgba(0,0,0,0)","remove_margin":false,"color_hide_borders":false,"color_hide_shadow":true}},"rich_text_QJtMWJ":{"type":"rich-text","blocks":{"title_hgk6DG":{"type":"title","settings":{"title":"Subculture By Subko","title_size":"h3","seo_h_tag":"h2"}},"text_VnzKw4":{"type":"text","settings":{"text":"<p>Subculture by Subko is in essence an extension of the core of what Subko represents: a mission to spur a re-imagination and re-conception of what it means to be from the Indian Subcontinent, both on a local and global level.<\/p><p><\/p><p>We feel that an organic and natural extension of our philosophy on coffee roasting and baking is to help spur an ecosystem to pair such deliciousness with other indigenous talent of the subcontinent that we feel strongly have not yet gotten their fair due: visual artists, designers, musicians, and social changemakers. We’re humbled by the sheer number of these folks producing world-class work in our region.<\/p>","text_size":"regular"}}},"block_order":["title_hgk6DG","text_VnzKw4"],"custom_css":[],"settings":{"videofile":"","image_position":"top no-image","height":"regular","image_crop":true,"text_alignment":"horizontal-center","is_fullwidth":true,"section_background_color":"#464646","remove_margin":true,"color_background_main":"#464646","color_text_main":"#ffffff","color_accent_main":"rgba(0,0,0,0)","color_borders_main":"rgba(0,0,0,0)","color_shadow_main":"rgba(0,0,0,0)","color_hide_borders":false,"color_hide_shadow":false}},"featured_collection_HxHk9m":{"type":"featured-collection","blocks":{"title_ApEkC4":{"type":"title","settings":{}},"price_E8XWTL":{"type":"price","settings":{}},"quick_buy_Aj6AxV":{"type":"quick_buy","disabled":true,"settings":{}}},"block_order":["title_ApEkC4","price_E8XWTL","quick_buy_Aj6AxV"],"custom_css":["h2 {font-size: 32px; line-height: 38px;}","@media (max-width: 768px) {h2 {font-size: 28px; line-height: 34px; }}",".section-heading__subheading {font-size: 14px;}",".product-item__price {font-family: \"ibm plex mono\", sans-serif; text-transform: uppercase; font-size: 14px; letter-spacing: 0.8px;}",".product-item__title {font-size: 14px; font-family: dashiell-bright, serif;}",".container--large {margin-bottom: 56px;}"],"settings":{"heading":"Events","subheading":"We feel that an organic and natural extension of our philosophy on coffee roasting and baking is to help spur an ecosystem to pair such deliciousness with other indigenous talent of the subcontinent that we feel strongly have not yet gotten their fair due: visual artists, designers, musicians, and social changemakers. We’re humbled by the sheer number of these folks producing world-class work in our region and honored to bring them forth with specially curated merchandise and events. Straight from Subculture.","show_view_all":true,"section_heading_layout":"section-heading--center","style":"slider","layout":"grid-4 grid-portable-3 grid-lap-2 grid-tiny-1","products_number":8,"collection":"events-experiences","section_background_color":"rgba(0,0,0,0)","section_heading_color":"rgba(0,0,0,0)","remove_margin":false,"seo_h_tag":"h2"}},"featured_collection_prAda4":{"type":"featured-collection","blocks":{"title_bpGfF7":{"type":"title","settings":{}},"price_NfpDHa":{"type":"price","settings":{}},"quick_buy_xtdwU4":{"type":"quick_buy","disabled":true,"settings":{}}},"block_order":["title_bpGfF7","price_NfpDHa","quick_buy_xtdwU4"],"custom_css":["h2 {font-size: 32px; line-height: 38px;}","@media (max-width: 768px) {h2 {font-size: 28px; line-height: 34px; }}",".section-heading__subheading {font-size: 14px;}",".product-item__price {font-family: \"ibm plex mono\", sans-serif; text-transform: uppercase; font-size: 14px; letter-spacing: 0.8px;}",".product-item__title {font-size: 14px; font-family: dashiell-bright, serif;}"],"settings":{"heading":"Dukaan: Subculture Merch","subheading":"Your favorite Subko elements immortalized in fabric, enamel, and more by Studio Substance for you to take home.","show_view_all":false,"section_heading_layout":"section-heading--center","style":"slider","layout":"grid-4 grid-portable-3 grid-lap-2 grid-tiny-1","products_number":8,"collection":"dukaan-1","section_background_color":"rgba(0,0,0,0)","section_heading_color":"rgba(0,0,0,0)","remove_margin":false,"seo_h_tag":"h2"}}},"order":["main","slideshow_PUwkU8","rich_text_QJtMWJ","featured_collection_HxHk9m","featured_collection_prAda4"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "center": false
+      }
+    },
+    "slideshow_PUwkU8": {
+      "type": "slideshow",
+      "blocks": {
+        "image_neEwg8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Subculture_3.1.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/Subculture_3.jpg",
+            "caption": "",
+            "title": "",
+            "link": "",
+            "open_in_new_window": false,
+            "button_label": "",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "image_neEwg8"
+      ],
+      "custom_css": [
+
+      ],
+      "settings": {
+        "desktop_height": "80vh",
+        "mobile_height": "60vh",
+        "is_auto_height": true,
+        "autorotate_enable": false,
+        "autorotate_interval": 5,
+        "alignment": "horizontal-left align-content--vertical-bottom",
+        "text_size": "regular",
+        "title_size": "h2",
+        "button_size": "regular",
+        "button_style": "outline",
+        "is_fullwidth": true,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "remove_margin": false,
+        "color_hide_borders": false,
+        "color_hide_shadow": true
+      }
+    },
+    "rich_text_QJtMWJ": {
+      "type": "rich-text",
+      "blocks": {
+        "title_hgk6DG": {
+          "type": "title",
+          "settings": {
+            "title": "Subculture By Subko",
+            "title_size": "h3",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_VnzKw4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Subculture by Subko is in essence an extension of the core of what Subko represents: a mission to spur a re-imagination and re-conception of what it means to be from the Indian Subcontinent, both on a local and global level.<\/p><p><\/p><p>We feel that an organic and natural extension of our philosophy on coffee roasting and baking is to help spur an ecosystem to pair such deliciousness with other indigenous talent of the subcontinent that we feel strongly have not yet gotten their fair due: visual artists, designers, musicians, and social changemakers. We’re humbled by the sheer number of these folks producing world-class work in our region.<\/p>",
+            "text_size": "regular"
+          }
+        }
+      },
+      "block_order": [
+        "title_hgk6DG",
+        "text_VnzKw4"
+      ],
+      "custom_css": [
+
+      ],
+      "settings": {
+        "videofile": "",
+        "image_position": "top no-image",
+        "height": "regular",
+        "image_crop": true,
+        "text_alignment": "horizontal-center",
+        "is_fullwidth": true,
+        "section_background_color": "#464646",
+        "remove_margin": true,
+        "color_background_main": "#464646",
+        "color_text_main": "#ffffff",
+        "color_accent_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "color_shadow_main": "rgba(0,0,0,0)",
+        "color_hide_borders": false,
+        "color_hide_shadow": false
+      }
+    },
+    "featured_collection_HxHk9m": {
+      "type": "featured-collection",
+      "blocks": {
+        "title_ApEkC4": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "price_E8XWTL": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "quick_buy_Aj6AxV": {
+          "type": "quick_buy",
+          "disabled": true,
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "title_ApEkC4",
+        "price_E8XWTL",
+        "quick_buy_Aj6AxV"
+      ],
+      "custom_css": [
+        "h2 {font-size: 32px; line-height: 38px;}",
+        "@media (max-width: 768px) {h2 {font-size: 28px; line-height: 34px; }}",
+        ".section-heading__subheading {font-size: 14px;}",
+        ".product-item__price {font-family: \"ibm plex mono\", sans-serif; text-transform: uppercase; font-size: 14px; letter-spacing: 0.8px;}",
+        ".product-item__title {font-size: 14px; font-family: dashiell-bright, serif;}",
+        ".container--large {margin-bottom: 56px;}"
+      ],
+      "settings": {
+        "heading": "Events",
+        "subheading": "We feel that an organic and natural extension of our philosophy on coffee roasting and baking is to help spur an ecosystem to pair such deliciousness with other indigenous talent of the subcontinent that we feel strongly have not yet gotten their fair due: visual artists, designers, musicians, and social changemakers. We’re humbled by the sheer number of these folks producing world-class work in our region and honored to bring them forth with specially curated merchandise and events. Straight from Subculture.",
+        "show_view_all": true,
+        "section_heading_layout": "section-heading--center",
+        "style": "slider",
+        "layout": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
+        "products_number": 8,
+        "collection": "events-experiences",
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "remove_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "featured_collection_prAda4": {
+      "type": "featured-collection",
+      "blocks": {
+        "title_bpGfF7": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "price_NfpDHa": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "quick_buy_xtdwU4": {
+          "type": "quick_buy",
+          "disabled": true,
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "title_bpGfF7",
+        "price_NfpDHa",
+        "quick_buy_xtdwU4"
+      ],
+      "custom_css": [
+        "h2 {font-size: 32px; line-height: 38px;}",
+        "@media (max-width: 768px) {h2 {font-size: 28px; line-height: 34px; }}",
+        ".section-heading__subheading {font-size: 14px;}",
+        ".product-item__price {font-family: \"ibm plex mono\", sans-serif; text-transform: uppercase; font-size: 14px; letter-spacing: 0.8px;}",
+        ".product-item__title {font-size: 14px; font-family: dashiell-bright, serif;}"
+      ],
+      "settings": {
+        "heading": "Dukaan: Subculture Merch",
+        "subheading": "Your favorite Subko elements immortalized in fabric, enamel, and more by Studio Substance for you to take home.",
+        "show_view_all": false,
+        "section_heading_layout": "section-heading--center",
+        "style": "slider",
+        "layout": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
+        "products_number": 8,
+        "collection": "dukaan-1",
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "remove_margin": false,
+        "seo_h_tag": "h2"
+      }
+    },
+    "171740601980b475ee": {
+      "type": "apps",
+      "blocks": {
+        "the_shop_calendar_the_shop_calendar_VgmhWa": {
+          "type": "shopify:\/\/apps\/the-shop-calendar\/blocks\/the_shop_calendar\/217451ff-da34-48a6-90b4-e904111bb75a",
+          "settings": {
+            "title": "LEARN AND BREW GUIDES",
+            "calendar_uuid": "",
+            "center_header_text": true,
+            "list_calendar": true,
+            "accordion_calendar": false,
+            "width": 100,
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "the_shop_calendar_the_shop_calendar_VgmhWa"
+      ],
+      "settings": {
+        "full_width": false,
+        "remove_margin": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_PUwkU8",
+    "rich_text_QJtMWJ",
+    "featured_collection_HxHk9m",
+    "featured_collection_prAda4",
+    "171740601980b475ee"
+  ]
+}
