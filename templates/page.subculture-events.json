@@ -203,9 +203,9 @@
         "the_shop_calendar_the_shop_calendar_RgXhzy": {
           "type": "shopify:\/\/apps\/the-shop-calendar\/blocks\/the_shop_calendar\/217451ff-da34-48a6-90b4-e904111bb75a",
           "settings": {
-            "title": "",
+            "title": "Events",
             "calendar_uuid": "",
-            "center_header_text": false,
+            "center_header_text": true,
             "list_calendar": false,
             "accordion_calendar": false,
             "width": 100,
