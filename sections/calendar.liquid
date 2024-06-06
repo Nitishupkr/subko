@@ -1,6 +1,355 @@
-{% schema %}
+<!-- templates/collection.liquid -->
+{% assign month = collection.handle | split: '-' %}
+{% assign year = month[1] %}
+{% assign month = month[0] %}
+
+<div class="grid--full collection-list">
+
+  <div class="calendar-container">
+    <div class="calendar-row month-name-row">
+      <h2 class="calendar-month-name">{{ month }} {{ year }}</h2>
+    </div>
+
+<script type="text/javascript">
+  var currentMonth = {
+    current: '{{ month }}',
+    currentNum: 0,
+    tagNum: 0,
+    previousMonth: '',
+    nextMonth: '',
+    year: {{ year }},
+    previousYear: {{ year }},
+    nextYear: {{ year }}
+  };
+
+  currentMonth = buildMonth(currentMonth);
+
+  var daysToSkip = 0;
+  var showBlankDay = false;
+  var dayTrack = 1;
+
+  var firstOfMonth = new Date(currentMonth.year, currentMonth.currentNum, 1);
+  var weekday = firstOfMonth.getDay();
+
+  switch(weekday)
   {
-    "name": "Section name",
-    "settings": []
+    case 0:
+      dayTrack = 2;
+      break;
+
+    case 1:
+      break;
+
+    case 2:
+      daysToSkip = 1;
+      break;
+
+    case 3:
+      daysToSkip = 2;
+      break;
+
+    case 4:
+      daysToSkip = 3;
+      break;
+
+    case 5:
+      daysToSkip = 4;
+      break;
+
+    case 6:
+      dayTrack = 3;
+      break;
   }
-{% endschema %}
+
+  var numWeeks = 5;
+
+  for(var i = 0; i < numWeeks; i++)
+  {
+    if(currentMonth.current === 'february')
+    {
+      if(dayTrack >= 28)
+      {
+        if(isLeapYear(currentMonth.year))
+        {
+          if(dayTrack > 29)
+          {
+            break;
+          }
+        }
+        else
+        {
+          if(dayTrack > 28)
+          {
+            break;
+          }
+        }
+      }
+    }
+
+    if(dayTrack > 30)
+    {
+      if(has30Days(currentMonth.current))
+      {
+        break;
+      }
+    }
+
+    if(dayTrack > 31)
+    {
+      break;
+    }
+
+    document.write('<div class="grid calendar-row">');
+
+    for(var x = 1; x < 6; x++)
+    {
+      if(showBlankDay || daysToSkip)
+      {
+        document.write('<div class="grid-item large--one-fifth calendar-day blank-day">');
+      }
+      else
+      {
+        document.write('<div class="grid-item large--one-fifth calendar-day">'); 
+      }
+
+      if(daysToSkip)
+      {
+        daysToSkip--;
+        dayTrack = 1;
+      }
+      else if(showBlankDay)
+      {
+        // Do nothing but show a blank day
+      }
+      else
+      {
+        var tagToCheck = "" + currentMonth.tagNum + "-" + dayTrack + "-" + currentMonth.year + "";
+
+
+        document.write('<span class="calendar-day-number">');
+          document.write(dayTrack);
+        document.write('</span>');
+
+        {% for product in collection.products %}
+
+          var tags = [];
+
+          {% for tag in product.tags %}
+            tags.push('{{ tag }}');
+          {% endfor %}
+
+          if(tags.indexOf(tagToCheck) != -1)
+          {
+            document.write('<a class="calendar-lunch-item" href="');
+              document.write('{{ product.url }}');
+              document.write('?d=');
+              document.write(currentMonth.tagNum);
+              document.write('-');
+              document.write(dayTrack);
+              document.write('-');
+              document.write(currentMonth.year);
+            document.write('">');
+              document.write('{{ product.title }}');
+            document.write('</a>');
+          }
+        {% endfor %}
+
+        if(x < 5)
+        {
+          dayTrack++;
+        }
+        else
+        {
+          dayTrack += 3;
+        }
+      }
+      document.write('</div>');
+
+      if(dayTrack >= 28)
+      {
+        if(currentMonth.current === 'february')
+        {
+          if(isLeapYear(currentMonth.year))
+          {
+            if(dayTrack > 29)
+            {
+              break;
+            }
+          }
+          else
+          {
+            if(dayTrack > 28)
+            {
+              console.log(dayTrack);
+              showBlankDay = true;
+            }
+          }
+        }
+      }
+
+      if(dayTrack > 30)
+      {
+        if(has30Days(currentMonth.current))
+        {
+          showBlankDay = true;
+        }
+      }
+
+      if(dayTrack > 31)
+      {
+        showBlankDay = true;
+      }
+    }
+
+    document.write('</div>');
+
+  }
+    
+  calendarNav(currentMonth);
+
+  function calendarNav(month)
+  {
+    document.write('<div class="calendar-nav-container clearfix">');
+      document.write('<a class="prev-month-link btn" href="/collections/' + 
+        month.previousMonth + '-' + month.previousYear + '">');
+        document.write('<span class="fa fa-angle-double-left"></span> ');
+        document.write(currentMonth.previousMonth);
+      document.write('</a>');
+
+      document.write('<a class="next-month-link btn" href="/collections/' + 
+        month.nextMonth + '-' + month.nextYear + '">');
+        document.write(month.nextMonth);
+        document.write(' <span class="fa fa-angle-double-right"></span>');
+      document.write('</a>');
+    document.write('</div>');
+  }
+
+  function buildMonth(month)
+  {
+    switch (month['current'])
+      {
+        case 'january':
+          month.previousMonth = 'december';
+          month.nextMonth = 'february';
+          month.previousYear--;
+          month.currentNum = 0;
+          month.tagNum = 1;
+          break;
+
+        case 'february':
+          month.previousMonth = 'january';
+          month.nextMonth = 'march';
+          month.currentNum = 1;
+          month.tagNum = 2;
+          break;
+          
+        case 'march':
+          month.previousMonth = 'february';
+          month.nextMonth = 'april';
+          month.currentNum = 2;
+          month.tagNum = 3;
+          break;
+          
+        case 'april':
+          month.previousMonth = 'march';
+          month.nextMonth = 'may';
+          month.currentNum = 3;
+          month.tagNum = 4;
+          break;
+          
+        case 'may':
+          month.previousMonth = 'april';
+          month.nextMonth = 'june';
+          month.currentNum = 4;
+          month.tagNum = 5;
+          break;
+
+        case 'june':
+          month.previousMonth = 'may';
+          month.nextMonth = 'july';
+          month.currentNum = 5;
+          month.tagNum = 6;
+          break;    
+
+        case 'july':
+          month.previousMonth = 'june';
+          month.nextMonth = 'august';
+          month.currentNum = 6;
+          month.tagNum = 7;
+          break;
+
+        case 'august':
+          month.previousMonth = 'july';
+          month.nextMonth = 'september';
+          month.currentNum = 7;
+          month.tagNum = 8;
+          break;
+          
+        case 'september':
+          month.previousMonth = 'august';
+          month.nextMonth = 'october';
+          month.currentNum = 8;
+          month.tagNum = 9;
+          break;
+          
+        case 'october':
+          month.previousMonth = 'september';
+          month.nextMonth = 'november';
+          month.currentNum = 9;
+          month.tagNum = 10;
+          break;
+          
+        case 'november':
+          month.previousMonth = 'october';
+          month.nextMonth = 'december';
+          month.currentNum = 10;
+          month.tagNum = 11;
+          break;
+          
+        case 'december':
+          month.previousMonth = 'november';
+          month.nextMonth = 'january';
+          month.nextYear++;
+          month.currentNum = 11;
+          month.tagNum = 12;
+          break;
+      }
+
+      return month;
+  }
+
+  function isLeapYear(year)
+  {
+    if( year % 4 === 0 )
+    {
+      if( year % 100 === 0 )
+      {
+        if( year % 400 === 0)
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      else
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function has30Days(month)
+  {
+   if(month.current === 'april' || month.current === 'june' || month.current === 'september' || month.current === 'november')
+   {
+    return true;
+   }
+   return false;
+  }
+
+</script>
+
+</div>
