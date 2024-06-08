@@ -108,32 +108,30 @@ ul.custom--tabs {
             class="custom__tab-content page-width {% if forloop.first %}active{% endif %}"
         >
             <div class="event-container">
-    {% for i in (1..10) %}
-        {% capture event_title_key %}event_title_{{ i }}{% endcapture %}
-        {% capture event_description_key %}event_description_{{ i }}{% endcapture %}
-        {% capture event_image_key %}event_image_{{ i }}{% endcapture %}
-        
-        {% assign event_title = block.settings[event_title_key] %}
-        {% assign event_description = block.settings[event_description_key] %}
-        {% assign event_image = block.settings[event_image_key] %}
-        
-        {% if event_title %}
-            <div class="event-card">
-                {% if event_image %}
-                    <img src="{{ event_image | img_url: 'medium' }}" alt="Event Image">
-                {% endif %}
-                <h3>{{ event_title }}</h3>
-                <p>{{ event_description }}</p>
-            </div>
-        {% endif %}
-    {% endfor %}
-</div>
-
+                {% for i in (1..10) %}
+                    {% capture event_title_key %}event_title_{{ i }}{% endcapture %}
+                    {% capture event_description_key %}event_description_{{ i }}{% endcapture %}
+                    {% capture event_image_key %}event_image_{{ i }}{% endcapture %}
+                    
+                    {% assign event_title = block.settings[event_title_key] %}
+                    {% assign event_description = block.settings[event_description_key] %}
+                    {% assign event_image = block.settings[event_image_key] %}
+                    
+                    {% if event_title %}
+                        <div class="event-card">
+                            {% if event_image %}
+                                <img src="{{ event_image | img_url: 'medium' }}" alt="Event Image">
+                            {% endif %}
+                            <h3>{{ event_title }}</h3>
+                            <p>{{ event_description }}</p>
+                        </div>
                     {% endif %}
                 {% endfor %}
             </div>
         </div>
-    
+    {% endif %}
+{% endfor %}
+
 {% javascript %}
 tabs = document.querySelectorAll('.custom-tab');
 tabContents = document.querySelectorAll('.custom__tab-content');
