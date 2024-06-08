@@ -257,90 +257,6 @@
         "color_hide_borders": true,
         "color_hide_shadow": false
       }
-    },
-    "custom_tabs_tVFpxY": {
-      "type": "custom-tabs",
-      "blocks": {
-        "tab_7taJ7E": {
-          "type": "tab",
-          "settings": {
-            "heading": "Coffee",
-            "text_color": "#ffffff",
-            "text_size": 30,
-            "tab_content": "<p>Innovative tech company seeks Integration Specialist to connect Zoho Inventory with POS using Deluge scripting. Responsibilities include developing scripts, troubleshooting issues, optimizing workflows, and training users. Required: Bachelor's degree, Zoho Inventory\/POS experience, strong Deluge skills, API knowledge, excellent problem-solving abilities. <\/p>",
-            "tab_content_image": "shopify:\/\/shop_images\/Website_Thumbnails-04_1_587c48c4-1547-45db-bf4f-064119fb8e5b.png"
-          }
-        },
-        "tab_x4diXa": {
-          "type": "tab",
-          "settings": {
-            "heading": "Cacao",
-            "text_color": "#000000",
-            "text_size": 30,
-            "tab_content": "<p>Innovative tech company seeks Integration Specialist to connect Zoho Inventory with POS using Deluge scripting. Responsibilities include developing scripts, troubleshooting issues, optimizing workflows, and training users. Required: Bachelor's degree, Zoho Inventory\/POS experience, strong Deluge skills, API knowledge, excellent problem-solving abilities. <\/p>",
-            "tab_content_image": "shopify:\/\/shop_images\/croissant-1_1.png"
-          }
-        },
-        "tab_3RjdXT": {
-          "type": "tab",
-          "settings": {
-            "heading": "Equipment",
-            "text_color": "#000000",
-            "text_size": 30,
-            "tab_content": "<p>Innovative tech company seeks Integration Specialist to connect Zoho Inventory with POS using Deluge scripting. Responsibilities include developing scripts, troubleshooting issues, optimizing workflows, and training users. Required: Bachelor's degree, Zoho Inventory\/POS experience, strong Deluge skills, API knowledge, excellent problem-solving abilities. <\/p>",
-            "tab_content_image": "shopify:\/\/shop_images\/Website_Thumbnails-02.png"
-          }
-        }
-      },
-      "block_order": [
-        "tab_7taJ7E",
-        "tab_x4diXa",
-        "tab_3RjdXT"
-      ],
-      "settings": {
-      }
-    },
-    "custom_tabs_XqzThr": {
-      "type": "custom-tabs",
-      "blocks": {
-        "tab_eRzBzF": {
-          "type": "tab",
-          "settings": {
-            "heading": "Coffee",
-            "text_color": "#ffffff",
-            "text_size": 30,
-            "tab_content": "<p>Innovative tech company seeks Integration Specialist to connect Zoho Inventory with POS using Deluge scripting. Responsibilities include developing scripts, troubleshooting issues, optimizing workflows, and training users. Required: Bachelor's degree, Zoho Inventory\/POS experience, strong Deluge skills, API knowledge, excellent problem-solving abilities. <\/p>",
-            "tab_content_image": "shopify:\/\/shop_images\/Website_Thumbnails-04_1_587c48c4-1547-45db-bf4f-064119fb8e5b.png"
-          }
-        },
-        "tab_3DxJma": {
-          "type": "tab",
-          "settings": {
-            "heading": "Cacao",
-            "text_color": "#000000",
-            "text_size": 30,
-            "tab_content": "<p>Innovative tech company seeks Integration Specialist to connect Zoho Inventory with POS using Deluge scripting. Responsibilities include developing scripts, troubleshooting issues, optimizing workflows, and training users. Required: Bachelor's degree, Zoho Inventory\/POS experience, strong Deluge skills, API knowledge, excellent problem-solving abilities. <\/p>",
-            "tab_content_image": "shopify:\/\/shop_images\/croissant-1_1.png"
-          }
-        },
-        "tab_VVUyF8": {
-          "type": "tab",
-          "settings": {
-            "heading": "Equipment",
-            "text_color": "#000000",
-            "text_size": 30,
-            "tab_content": "<p>Innovative tech company seeks Integration Specialist to connect Zoho Inventory with POS using Deluge scripting. Responsibilities include developing scripts, troubleshooting issues, optimizing workflows, and training users. Required: Bachelor's degree, Zoho Inventory\/POS experience, strong Deluge skills, API knowledge, excellent problem-solving abilities. <\/p>",
-            "tab_content_image": "shopify:\/\/shop_images\/Website_Thumbnails-02.png"
-          }
-        }
-      },
-      "block_order": [
-        "tab_eRzBzF",
-        "tab_3DxJma",
-        "tab_VVUyF8"
-      ],
-      "settings": {
-      }
     }
   },
   "order": [
@@ -349,8 +265,6 @@
     "custom_liquid_DA4k8f",
     "rich_text_qqYiye",
     "rich_text_DciYQK",
-    "rich_text_9mUkaP",
-    "custom_tabs_tVFpxY",
-    "custom_tabs_XqzThr"
+    "rich_text_9mUkaP"
   ]
 }
