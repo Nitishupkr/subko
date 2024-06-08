@@ -1,1 +1,304 @@
-{"sections":{"slideshow_no_slider_awwHJY":{"type":"slideshow-no-slider","blocks":{"image_VXnJxq":{"type":"image","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/brb_landscape.png","mobile_image":"shopify:\/\/shop_images\/brb_portrat.png","caption":"","title":"","link":"","open_in_new_window":false,"button_label":"","color_background_main":"rgba(0,0,0,0)","color_text_main":"rgba(0,0,0,0)","seo_h_tag":"h3"}}},"block_order":["image_VXnJxq"],"settings":{"desktop_height":"80vh","mobile_height":"60vh","is_auto_height":true,"autorotate_enable":false,"autorotate_interval":5,"alignment":"horizontal-left align-content--vertical-bottom","text_size":"regular","title_size":"h2","button_size":"large","button_style":"solid","is_fullwidth":true,"section_background_color":"rgba(0,0,0,0)","section_heading_color":"rgba(0,0,0,0)","remove_margin":false,"color_hide_borders":false,"color_hide_shadow":true}},"custom_liquid_BA984f":{"type":"custom-liquid","custom_css":[".full-screen-video {height: auto; padding: 0;}","video::-webkit-media-controls {display: none !important;}","video::-webkit-media-controls-start-playback-button {display: none !important;}"],"settings":{"custom_liquid":"{% comment %}\n  Add this code to your Custom Liquid\/CSS section in Shopify\n{% endcomment %}\n\n<div class=\"full-screen-video\">\n  <video autoplay loop muted playsinline class=\"fullscreen-video\">\n    <source src=\"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/f6dcbdb640f348d5b9092be16e07fb5d.mp4\" media=\"(min-width: 1025px)\">\n    <source src=\"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/97abf982f3974f308df0f05704608c19.mp4\" media=\"(max-width: 1024px)\">\n    Your browser does not support the video tag.\n  <\/video>\n<\/div>","full_width":true,"remove_margin":true}},"custom_liquid_DA4k8f":{"type":"custom-liquid","custom_css":[".slider-video {height: 72px;}","@media (max-width: 768px) {.slider-video {min-width: 100%; height: 60px; }}",".container--fullwidth {margin-top: -12px; margin-bottom: -8px;}","@media (max-width: 768px) {.container--fullwidth {margin-top: -17px; margin-bottom: -12px; }}"],"settings":{"custom_liquid":"<div class=\"video-slider\">\n  <div class=\"video-slide\">\n    <video autoplay loop muted playsinline class=\"slider-video\">\n      <source src=\"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/a7f0581d908b484b86a7f48b23cd130c.mp4\" type=\"video\/mp4\">\n    <\/video>\n  <\/div>\n<\/div>\n\n<style>\n  .video-slider {\n    width: 100%;\n    height: 80px; \/* Adjust this height as needed *\/\n    overflow: hidden;\n  }\n  .video-slide {\n    width: 100%;\n    height: 100%;\n    display: flex; \/* This ensures that the video container is flexible *\/\n    justify-content: center; \/* This centers the video horizontally *\/\n    align-items: center; \/* This centers the video vertically *\/\n  }\n  .slider-video {\n    min-width: 100%; \/* Ensure the video covers the full width *\/\n    height: 80px;\n    object-fit: cover; \/* This will crop the video to cover the full area of the container *\/\n  }\n<\/style>","full_width":true,"remove_margin":true}},"rich_text_qqYiye":{"type":"rich-text","blocks":{"title_Fz7wPX":{"type":"title","settings":{"title":"Meticulously Sourced From The Subcontinent","title_size":"h2","seo_h_tag":"h2"}},"text_NRby3N":{"type":"text","settings":{"text":"<p>Guided by our three in-house 'Arabica Q Graders,' we meticulously oversee every batch of coffee beans, sourced from the fertile terrains of the Southern Indian states of Karnataka, Tamil Nadu, Andhra Pradesh, abd the Northeastern Indian States of Meghalaya, Assam, Nagaland, Mizoram, and Tripura. Our multi-species approach to Specialty Coffee spans Arabica, Robusta, Liberica, and Excelsa, delivering a truly unique and flavorful experience.<\/p>","text_size":"regular"}},"space_VaRcVh":{"type":"space","settings":{}},"button_QgKeJm":{"type":"button","settings":{"button_label":"WHERE TO GET CAFFEINATED?","link":"shopify:\/\/pages\/coffee","open_in_new_window":false,"button_size":"regular","button_style":"outline"}}},"block_order":["title_Fz7wPX","text_NRby3N","space_VaRcVh","button_QgKeJm"],"custom_css":[".h2 {font-size: 34px; line-height: 38px;}","@media (max-width: 768px) {.h2 {font-size: 28px; line-height: 34px; text-align: center; } .text-size--regular, .increased-spacing {text-align: center; }}",".container--fullwidth {margin-bottom: -8px;}"],"settings":{"videofile":"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/7621f30e3ed5455b8e29b23e57f8fef5.mp4","image_position":"right","height":"small","image_crop":true,"text_alignment":"horizontal-right","is_fullwidth":true,"section_background_color":"#fff8f2","remove_margin":true,"color_background_main":"#fff8f2","color_text_main":"#000000","color_accent_main":"rgba(0,0,0,0)","color_borders_main":"rgba(0,0,0,0)","color_shadow_main":"rgba(0,0,0,0)","color_hide_borders":true,"color_hide_shadow":false}},"rich_text_DciYQK":{"type":"rich-text","blocks":{"title_8GDBgg":{"type":"title","settings":{"title":"Bringing Fine Cacao To The Forefront","title_size":"h2","seo_h_tag":"h2"}},"text_YfhVNC":{"type":"text","settings":{"text":"<p>Subko's commitment extends beyond coffee, delving into the world of Craft Baking and Fine Cacao. Our Subko Cacao mirrors the core ethos of Subko Coffee, redefining Cacao's presence within the Indian Subcontinent with purpose and innovation. Embracing a 'Pod-to-Bar' philosophy, our cacao offerings showcase design-centric, experiential narratives, reshaping the Cacao landscape. From Single Origin Terroir Bars to Dark\/Milk\/White Bars, Big Cubes, Filled Bars, Experimental Bars, and The Coated Collection, Subko Cacao promises a sensory journey.<\/p>","text_size":"regular"}},"space_Ma9WTC":{"type":"space","settings":{}},"button_4XeXGC":{"type":"button","settings":{"button_label":"WHERE TO BREAK YOUR DIET?","link":"shopify:\/\/pages\/cacao","open_in_new_window":false,"button_size":"regular","button_style":"outline"}}},"block_order":["title_8GDBgg","text_YfhVNC","space_Ma9WTC","button_4XeXGC"],"custom_css":[".h2 {font-size: 34px; line-height: 38px;}","@media (max-width: 768px) {.h2 {font-size: 28px; line-height: 34px; text-align: center; } .text-size--regular, .increased-spacing {text-align: center; }}"],"settings":{"videofile":"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/0945d426546447f597abb4fee8664c9b.mp4","image_position":"left","height":"small","image_crop":true,"text_alignment":"horizontal-left","is_fullwidth":true,"section_background_color":"#fff8f2","remove_margin":true,"color_background_main":"#fff8f2","color_text_main":"#000000","color_accent_main":"rgba(0,0,0,0)","color_borders_main":"rgba(0,0,0,0)","color_shadow_main":"rgba(0,0,0,0)","color_hide_borders":true,"color_hide_shadow":false}},"rich_text_9mUkaP":{"type":"rich-text","blocks":{"title_WPBR6W":{"type":"title","settings":{"title":"Craft Bakes: An Ode To Daily Bread Culture","title_size":"h2","seo_h_tag":"h2"}},"text_ftUNt9":{"type":"text","settings":{"text":"<p>The Subko Specialty Bakehouse is a harmonious blend of tradition and innovation. It marries the time-honored essence of the 'daily bread' culture with a contemporary, adventurous take on flavors. Our dedicated team commences their work at 5 am every day, embarking on a journey that continually challenges conventions to create exceptional craft bread and viennoiserie.<\/p><p>Guided by a micro-batch rustic baking philosophy, we embark on a culinary duet that seeks to redefine the art of baking.<\/p>","text_size":"regular"}},"space_73KNrM":{"type":"space","settings":{}},"button_cqUXyb":{"type":"button","settings":{"button_label":"WHERE TO CARB OVERLOAD?","link":"shopify:\/\/pages\/bakehouse-1","open_in_new_window":false,"button_size":"regular","button_style":"outline"}}},"block_order":["title_WPBR6W","text_ftUNt9","space_73KNrM","button_cqUXyb"],"custom_css":[".h2 {font-size: 34px; line-height: 38px;}","@media (max-width: 768px) {.h2 {font-size: 28px; line-height: 34px; text-align: center; }}",".container--has-background-2 {margin-top: -8px; margin-bottom: -70px;}","@media (max-width: 768px) {.text-size--regular, .increased-spacing {text-align: center; }}"],"settings":{"videofile":"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/d74b54ae7ea34c70beea6bf282097845.mp4","image_position":"right","height":"small","image_crop":true,"text_alignment":"horizontal-right","is_fullwidth":true,"section_background_color":"#fff8f2","remove_margin":true,"color_background_main":"#fff8f2","color_text_main":"#000000","color_accent_main":"rgba(0,0,0,0)","color_borders_main":"rgba(0,0,0,0)","color_shadow_main":"rgba(0,0,0,0)","color_hide_borders":true,"color_hide_shadow":false}}},"order":["slideshow_no_slider_awwHJY","custom_liquid_BA984f","custom_liquid_DA4k8f","rich_text_qqYiye","rich_text_DciYQK","rich_text_9mUkaP"]}
+{
+  "sections": {
+    "slideshow_no_slider_awwHJY": {
+      "type": "slideshow-no-slider",
+      "blocks": {
+        "image_VXnJxq": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify:\/\/shop_images\/brb_landscape.png",
+            "mobile_image": "shopify:\/\/shop_images\/brb_portrat.png",
+            "caption": "",
+            "title": "",
+            "link": "",
+            "open_in_new_window": false,
+            "button_label": "",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "seo_h_tag": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "image_VXnJxq"
+      ],
+      "settings": {
+        "desktop_height": "80vh",
+        "mobile_height": "60vh",
+        "is_auto_height": true,
+        "autorotate_enable": false,
+        "autorotate_interval": 5,
+        "alignment": "horizontal-left align-content--vertical-bottom",
+        "text_size": "regular",
+        "title_size": "h2",
+        "button_size": "large",
+        "button_style": "solid",
+        "is_fullwidth": true,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_heading_color": "rgba(0,0,0,0)",
+        "remove_margin": false,
+        "color_hide_borders": false,
+        "color_hide_shadow": true
+      }
+    },
+    "custom_liquid_BA984f": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".full-screen-video {height: auto; padding: 0;}",
+        "video::-webkit-media-controls {display: none !important;}",
+        "video::-webkit-media-controls-start-playback-button {display: none !important;}"
+      ],
+      "settings": {
+        "custom_liquid": "{% comment %}\n  Add this code to your Custom Liquid\/CSS section in Shopify\n{% endcomment %}\n\n<div class=\"full-screen-video\">\n  <video autoplay loop muted playsinline class=\"fullscreen-video\">\n    <source src=\"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/f6dcbdb640f348d5b9092be16e07fb5d.mp4\" media=\"(min-width: 1025px)\">\n    <source src=\"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/97abf982f3974f308df0f05704608c19.mp4\" media=\"(max-width: 1024px)\">\n    Your browser does not support the video tag.\n  <\/video>\n<\/div>",
+        "full_width": true,
+        "remove_margin": true
+      }
+    },
+    "custom_liquid_DA4k8f": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".slider-video {height: 72px;}",
+        "@media (max-width: 768px) {.slider-video {min-width: 100%; height: 60px; }}",
+        ".container--fullwidth {margin-top: -12px; margin-bottom: -8px;}",
+        "@media (max-width: 768px) {.container--fullwidth {margin-top: -17px; margin-bottom: -12px; }}"
+      ],
+      "settings": {
+        "custom_liquid": "<div class=\"video-slider\">\n  <div class=\"video-slide\">\n    <video autoplay loop muted playsinline class=\"slider-video\">\n      <source src=\"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/a7f0581d908b484b86a7f48b23cd130c.mp4\" type=\"video\/mp4\">\n    <\/video>\n  <\/div>\n<\/div>\n\n<style>\n  .video-slider {\n    width: 100%;\n    height: 80px; \/* Adjust this height as needed *\/\n    overflow: hidden;\n  }\n  .video-slide {\n    width: 100%;\n    height: 100%;\n    display: flex; \/* This ensures that the video container is flexible *\/\n    justify-content: center; \/* This centers the video horizontally *\/\n    align-items: center; \/* This centers the video vertically *\/\n  }\n  .slider-video {\n    min-width: 100%; \/* Ensure the video covers the full width *\/\n    height: 80px;\n    object-fit: cover; \/* This will crop the video to cover the full area of the container *\/\n  }\n<\/style>",
+        "full_width": true,
+        "remove_margin": true
+      }
+    },
+    "rich_text_qqYiye": {
+      "type": "rich-text",
+      "blocks": {
+        "title_Fz7wPX": {
+          "type": "title",
+          "settings": {
+            "title": "Meticulously Sourced From The Subcontinent",
+            "title_size": "h2",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_NRby3N": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Guided by our three in-house 'Arabica Q Graders,' we meticulously oversee every batch of coffee beans, sourced from the fertile terrains of the Southern Indian states of Karnataka, Tamil Nadu, Andhra Pradesh, abd the Northeastern Indian States of Meghalaya, Assam, Nagaland, Mizoram, and Tripura. Our multi-species approach to Specialty Coffee spans Arabica, Robusta, Liberica, and Excelsa, delivering a truly unique and flavorful experience.<\/p>",
+            "text_size": "regular"
+          }
+        },
+        "space_VaRcVh": {
+          "type": "space",
+          "settings": {
+          }
+        },
+        "button_QgKeJm": {
+          "type": "button",
+          "settings": {
+            "button_label": "WHERE TO GET CAFFEINATED?",
+            "link": "shopify:\/\/pages\/coffee",
+            "open_in_new_window": false,
+            "button_size": "regular",
+            "button_style": "outline"
+          }
+        }
+      },
+      "block_order": [
+        "title_Fz7wPX",
+        "text_NRby3N",
+        "space_VaRcVh",
+        "button_QgKeJm"
+      ],
+      "custom_css": [
+        ".h2 {font-size: 34px; line-height: 38px;}",
+        "@media (max-width: 768px) {.h2 {font-size: 28px; line-height: 34px; text-align: center; } .text-size--regular, .increased-spacing {text-align: center; }}",
+        ".container--fullwidth {margin-bottom: -8px;}"
+      ],
+      "settings": {
+        "videofile": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/7621f30e3ed5455b8e29b23e57f8fef5.mp4",
+        "image_position": "right",
+        "height": "small",
+        "image_crop": true,
+        "text_alignment": "horizontal-right",
+        "is_fullwidth": true,
+        "section_background_color": "#fff8f2",
+        "remove_margin": true,
+        "color_background_main": "#fff8f2",
+        "color_text_main": "#000000",
+        "color_accent_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "color_shadow_main": "rgba(0,0,0,0)",
+        "color_hide_borders": true,
+        "color_hide_shadow": false
+      }
+    },
+    "rich_text_DciYQK": {
+      "type": "rich-text",
+      "blocks": {
+        "title_8GDBgg": {
+          "type": "title",
+          "settings": {
+            "title": "Bringing Fine Cacao To The Forefront",
+            "title_size": "h2",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_YfhVNC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Subko's commitment extends beyond coffee, delving into the world of Craft Baking and Fine Cacao. Our Subko Cacao mirrors the core ethos of Subko Coffee, redefining Cacao's presence within the Indian Subcontinent with purpose and innovation. Embracing a 'Pod-to-Bar' philosophy, our cacao offerings showcase design-centric, experiential narratives, reshaping the Cacao landscape. From Single Origin Terroir Bars to Dark\/Milk\/White Bars, Big Cubes, Filled Bars, Experimental Bars, and The Coated Collection, Subko Cacao promises a sensory journey.<\/p>",
+            "text_size": "regular"
+          }
+        },
+        "space_Ma9WTC": {
+          "type": "space",
+          "settings": {
+          }
+        },
+        "button_4XeXGC": {
+          "type": "button",
+          "settings": {
+            "button_label": "WHERE TO BREAK YOUR DIET?",
+            "link": "shopify:\/\/pages\/cacao",
+            "open_in_new_window": false,
+            "button_size": "regular",
+            "button_style": "outline"
+          }
+        }
+      },
+      "block_order": [
+        "title_8GDBgg",
+        "text_YfhVNC",
+        "space_Ma9WTC",
+        "button_4XeXGC"
+      ],
+      "custom_css": [
+        ".h2 {font-size: 34px; line-height: 38px;}",
+        "@media (max-width: 768px) {.h2 {font-size: 28px; line-height: 34px; text-align: center; } .text-size--regular, .increased-spacing {text-align: center; }}"
+      ],
+      "settings": {
+        "videofile": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/0945d426546447f597abb4fee8664c9b.mp4",
+        "image_position": "left",
+        "height": "small",
+        "image_crop": true,
+        "text_alignment": "horizontal-left",
+        "is_fullwidth": true,
+        "section_background_color": "#fff8f2",
+        "remove_margin": true,
+        "color_background_main": "#fff8f2",
+        "color_text_main": "#000000",
+        "color_accent_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "color_shadow_main": "rgba(0,0,0,0)",
+        "color_hide_borders": true,
+        "color_hide_shadow": false
+      }
+    },
+    "rich_text_9mUkaP": {
+      "type": "rich-text",
+      "blocks": {
+        "title_WPBR6W": {
+          "type": "title",
+          "settings": {
+            "title": "Craft Bakes: An Ode To Daily Bread Culture",
+            "title_size": "h2",
+            "seo_h_tag": "h2"
+          }
+        },
+        "text_ftUNt9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The Subko Specialty Bakehouse is a harmonious blend of tradition and innovation. It marries the time-honored essence of the 'daily bread' culture with a contemporary, adventurous take on flavors. Our dedicated team commences their work at 5 am every day, embarking on a journey that continually challenges conventions to create exceptional craft bread and viennoiserie.<\/p><p>Guided by a micro-batch rustic baking philosophy, we embark on a culinary duet that seeks to redefine the art of baking.<\/p>",
+            "text_size": "regular"
+          }
+        },
+        "space_73KNrM": {
+          "type": "space",
+          "settings": {
+          }
+        },
+        "button_cqUXyb": {
+          "type": "button",
+          "settings": {
+            "button_label": "WHERE TO CARB OVERLOAD?",
+            "link": "shopify:\/\/pages\/bakehouse-1",
+            "open_in_new_window": false,
+            "button_size": "regular",
+            "button_style": "outline"
+          }
+        }
+      },
+      "block_order": [
+        "title_WPBR6W",
+        "text_ftUNt9",
+        "space_73KNrM",
+        "button_cqUXyb"
+      ],
+      "custom_css": [
+        ".h2 {font-size: 34px; line-height: 38px;}",
+        "@media (max-width: 768px) {.h2 {font-size: 28px; line-height: 34px; text-align: center; }}",
+        ".container--has-background-2 {margin-top: -8px; margin-bottom: -70px;}",
+        "@media (max-width: 768px) {.text-size--regular, .increased-spacing {text-align: center; }}"
+      ],
+      "settings": {
+        "videofile": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/d74b54ae7ea34c70beea6bf282097845.mp4",
+        "image_position": "right",
+        "height": "small",
+        "image_crop": true,
+        "text_alignment": "horizontal-right",
+        "is_fullwidth": true,
+        "section_background_color": "#fff8f2",
+        "remove_margin": true,
+        "color_background_main": "#fff8f2",
+        "color_text_main": "#000000",
+        "color_accent_main": "rgba(0,0,0,0)",
+        "color_borders_main": "rgba(0,0,0,0)",
+        "color_shadow_main": "rgba(0,0,0,0)",
+        "color_hide_borders": true,
+        "color_hide_shadow": false
+      }
+    },
+    "custom_tabs_FBV4AK": {
+      "type": "custom-tabs",
+      "blocks": {
+        "tab_D7p8Ny": {
+          "type": "tab",
+          "settings": {
+            "heading": "Coffee",
+            "tab_content": "<p>Innovative tech company seeks Integration Specialist to connect Zoho Inventory with POS using Deluge scripting. Responsibilities include developing scripts, troubleshooting issues, optimizing workflows, and training users. Required: Bachelor's degree, Zoho Inventory\/POS experience, strong Deluge skills, API knowledge, excellent problem-solving abilities. <\/p>"
+          }
+        },
+        "tab_hAkgh4": {
+          "type": "tab",
+          "settings": {
+            "heading": "Cacao",
+            "tab_content": ""
+          }
+        },
+        "tab_3bCPMY": {
+          "type": "tab",
+          "settings": {
+            "heading": "Equipment",
+            "tab_content": "<p> geeeeeeeeeeeeee<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "tab_D7p8Ny",
+        "tab_hAkgh4",
+        "tab_3bCPMY"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "slideshow_no_slider_awwHJY",
+    "custom_liquid_BA984f",
+    "custom_liquid_DA4k8f",
+    "rich_text_qqYiye",
+    "rich_text_DciYQK",
+    "rich_text_9mUkaP",
+    "custom_tabs_FBV4AK"
+  ]
+}
