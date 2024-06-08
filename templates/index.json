@@ -323,72 +323,6 @@
       ],
       "settings": {
       }
-    },
-    "custom_tabs_geJEGa": {
-      "type": "custom-tabs",
-      "blocks": {
-        "tab_kGtMkd": {
-          "type": "tab",
-          "settings": {
-            "heading": "Cacao",
-            "tab_image": "shopify:\/\/shop_images\/Website_Thumbnails-04_1.png",
-            "text_color": "#000000",
-            "text_size": 30,
-            "event_title_1": "Zuddl X Parmonic Integration",
-            "event_description_1": "Getting the most out of event content with AI: Zuddl X Parmonic Integration",
-            "event_image_1": "shopify:\/\/shop_images\/Website_Thumbnails-03.png",
-            "event_title_2": "Events as a catalyst for B2B influencer marketing",
-            "event_description_2": "Getting the most out of event content with",
-            "event_image_2": "shopify:\/\/shop_images\/Website_Thumbnails-04_1_1.png",
-            "event_title_3": "Zuddl X Parmonic Integration",
-            "event_description_3": "Getting the most out of event content with AI: Zuddl X Parmonic Integration",
-            "event_image_3": "shopify:\/\/shop_images\/Website_Thumbnails-02.png"
-          }
-        },
-        "tab_CmrKBq": {
-          "type": "tab",
-          "settings": {
-            "heading": "Coffee",
-            "tab_image": "shopify:\/\/shop_images\/Website_Thumbnails-01.png",
-            "text_color": "#000000",
-            "text_size": 30,
-            "event_title_1": "Getting the most out of your event budget",
-            "event_description_1": "Getting the most out of your event budget (and other negotiation tactics)",
-            "event_image_1": "shopify:\/\/shop_images\/sos_ig_nepal-09.png",
-            "event_title_2": "Getting the most out of your event budget",
-            "event_description_2": "Getting the most out of your event budget (and other negotiation tactics)",
-            "event_image_2": "shopify:\/\/shop_images\/Artboard11_1.png",
-            "event_title_3": "Getting the most out of your event budget",
-            "event_description_3": "Getting the most out of your event budget (and other negotiation tactics)",
-            "event_image_3": "shopify:\/\/shop_images\/Artboard1_1_4x-8.png"
-          }
-        },
-        "tab_wgTPpF": {
-          "type": "tab",
-          "settings": {
-            "heading": "Equipment",
-            "tab_image": "shopify:\/\/shop_images\/Website_Thumbnails-01.png",
-            "text_color": "#000000",
-            "text_size": 30,
-            "event_title_1": "Getting the most out of your event budget",
-            "event_description_1": "Getting the most out of your event budget (and other negotiation tactics)",
-            "event_image_1": "shopify:\/\/shop_images\/sos_ig_nepal-09.png",
-            "event_title_2": "Getting the most out of your event budget",
-            "event_description_2": "Getting the most out of your event budget (and other negotiation tactics)",
-            "event_image_2": "shopify:\/\/shop_images\/Artboard11_1.png",
-            "event_title_3": "Getting the most out of your event budget",
-            "event_description_3": "Getting the most out of your event budget (and other negotiation tactics)",
-            "event_image_3": "shopify:\/\/shop_images\/Artboard1_1_4x-8.png"
-          }
-        }
-      },
-      "block_order": [
-        "tab_kGtMkd",
-        "tab_CmrKBq",
-        "tab_wgTPpF"
-      ],
-      "settings": {
-      }
     }
   },
   "order": [
@@ -398,7 +332,6 @@
     "rich_text_qqYiye",
     "rich_text_DciYQK",
     "rich_text_9mUkaP",
-    "custom_tabs_9bk3rq",
-    "custom_tabs_geJEGa"
+    "custom_tabs_9bk3rq"
   ]
 }
