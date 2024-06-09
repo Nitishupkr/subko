@@ -335,6 +335,17 @@
         "color_hide_borders": true,
         "color_hide_shadow": false
       }
+    },
+    "featured_tab_t9rQya": {
+      "type": "featured-tab",
+      "settings": {
+        "heading1": "Coffee",
+        "feature-collection": "project-everest-pan-india",
+        "product-show1": 4,
+        "heading2": "Cacao",
+        "best-collection": "events-experiences",
+        "product-show2": 4
+      }
     }
   },
   "order": [
@@ -344,6 +355,7 @@
     "rich_text_qqYiye",
     "custom_tabs_9bk3rq",
     "rich_text_DciYQK",
-    "rich_text_9mUkaP"
+    "rich_text_9mUkaP",
+    "featured_tab_t9rQya"
   ]
 }
