@@ -66,7 +66,7 @@
   <!-- Month and Year Display -->
   <div class="calendar-header">
     <button class="prev-month" onclick="changeMonth(-1)">&#9664;</button>
-    <span class="current-month-year">{{ 'now' | date: "%B %Y" }}</span>
+    <span class="current-month-year"></span>
     <button class="next-month" onclick="changeMonth(1)">&#9654;</button>
   </div>
 
@@ -136,7 +136,7 @@
         
         if (dayCounter > 0 && dayCounter <= daysInMonth) {
           dayCell.textContent = dayCounter;
-          if (dayCounter === new Date().getDate() && currentDate.getMonth() === new Date().getMonth()) {
+          if (dayCounter === new Date().getDate() && currentDate.getMonth() === new Date().getMonth() && currentDate.getFullYear() === new Date().getFullYear()) {
             dayCell.classList.add('today');
           }
           // Example event
