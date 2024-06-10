@@ -335,6 +335,55 @@
         "color_hide_borders": true,
         "color_hide_shadow": false
       }
+    },
+    "custom_tabs_KQkhmx": {
+      "type": "custom-tabs",
+      "blocks": {
+        "tab_rP8qrf": {
+          "type": "tab",
+          "settings": {
+            "heading": "Event",
+            "text_color": "#000000",
+            "background_color": "#efefef",
+            "text_size": 30,
+            "event_title_1": "",
+            "event_description_1": "",
+            "event_link_1": "",
+            "event_title_2": "",
+            "event_description_2": "",
+            "event_link_2": "",
+            "event_title_3": "",
+            "event_description_3": "",
+            "event_link_3": "",
+            "collection": "events-experiences"
+          }
+        },
+        "tab_fikT6m": {
+          "type": "tab",
+          "settings": {
+            "heading": "Cacao",
+            "text_color": "#000000",
+            "background_color": "#efefef",
+            "text_size": 30,
+            "event_title_1": "",
+            "event_description_1": "",
+            "event_link_1": "",
+            "event_title_2": "",
+            "event_description_2": "",
+            "event_link_2": "",
+            "event_title_3": "",
+            "event_description_3": "",
+            "event_link_3": "",
+            "collection": "subko-cacao-dark-milk-white-bars"
+          }
+        }
+      },
+      "block_order": [
+        "tab_rP8qrf",
+        "tab_fikT6m"
+      ],
+      "settings": {
+      }
     }
   },
   "order": [
@@ -344,6 +393,7 @@
     "custom_tabs_9bk3rq",
     "rich_text_qqYiye",
     "rich_text_DciYQK",
-    "rich_text_9mUkaP"
+    "rich_text_9mUkaP",
+    "custom_tabs_KQkhmx"
   ]
 }
