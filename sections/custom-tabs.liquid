@@ -1,91 +1,3 @@
-{% stylesheet %}
-ul.custom--tabs {
-    list-style-type: none;
-    width: 100%;
-    display: flex !important;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-}
-.custom--tabs .tab__list {
-    background-color: #efefef;
-    display: inline-block;
-    margin: 0 10px;
-    padding: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-}
-.custom__tab-content {
-    display: none;
-}
-.custom__tab-content.active {
-    display: block;
-}
-.tab__list h6.custom-tab {
-    display: inline-block !important;
-    padding: 10px 15px !important;
-    cursor: pointer !important;
-    margin: 0px !important;
-    color: #000;
-    font-size: 16px;
-    font-weight: bold;
-}
-.tab__list img {
-    max-height: 20px;
-    margin-right: 5px;
-}
-.active-always {
-    display: block !important;
-}
-.tab__list.active {
-    background-color: #dfdfdf;
-    border: 1px solid red;
-}
-
-@media only screen and (max-width: 576px) {
-    ul.custom--tabs {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center;
-    }
-    .custom--tabs .tab__list {
-        margin: 5px 0;
-    }
-    .custom__tab-content.active {
-        padding: 0 15px;
-    }
-}
-.event-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.event-card {
-    width: 300px;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.event-card img {
-    width: 100%;
-    border-radius: 10px;
-}
-.event-card h3 {
-    font-size: 18px;
-    margin: 10px 0;
-}
-.event-card p {
-    font-size: 14px;
-    color: #666;
-}
-.event-card a {
-    text-decoration: none;
-    color: inherit;
-}
-{% endstylesheet %}
-
 <ul class="custom--tabs page-width">
     {% for block in section.blocks %}
         {% if block.type == 'tab' %}
@@ -111,29 +23,46 @@ ul.custom--tabs {
             id="content--{{ block.id }}--{{ section.id }}"
             class="custom__tab-content page-width {% if forloop.first %}active{% endif %}"
         >
-            <div class="event-container">
-                {% for i in (1..10) %}
-                    {% capture event_title_key %}event_title_{{ i }}{% endcapture %}
-                    {% capture event_description_key %}event_description_{{ i }}{% endcapture %}
-                    {% capture event_image_key %}event_image_{{ i }}{% endcapture %}
-                    {% capture event_link_key %}event_link_{{ i }}{% endcapture %}
-                    
-                    {% assign event_title = block.settings[event_title_key] %}
-                    {% assign event_description = block.settings[event_description_key] %}
-                    {% assign event_image = block.settings[event_image_key] %}
-                    {% assign event_link = block.settings[event_link_key] %}
-                    
-                    {% if event_title %}
-                        <div class="event-card">
-                            {% if event_image %}
-                                <img src="{{ event_image | img_url: 'medium' }}" alt="Event Image">
-                            {% endif %}
-                            <h3><a href="{{ event_link }}" target="_blank">{{ event_title }}</a></h3>
-                            <p>{{ event_description }}</p>
+            {% if block.settings.collection %}
+                <div class="product-container">
+                    {% assign products = collections[block.settings.collection].products %}
+                    {% for product in products %}
+                        <div class="product-card">
+                            <a href="{{ product.url }}">
+                                {% if product.featured_image %}
+                                    <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+                                {% endif %}
+                                <h3>{{ product.title }}</h3>
+                                <p>{{ product.price | money }}</p>
+                            </a>
                         </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="event-container">
+                    {% for i in (1..10) %}
+                        {% capture event_title_key %}event_title_{{ i }}{% endcapture %}
+                        {% capture event_description_key %}event_description_{{ i }}{% endcapture %}
+                        {% capture event_image_key %}event_image_{{ i }}{% endcapture %}
+                        {% capture event_link_key %}event_link_{{ i }}{% endcapture %}
+                        
+                        {% assign event_title = block.settings[event_title_key] %}
+                        {% assign event_description = block.settings[event_description_key] %}
+                        {% assign event_image = block.settings[event_image_key] %}
+                        {% assign event_link = block.settings[event_link_key] %}
+                        
+                        {% if event_title %}
+                            <div class="event-card">
+                                {% if event_image %}
+                                    <img src="{{ event_image | img_url: 'medium' }}" alt="Event Image">
+                                {% endif %}
+                                <h3><a href="{{ event_link }}" target="_blank">{{ event_title }}</a></h3>
+                                <p>{{ event_description }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     {% endif %}
 {% endfor %}
@@ -274,6 +203,16 @@ tabs.forEach(function(tab) {
                     "type": "url",
                     "id": "event_link_3",
                     "label": "Event Link 3"
+                },
+                {
+                    "type": "header",
+                    "content": "Collection"
+                },
+                {
+                    "type": "collection",
+                    "id": "collection",
+                    "label": "Product Collection",
+                    "info": "Select a product collection to display."
                 }
             ]
         }
