@@ -354,8 +354,7 @@
             "event_link_2": "",
             "event_title_3": "",
             "event_description_3": "",
-            "event_link_3": "",
-            "collection": "events-experiences"
+            "event_link_3": ""
           }
         },
         "tab_fikT6m": {
@@ -373,8 +372,7 @@
             "event_link_2": "",
             "event_title_3": "",
             "event_description_3": "",
-            "event_link_3": "",
-            "collection": "subko-cacao-dark-milk-white-bars"
+            "event_link_3": ""
           }
         }
       },
@@ -383,6 +381,17 @@
         "tab_fikT6m"
       ],
       "settings": {
+      }
+    },
+    "featured_tab_nqrbct": {
+      "type": "featured-tab",
+      "settings": {
+        "heading1": "Cacao",
+        "feature-collection": "subko-cacao-dark-milk-white-bars",
+        "product-show1": 4,
+        "heading2": "Coffee",
+        "best-collection": "project-pearl-pan-india",
+        "product-show2": 4
       }
     }
   },
@@ -394,6 +403,7 @@
     "rich_text_qqYiye",
     "rich_text_DciYQK",
     "rich_text_9mUkaP",
-    "custom_tabs_KQkhmx"
+    "custom_tabs_KQkhmx",
+    "featured_tab_nqrbct"
   ]
 }
