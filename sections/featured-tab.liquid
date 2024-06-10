@@ -1,102 +1,136 @@
-<div class="calendar">
-    <div class="calendar-header">
-        <button id="prev-month">Prev</button>
-        <div id="month-year"></div>
-        <button id="next-month">Next</button>
-    </div>
-    <div class="calendar-body">
-        <div class="calendar-weekdays">
-            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
-        </div>
-        <div class="calendar-days"></div>
-    </div>
-    <div class="calendar-footer">
-        <button id="today">Today</button>
-        <button id="month-view">Month</button>
-        <button id="week-view">Week</button>
-        <button id="day-list-view">Day List</button>
-    </div>
-</div>
-
-<script>
-    const events = {{ events | json }};
-    let currentDate = new Date();
-
-    function renderCalendar(date) {
-        const monthYear = document.getElementById('month-year');
-        const calendarDays = document.querySelector('.calendar-days');
-        const month = date.getMonth();
-        const year = date.getFullYear();
-        monthYear.innerText = `${date.toLocaleString('default', { month: 'long' })} ${year}`;
-        
-        const firstDayOfMonth = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        
-        calendarDays.innerHTML = '';
-        for (let i = 0; i < firstDayOfMonth; i++) {
-            calendarDays.innerHTML += '<div class="empty"></div>';
-        }
-        for (let i = 1; i <= daysInMonth; i++) {
-            const day = new Date(year, month, i).toISOString().split('T')[0];
-            const event = events[day];
-            calendarDays.innerHTML += `<div class="day${event ? ' has-event' : ''}" data-date="${day}">${i}</div>`;
-        }
-    }
-
-    document.getElementById('prev-month').addEventListener('click', () => {
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar(currentDate);
-    });
-
-    document.getElementById('next-month').addEventListener('click', () => {
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar(currentDate);
-    });
-
-    document.getElementById('today').addEventListener('click', () => {
-        currentDate = new Date();
-        renderCalendar(currentDate);
-    });
-
-    renderCalendar(currentDate);
-</script>
-
 <style>
-    .calendar {
-        font-family: 'Poppins', sans-serif;
-        width: 100%;
-        max-width: 900px;
-        margin: auto;
+    .tab-heading{
+      display: flex;
+      justify-content: center;
+      gap: 40px;
     }
-    .calendar-header, .calendar-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        background-color: #f8f8f8;
-    }
-    .calendar-weekdays, .calendar-days {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 5px;
-        text-align: center;
-    }
-    .calendar-weekdays div {
-        font-weight: bold;
-    }
-    .calendar-days .day, .calendar-days .empty {
-        padding: 10px;
-        background-color: #f1f1f1;
-    }
-    .calendar-days .day.has-event {
-        background-color: #ef4d2a;
-        color: white;
-    }
-    .calendar-days .day:hover {
-        background-color: #ddd;
-        cursor: pointer;
-    }
-    .calendar-days .empty {
-        visibility: hidden;
+  .tab1{
+    color: #000;
+    text-decoration: none;
+  }
+    .tab2{
+    color: #000;
+    text-decoration: none;
+  }
+    .tab-indicator{
+      display: flex;
+      flex-wrap: wrap;
     }
 </style>
+<div>
+  <div class="tab-heading">
+    <div>
+      <h2>
+        <a href="#" class="tab1">{{ section.settings.heading1 }}</a>
+      </h2>
+    </div>
+
+    <div>
+      <h2>
+        <a href="#" class="tab2">{{ section.settings.heading2 }}</a>
+      </h2>
+    </div>
+  </div>
+
+  <div class="page-width tab-indicator" id="collection1">
+    <style>
+      :root{
+        --product-column: {{ section.settings.product-show1 }};
+      }
+    </style>
+    {% for product in section.settings['feature-collection'].products %}
+      <div style="width: calc(100%/var(--product-column)); padding: 10px;">
+        <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: "medium"}}"></a>
+        <a href="{{ product.handle }}">
+          <h3>{{ product.title }}</h3>
+        </a>
+        <p>{{ product.price | money_with_currency }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- second tab coding -->
+  <div class="page-width tab-indicator" id="collection2">
+    <style>
+      :root{
+        --product-column2: {{ section.settings.product-show2 }};
+      }
+    </style>
+    {% for product in section.settings['best-collection'].products %}
+      <div style="width: calc(100%/var(--product-column2)); padding: 10px;">
+        <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: "medium"}}"></a>
+        <a href="{{ product.handle }}">
+          <h3>{{ product.title }}</h3>
+        </a>
+        <p>{{ product.price | money_with_currency }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+  $(document).ready(function (){
+    $("#collection2").hide();
+    $(".tab2").on('click', function(e){
+      event.preventDefault();
+      $('.tab-indicator').toggle();
+    });
+     $(".tab1").on('click', function(e){
+       event.preventDefault();
+       $('.tab-indicator').toggle();
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Tab Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading1",
+      "label": "Heading One"
+    },
+    {
+      "type": "collection",
+      "id": "feature-collection",
+      "label": "Collection One"
+    },
+    {
+      "type": "range",
+      "id": "product-show1",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Products Per Row",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Second Tab Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading2",
+      "label": "Heading Two"
+    },
+    {
+      "type": "collection",
+      "id": "best-collection",
+      "label": "Collection Two"
+    },
+    {
+      "type": "range",
+      "id": "product-show2",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Products Per Row",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tab Section"
+    }
+  ]
+}
+{% endschema %}

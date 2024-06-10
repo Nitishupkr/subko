@@ -80,16 +80,12 @@ ul.custom--tabs {
     font-size: 14px;
     color: #666;
 }
-.event-card a {
-    text-decoration: none;
-    color: inherit;
-}
 {% endstylesheet %}
 
 <ul class="custom--tabs page-width">
     {% for block in section.blocks %}
         {% if block.type == 'tab' %}
-            <li class="tab__list {% if forloop.first %}active{% endif %}" style="background-color: {{ block.settings.background_color }};">
+            <li class="tab__list {% if forloop.first %}active{% endif %}">
                 <h6
                     class="custom-tab"
                     data-content-id="content--{{ block.id }}--{{ section.id }}"
@@ -116,19 +112,17 @@ ul.custom--tabs {
                     {% capture event_title_key %}event_title_{{ i }}{% endcapture %}
                     {% capture event_description_key %}event_description_{{ i }}{% endcapture %}
                     {% capture event_image_key %}event_image_{{ i }}{% endcapture %}
-                    {% capture event_link_key %}event_link_{{ i }}{% endcapture %}
                     
                     {% assign event_title = block.settings[event_title_key] %}
                     {% assign event_description = block.settings[event_description_key] %}
                     {% assign event_image = block.settings[event_image_key] %}
-                    {% assign event_link = block.settings[event_link_key] %}
                     
                     {% if event_title %}
                         <div class="event-card">
                             {% if event_image %}
                                 <img src="{{ event_image | img_url: 'medium' }}" alt="Event Image">
                             {% endif %}
-                            <h3><a href="{{ event_link }}" target="_blank">{{ event_title }}</a></h3>
+                            <h3>{{ event_title }}</h3>
                             <p>{{ event_description }}</p>
                         </div>
                     {% endif %}
@@ -189,12 +183,6 @@ tabs.forEach(function(tab) {
                     "default": "#000000"
                 },
                 {
-                    "type": "color",
-                    "id": "background_color",
-                    "label": "Background Color",
-                    "default": "#efefef"
-                },
-                {
                     "type": "range",
                     "id": "text_size",
                     "label": "Text Size",
@@ -223,11 +211,6 @@ tabs.forEach(function(tab) {
                     "label": "Event Image 1"
                 },
                 {
-                    "type": "url",
-                    "id": "event_link_1",
-                    "label": "Event Link 1"
-                },
-                {
                     "type": "header",
                     "content": "Event 2"
                 },
@@ -247,11 +230,6 @@ tabs.forEach(function(tab) {
                     "label": "Event Image 2"
                 },
                 {
-                    "type": "url",
-                    "id": "event_link_2",
-                    "label": "Event Link 2"
-                },
-                {
                     "type": "header",
                     "content": "Event 3"
                 },
@@ -269,11 +247,6 @@ tabs.forEach(function(tab) {
                     "type": "image_picker",
                     "id": "event_image_3",
                     "label": "Event Image 3"
-                },
-                {
-                    "type": "url",
-                    "id": "event_link_3",
-                    "label": "Event Link 3"
                 }
             ]
         }
