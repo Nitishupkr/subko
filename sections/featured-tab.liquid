@@ -2,12 +2,41 @@
     .tab-heading {
         display: flex;
         justify-content: center;
-        gap: 40px;
+        gap: {{ section.settings.tab_padding }}px;
+    }
+
+    .tab-heading h2 {
+        position: relative;
+        margin: 0;
+        padding: 0 10px; /* Additional padding for vertical line spacing */
+    }
+
+    .tab-heading h2::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 50%;
+        width: 1px;
+        background-color: #B5B5B5;
+    }
+
+    .tab-heading h2:last-child::after {
+        display: none; /* No vertical line after the last tab */
     }
 
     .tab-heading img {
         height: auto;
         cursor: pointer;
+    }
+
+    .tab-heading .underline {
+        display: block;
+        height: 2px;
+        background-color: #B5B5B5;
+        margin-top: 5px;
+        width: 100%;
     }
 
     .tab-indicator {
@@ -22,31 +51,47 @@
     .active-tab img {
         opacity: 0.7; /* Example effect for active tab */
     }
+
+    .active-tab .underline {
+        background-color: #000;
+    }
 </style>
 
 <div>
     <div class="tab-heading">
         <div>
             <h2>
-                <a href="#" class="tab1 active-tab"><img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}" style="width: {{ section.settings.image_width1 }}px;"></a>
+                <a href="#" class="tab1 active-tab">
+                    <img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}" style="width: {{ section.settings.image_width1 }}px;">
+                    <span class="underline"></span>
+                </a>
             </h2>
         </div>
 
         <div>
             <h2>
-                <a href="#" class="tab2"><img src="{{ section.settings.image2 | img_url: 'small' }}" alt="{{ section.settings.heading2 }}" style="width: {{ section.settings.image_width2 }}px;"></a>
+                <a href="#" class="tab2">
+                    <img src="{{ section.settings.image2 | img_url: 'small' }}" alt="{{ section.settings.heading2 }}" style="width: {{ section.settings.image_width2 }}px;">
+                    <span class="underline"></span>
+                </a>
             </h2>
         </div>
 
         <div>
             <h2>
-                <a href="#" class="tab3"><img src="{{ section.settings.image3 | img_url: 'small' }}" alt="{{ section.settings.heading3 }}" style="width: {{ section.settings.image_width3 }}px;"></a>
+                <a href="#" class="tab3">
+                    <img src="{{ section.settings.image3 | img_url: 'small' }}" alt="{{ section.settings.heading3 }}" style="width: {{ section.settings.image_width3 }}px;">
+                    <span class="underline"></span>
+                </a>
             </h2>
         </div>
 
         <div>
             <h2>
-                <a href="#" class="tab4"><img src="{{ section.settings.image4 | img_url: 'small' }}" alt="{{ section.settings.heading4 }}" style="width: {{ section.settings.image_width4 }}px;"></a>
+                <a href="#" class="tab4">
+                    <img src="{{ section.settings.image4 | img_url: 'small' }}" alt="{{ section.settings.heading4 }}" style="width: {{ section.settings.image_width4 }}px;">
+                    <span class="underline"></span>
+                </a>
             </h2>
         </div>
     </div>
@@ -319,6 +364,15 @@
       "step": 1,
       "label": "Products Per Row",
       "default": 4
+    },
+    {
+      "type": "range",
+      "id": "tab_padding",
+      "label": "Tab Padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 10
     }
   ],
   "presets": [
