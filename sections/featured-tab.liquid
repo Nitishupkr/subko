@@ -1,4 +1,3 @@
-{{ 'component-product-item.css' | asset_url | stylesheet_tag }}
 <div class="container--large {% unless section.settings.remove_margin %} container--vertical-space {% endunless %} {% if section.settings.section_background_color != "rgba(0,0,0,0)" %} container--has-background {% endif %} remove-empty-space">
 
   {%- render 'section-heading', heading: section.settings.heading, subheading: section.settings.subheading, button: section.settings.show_view_all, button_label: 'collections.view_all_collections', link: routes.collections_url, heading_tag: section.settings.seo_h_tag, layout: section.settings.section_heading_layout -%}
@@ -43,7 +42,7 @@
             --product-column: {{ section.settings.product_show1 }};
         }
     </style>
-    <div class="grid grid--layout {{ section.settings.layout }}">
+    <div id="main-collection-product-grid" class="collection grid grid--layout {{ section.settings.layout }}">
       {% for product in section.settings['feature-collection1'].products %}
       <div class="grid__item" style="width: calc(100%/var(--product-column)); padding: 10px;">
           <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
@@ -62,7 +61,7 @@
             --product-column2: {{ section.settings.product_show2 }};
         }
     </style>
-    <div class="grid grid--layout {{ section.settings.layout }}">
+    <div id="main-collection-product-grid" class="collection grid grid--layout {{ section.settings.layout }}">
       {% for product in section.settings['feature-collection2'].products %}
       <div class="grid__item" style="width: calc(100%/var(--product-column2)); padding: 10px;">
           <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
@@ -81,7 +80,7 @@
             --product-column3: {{ section.settings.product_show3 }};
         }
     </style>
-    <div class="grid grid--layout {{ section.settings.layout }}">
+    <div id="main-collection-product-grid" class="collection grid grid--layout {{ section.settings.layout }}">
       {% for product in section.settings['feature-collection3'].products %}
       <div class="grid__item" style="width: calc(100%/var(--product-column3)); padding: 10px;">
           <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
@@ -100,7 +99,7 @@
             --product-column4: {{ section.settings.product_show4 }};
         }
     </style>
-    <div class="grid grid--layout {{ section.settings.layout }}">
+    <div id="main-collection-product-grid" class="collection grid grid--layout {{ section.settings.layout }}">
       {% for product in section.settings['feature-collection4'].products %}
       <div class="grid__item" style="width: calc(100%/var(--product-column4)); padding: 10px;">
           <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
@@ -243,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 {% schema %}
 {
-  "name": "Tab Section",
+  "name": "Tabbed Collections",
   "settings": [
     {
       "type": "text",
@@ -375,6 +374,50 @@ document.addEventListener('DOMContentLoaded', function () {
       "max": 50,
       "step": 1,
       "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_margin",
+      "label": "Remove Vertical Margin",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "section_heading_color",
+      "label": "Section Heading Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All Button",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "section_heading_layout",
+      "label": "Section Heading Layout",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
     }
   ]
 }
