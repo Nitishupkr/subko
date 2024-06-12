@@ -29,13 +29,13 @@
     <div class="tab-heading">
         <div>
             <h2>
-                <a href="#" class="tab1 active-tab"><img src="path/to/your/image1.jpg" alt="{{ section.settings.heading1 }}"></a>
+                <a href="#" class="tab1 active-tab"><img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}"></a>
             </h2>
         </div>
 
         <div>
             <h2>
-                <a href="#" class="tab2"><img src="path/to/your/image2.jpg" alt="{{ section.settings.heading2 }}"></a>
+                <a href="#" class="tab2"><img src="{{ section.settings.image2 | img_url: 'small' }}" alt="{{ section.settings.heading2 }}"></a>
             </h2>
         </div>
     </div>
@@ -105,6 +105,11 @@
       "label": "Heading One"
     },
     {
+      "type": "image_picker",
+      "id": "image1",
+      "label": "Image for Heading One"
+    },
+    {
       "type": "collection",
       "id": "feature-collection",
       "label": "Collection One"
@@ -126,6 +131,11 @@
       "type": "text",
       "id": "heading2",
       "label": "Heading Two"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Image for Heading Two"
     },
     {
       "type": "collection",
