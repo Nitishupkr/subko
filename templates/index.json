@@ -11,6 +11,34 @@
   "sections": {
     "featured_tab_nqrbct": {
       "type": "featured-tab",
+      "blocks": {
+        "tab_z36rQf": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Tab",
+            "collection": "events-experiences",
+            "heading": "Featured Collection",
+            "subheading": "Showcase your best products",
+            "products_number": 4,
+            "show_view_all": true
+          }
+        },
+        "tab_LrNKBq": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Tab",
+            "collection": "project-everest-pan-india",
+            "heading": "Featured Collection",
+            "subheading": "Showcase your best products",
+            "products_number": 4,
+            "show_view_all": true
+          }
+        }
+      },
+      "block_order": [
+        "tab_z36rQf",
+        "tab_LrNKBq"
+      ],
       "custom_css": [
         "h1,h3 {font-weight: 400; line-height: 1.2;}",
         "h3 {font-size: 14px; font-family: dashiell-bright, serif;}",
@@ -18,27 +46,8 @@
         "@media (max-width: 768px) {h3 {font-size: 24px; }}"
       ],
       "settings": {
-        "heading1": "",
-        "image1": "shopify:\/\/shop_images\/Group.svg",
-        "image_width1": 140,
-        "collection": "project-seven-sisters-1",
-        "product_show1": 4,
-        "heading2": "",
-        "image2": "shopify:\/\/shop_images\/Group_1836ed09-dabe-4aef-9a89-50d9c1838640.svg",
-        "image_width2": 140,
-        "feature-collection2": "project-everest-pan-india",
-        "product_show2": 4,
-        "heading3": "",
-        "image3": "shopify:\/\/shop_images\/dfvgdbgfn.svg",
-        "image_width3": 80,
-        "feature-collection3": "project-seven-sisters-1",
-        "product_show3": 4,
-        "heading4": "",
-        "image4": "shopify:\/\/shop_images\/pearl.svg",
-        "image_width4": 120,
-        "feature-collection4": "project-pearl-pan-india",
-        "product_show4": 4,
-        "tab_spacing": 40
+        "layout": "grid",
+        "section_heading_layout": "section-heading--center"
       }
     },
     "slideshow_no_slider_awwHJY": {
