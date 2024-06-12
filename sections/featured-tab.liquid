@@ -1,125 +1,259 @@
-<style>
-  .tab-heading{
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-  }
-  .tab1{
-    color: #000;
-    text-decoration: none;
-  }
-  .tab2{
-    color: #000;
-    text-decoration: none;
-  }
-  .tab-indicator{
-    display: flex;
-    flex-wrap: wrap;
-  }
-</style>
-<div>
-  <div class="tab-heading">
-    <div>
-      <h2>
-        <a href="#" class="tab1">{{ section.settings.heading1 }}</a>
-      </h2>
-    </div>
+{{ 'component-product-item.css' | asset_url | stylesheet_tag }}
 
-    <div>
-      <h2>
-        <a href="#" class="tab2">{{ section.settings.heading2 }}</a>
-      </h2>
-    </div>
-  </div>
-
-  <div class="page-width tab-indicator" id="collection1">
-    <style>
-      :root{
-        --product-column: {{ section.settings.product-show1 }};
-      }
-    </style>
-    {% for product in section.settings['feature-collection'].products %}
-      {% render 'product-item', product: product %}
+<div class="featured-tabs container--large {% unless section.settings.remove_margin %} container--vertical-space {% endunless %} {% if section.settings.section_background_color != "rgba(0,0,0,0)" %} container--has-background {% endif %} remove-empty-space">
+  
+  <div class="tabs-navigation">
+    {% for tab in section.blocks %}
+      <button class="tab-button {% if forloop.first %}active{% endif %}" data-tab="{{ tab.id }}">{{ tab.settings.label }}</button>
     {% endfor %}
   </div>
+  
+  <div class="tabs-content">
+    {% for tab in section.blocks %}
+      <div class="tab-content {% if forloop.first %}active{% endif %}" id="tab-{{ tab.id }}">
+        
+        {%- render 'section-heading', heading: tab.settings.heading, subheading: tab.settings.subheading, button: tab.settings.show_view_all, button_label: 'collections.view_all_products', link: collections[tab.settings.collection].url, heading_tag: section.settings.seo_h_tag, layout: section.settings.section_heading_layout -%}
+        
+        <div>
+          {%- if section.settings.style == 'slider' -%}
+            <css-slider data-options='{
+                "selector": ".product-item",
+                "indexNav": true,
+                "groupCells": true,
+                "navigationDOM": "<span class=\"css-slider-button css-slider-prev\" style=\"display:none\"><svg fill=\"none\" height=\"13\" viewBox=\"0 0 8 13\" width=\"8\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#000\" ><path d=\"m7.91419 1.41431-6.48529 6.48528-1.4142102-1.41422 6.4852802-6.48527702z\"/><path d=\"m6.48528 12.9849-6.48528027-6.48532 1.41421027-1.41421 6.48528 6.48523z\"/></g></svg></span><span class=\"css-slider-button css-slider-next\" style=\"display:none\"><svg width=\"9\" height=\"13\" viewBox=\"0 0 9 13\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0.914169 11.5857L7.39945 5.10041L8.81367 6.51463L2.32838 12.9999L0.914169 11.5857Z\" fill=\"black\"/><path d=\"M2.34307 0.0151367L8.82835 6.50042L7.41414 7.91463L0.928857 1.42935L2.34307 0.0151367Z\" fill=\"black\"/></svg></span>"
+              }'
+              class="css-slider css-slider--bottom-navigation"
+              id="css-slider-{{ tab.id }}"
+            >
+            {%- render 'custom-shadow', section_id: section.id -%}
+          {%- endif -%}
 
-  <!-- second tab coding -->
-  <div class="page-width tab-indicator" id="collection2">
-    <style>
-      :root{
-        --product-column2: {{ section.settings.product-show2 }};
-      }
-    </style>
-    {% for product in section.settings['best-collection'].products %}
-      {% render 'product-item', product: product %}
+            <div class="grid {% if section.settings.style == 'slider' %} grid--slider {% else %} grid--layout {% endif %} {{ section.settings.layout }}">
+              {%- liquid
+                if tab.settings.collection != blank
+                  for product in collections[tab.settings.collection].products limit: section.settings.products_number
+                    if section.index == 1 and forloop.index <= 4
+                      assign preload = true
+                    else 
+                      assign preload = false
+                    endif
+                    render 'product-item', product: product, product_collection: collections[tab.settings.collection], section_blocks: section.blocks, index: forloop.index, layout: section.settings.layout, preload: preload
+                  endfor
+                else 
+                  for i in (1..section.settings.products_number)
+                    render 'product-item', blank_product: true, section_blocks: section.blocks, index: forloop.index
+                  endfor
+                endif
+              -%}
+            </div>
+
+          {%- if section.settings.layout == 'slider' -%}
+            </css-slider>
+          {%- endif -%}
+        </div>
+        
+        {%- if tab.settings.show_view_all and section.settings.section_heading_layout contains 'center' -%}
+          <div class="gutter-top--large align-content align-content--horizontal-center">
+            <a class="button button--outline button--regular" href="{{ collections[tab.settings.collection].url }}">{{ 'collections.view_all_products' | t }}</a>
+          </div>
+        {%- endif -%}
+      </div>
     {% endfor %}
   </div>
 </div>
+
+{%- if section.settings.section_background_color != "rgba(0,0,0,0)" -%}
+  {% style %}
+    #shopify-section-{{ section.id }} .container--has-background {
+      --color-background-section: {{ section.settings.section_background_color }};
+    }
+  {% endstyle %}
+{%- endif -%}
+
+{%- if section.settings.section_heading_color != "rgba(0,0,0,0)" -%}
+  {% style %}
+    #shopify-section-{{ section.id }} {
+      --color-text-main: {{ section.settings.section_heading_color }};
+    }
+  {% endstyle %}
+{%- endif -%}
+
 <script>
-  $(document).ready(function (){
-    $("#collection2").hide();
-    $(".tab2").on('click', function(e){
-      event.preventDefault();
-      $('#collection1').hide();
-      $('#collection2').show();
-    });
-     $(".tab1").on('click', function(e){
-       event.preventDefault();
-       $('#collection2').hide();
-       $('#collection1').show();
+  document.addEventListener('DOMContentLoaded', function() {
+    var tabButtons = document.querySelectorAll('.tab-button');
+    var tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var tabId = this.getAttribute('data-tab');
+        
+        tabButtons.forEach(function(btn) {
+          btn.classList.remove('active');
+        });
+        
+        tabContents.forEach(function(content) {
+          content.classList.remove('active');
+        });
+        
+        this.classList.add('active');
+        document.getElementById('tab-' + tabId).classList.add('active');
+      });
     });
   });
 </script>
+
 {% schema %}
 {
-  "name": "Tab Section",
+  "name": "Featured Tabs",
   "settings": [
     {
-      "type": "text",
-      "id": "heading1",
-      "label": "Heading One"
-    },
-    {
-      "type": "collection",
-      "id": "feature-collection",
-      "label": "Collection One"
-    },
-    {
-      "type": "range",
-      "id": "product-show1",
-      "min": 2,
-      "max": 5,
-      "step": 1,
-      "label": "Products Per Row",
-      "default": 4
-    },
-    {
       "type": "header",
-      "content": "Second Tab Settings"
+      "content": "Tabs Settings"
     },
     {
-      "type": "text",
-      "id": "heading2",
-      "label": "Heading Two"
+      "type": "select",
+      "id": "section_heading_layout",
+      "label": "Section Heading Layout",
+      "options": [
+        {
+          "value": "section-heading--left",
+          "label": "Left"
+        },
+        {
+          "value": "section-heading--center",
+          "label": "Center"
+        }
+      ],
+      "default": "section-heading--left"
     },
     {
-      "type": "collection",
-      "id": "best-collection",
-      "label": "Collection Two"
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        {
+          "label": "Slider",
+          "value": "slider"
+        },
+        {
+          "label": "Grid",
+          "value": "grid"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "grid-3 grid-lap-2 grid-tiny-1",
+          "label": "3 columns"
+        },
+        {
+          "value": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
+          "label": "4 columns"
+        }
+      ],
+      "default": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1"
     },
     {
       "type": "range",
-      "id": "product-show2",
-      "min": 2,
-      "max": 5,
+      "id": "products_number",
+      "label": "Number of Products",
+      "min": 4,
+      "max": 16,
       "step": 1,
-      "label": "Products Per Row",
-      "default": 4
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "section_heading_color",
+      "label": "Section Heading Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_margin",
+      "label": "Remove Margin",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "seo_h_tag",
+      "label": "SEO Heading Tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        }
+      ],
+      "default": "h2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab Label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Featured collection"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Showcase your best products"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_view_all",
+          "label": "Show View All Button",
+          "default": true
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Tab Section"
+      "name": "Featured Tabs",
+      "blocks": [
+        {
+          "type": "tab"
+        }
+      ]
     }
   ]
 }
