@@ -3,6 +3,7 @@
         display: flex;
         justify-content: center;
         gap: {{ section.settings.tab_spacing }}px;
+        margin-top: {{ section.settings.tab_top_margin }}px;
     }
 
     .tab-heading h2 {
@@ -14,8 +15,7 @@
     .tab-heading h2::after {
         content: '';
         position: absolute;
-      right: calc(-{{ section.settings.tab_spacing }}px / 2);
-
+        right: calc(-{{ section.settings.tab_spacing }}px / 2);
         top: 50%;
         transform: translateY(-50%);
         height: 50%;
@@ -45,6 +45,7 @@
         opacity: 0.7; /* Example effect for active tab */
     }
 </style>
+
 
 <div>
     <div class="tab-heading">
