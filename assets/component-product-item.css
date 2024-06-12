@@ -1,378 +1,232 @@
-<style>
-    .tab-heading {
-        display: flex;
-      
-        justify-content: center;
-        gap: {{ section.settings.tab_spacing }}px;
-        margin-top: 20px; /* Adjust this value as needed for the top margin spacing */
-    }
-
-    .tab-heading h2 {
-        position: relative;
-        margin: 0;
-      
-        padding: 0 10px; /* Additional padding for vertical line spacing */
-    }
-
-    .tab-heading h2::after {
-        content: '';
-        position: absolute;
-        right: calc(-{{ section.settings.tab_spacing }}px / 2);
-        top: 50%;
-        transform: translateY(-50%);
-        height: 100%; /* Extend the line to cover the full height of the tab */
-        width: 2px; /* Increased width for better visibility */
-        background-color: #B5B5B5;
-    }
-
-    .tab-heading h2:last-child::after {
-        display: none; /* No vertical line after the last tab */
-    }
-
-    .tab-heading img {
-        height: auto;
-        cursor: pointer;
-      
-    }
-
-    .tab-indicator {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .active-tab img {
-        opacity: 0.7; /* Example effect for active tab */
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-        .tab-heading {
-            overflow-x: auto;
-            white-space: nowrap;
-            flex-wrap: nowrap;
-            gap: 10px;
-        }
-
-        .tab-heading h2::after {
-            display: none; /* Hide vertical lines on mobile */
-        }
-
-        .tab-heading img {
-            width: 80px;
-            flex: 0 0 auto;
-        }
-
-        .tab-heading {
-            flex-direction: row;
-        }
-    }
-</style>
-
-<div>
-    <div class="tab-heading">
-        <div>
-            <h2>
-                <a href="#" class="tab1 active-tab">
-                    <img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}" style="width: {{ section.settings.image_width1 }}px;">
-                </a>
-            </h2>
-        </div>
-
-        <div>
-            <h2>
-                <a href="#" class="tab2">
-                    <img src="{{ section.settings.image2 | img_url: 'small' }}" alt="{{ section.settings.heading2 }}" style="width: {{ section.settings.image_width2 }}px;">
-                </a>
-            </h2>
-        </div>
-
-        <div>
-            <h2>
-                <a href="#" class="tab3">
-                    <img src="{{ section.settings.image3 | img_url: 'small' }}" alt="{{ section.settings.heading3 }}" style="width: {{ section.settings.image_width3 }}px;">
-                </a>
-            </h2>
-        </div>
-
-        <div>
-            <h2>
-                <a href="#" class="tab4">
-                    <img src="{{ section.settings.image4 | img_url: 'small' }}" alt="{{ section.settings.heading4 }}" style="width: {{ section.settings.image_width4 }}px;">
-                </a>
-            </h2>
-        </div>
-    </div>
-
-    <div class="page-width tab-indicator" id="collection1">
-        <style>
-            :root {
-                --product-column: {{ section.settings.product_show1 }};
-            }
-        </style>
-        {% for product in section.settings['feature-collection1'].products %}
-        <div style="width: calc(100%/var(--product-column)); padding: 10px;">
-            <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
-            <a href="{{ product.handle }}">
-                <h3>{{ product.title }}</h3>
-            </a>
-            <p>{{ product.price | money_with_currency }}</p>
-        </div>
-        {% endfor %}
-    </div>
-
-    <div class="page-width tab-indicator hidden" id="collection2">
-        <style>
-            :root {
-                --product-column2: {{ section.settings.product_show2 }};
-            }
-        </style>
-        {% for product in section.settings['feature-collection2'].products %}
-        <div style="width: calc(100%/var(--product-column2)); padding: 10px;">
-            <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
-            <a href="{{ product.handle }}">
-                <h3>{{ product.title }}</h3>
-            </a>
-            <p>{{ product.price | money_with_currency }}</p>
-        </div>
-        {% endfor %}
-    </div>
-
-    <div class="page-width tab-indicator hidden" id="collection3">
-        <style>
-            :root {
-                --product-column3: {{ section.settings.product_show3 }};
-            }
-        </style>
-        {% for product in section.settings['feature-collection3'].products %}
-        <div style="width: calc(100%/var(--product-column3)); padding: 10px;">
-            <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
-            <a href="{{ product.handle }}">
-                <h3>{{ product.title }}</h3>
-            </a>
-            <p>{{ product.price | money_with_currency }}</p>
-        </div>
-        {% endfor %}
-    </div>
-
-    <div class="page-width tab-indicator hidden" id="collection4">
-        <style>
-            :root {
-                --product-column4: {{ section.settings.product_show4 }};
-            }
-        </style>
-        {% for product in section.settings['feature-collection4'].products %}
-        <div style="width: calc(100%/var(--product-column4)); padding: 10px;">
-            <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
-            <a href="{{ product.handle }}">
-                <h3>{{ product.title }}</h3>
-            </a>
-            <p>{{ product.price | money_with_currency }}</p>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function setActiveTab(tabIndex) {
-            const collections = document.querySelectorAll('.tab-indicator');
-            collections.forEach((collection, index) => {
-                collection.classList.toggle('hidden', index !== tabIndex);
-            });
-
-            const tabs = document.querySelectorAll('.tab-heading a');
-            tabs.forEach((tab, index) => {
-                tab.classList.toggle('active-tab', index === tabIndex);
-            });
-        }
-
-        document.querySelector('.tab1').addEventListener('click', function (e) {
-            e.preventDefault();
-            setActiveTab(0);
-        });
-
-        document.querySelector('.tab2').addEventListener('click', function (e) {
-            e.preventDefault();
-            setActiveTab(1);
-        });
-
-        document.querySelector('.tab3').addEventListener('click', function (e) {
-            e.preventDefault();
-            setActiveTab(2);
-        });
-
-        document.querySelector('.tab4').addEventListener('click', function (e) {
-            e.preventDefault();
-            setActiveTab(3);
-        });
-    });
-</script>
-
-{% schema %}
-{
-  "name": "Tab Section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading1",
-      "label": "Heading One"
-    },
-    {
-      "type": "image_picker",
-      "id": "image1",
-      "label": "Image for Heading One"
-    },
-    {
-      "type": "range",
-      "id": "image_width1",
-      "label": "Image Width for Heading One",
-      "min": 20,
-      "max": 200,
-      "step": 2,
-      "default": 50
-    },
-    {
-      "type": "collection",
-      "id": "feature-collection1",
-      "label": "Collection One"
-    },
-    {
-      "type": "range",
-      "id": "product_show1",
-      "min": 2,
-      "max": 5,
-      "step": 1,
-      "label": "Products Per Row",
-      "default": 4
-    },
-    {
-      "type": "header",
-      "content": "Second Tab Settings"
-    },
-    {
-      "type": "text",
-      "id": "heading2",
-      "label": "Heading Two"
-    },
-    {
-      "type": "image_picker",
-      "id": "image2",
-      "label": "Image for Heading Two"
-    },
-    {
-      "type": "range",
-      "id": "image_width2",
-      "label": "Image Width for Heading Two",
-      "min": 20,
-      "max": 200,
-      "step": 2,
-      "default": 50
-    },
-    {
-      "type": "collection",
-      "id": "feature-collection2",
-      "label": "Collection Two"
-    },
-    {
-      "type": "range",
-      "id": "product_show2",
-      "min": 2,
-      "max": 5,
-      "step": 1,
-      "label": "Products Per Row",
-      "default": 4
-    },
-    {
-      "type": "header",
-      "content": "Third Tab Settings"
-    },
-    {
-      "type": "text",
-      "id": "heading3",
-      "label": "Heading Three"
-    },
-    {
-      "type": "image_picker",
-      "id": "image3",
-      "label": "Image for Heading Three"
-    },
-    {
-      "type": "range",
-      "id": "image_width3",
-      "label": "Image Width for Heading Three",
-      "min": 20,
-      "max": 200,
-      "step": 2,
-      "default": 50
-    },
-    {
-      "type": "collection",
-      "id": "feature-collection3",
-      "label": "Collection Three"
-    },
-    {
-      "type": "range",
-      "id": "product_show3",
-      "min": 2,
-      "max": 5,
-      "step": 1,
-      "label": "Products Per Row",
-      "default": 4
-    },
-    {
-      "type": "header",
-      "content": "Fourth Tab Settings"
-    },
-    {
-      "type": "text",
-      "id": "heading4",
-      "label": "Heading Four"
-    },
-    {
-      "type": "image_picker",
-      "id": "image4",
-      "label": "Image for Heading Four"
-    },
-    {
-      "type": "range",
-      "id": "image_width4",
-      "label": "Image Width for Heading Four",
-      "min": 20,
-      "max": 200,
-      "step": 2,
-      "default": 50
-    },
-    {
-      "type": "collection",
-      "id": "feature-collection4",
-      "label": "Collection Four"
-    },
-    {
-      "type": "range",
-      "id": "product_show4",
-      "min": 2,
-      "max": 5,
-      "step": 1,
-      "label": "Products Per Row",
-      "default": 4
-    },
-    {
-      "type": "header",
-      "content": "General Settings"
-    },
-    {
-      "type": "range",
-      "id": "tab_spacing",
-      "label": "Tab Spacing",
-      "min": 5,
-      "max": 50,
-      "step": 1,
-      "default": 20
-    }
-  ]
+/*
+ *  1.0. Mixins
+*/
+#shopify-section-template--16684288934042__featured_collection_bJefkX h2 {
+    font-size: 32px;
+    line-height: 38px;
 }
-{% endschema %}
+@media (max-width: 768px) {
+  #shopify-section-template--16684288934042__featured_collection_bJefkX h2 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+
+#shopify-section-template--16684288934042__rich_text_wzriw3 .container--fullwidth {
+    margin-top: -96px;
+}
+#shopify-section-template--16684288934042__featured_collection_aF7Wh8 h2 {
+    font-size: 32px;
+    line-height: 38px;
+}
+@media (max-width: 768px) {
+  #shopify-section-template--16684288934042__featured_collection_aF7Wh8 h2 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+h4, .h4 {
+    font-family: dashiell-bright, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.section-heading__subheading {
+  font-size: 14px;
+}
+.product-item {
+  overflow: visible;
+}
+
+.product-item__image-figure {
+  /*
+  border-radius: var(--border-radius-cards) var(--border-radius-cards) 0 0;
+  */
+  transition: opacity 0.3s linear, visibility 0.3s linear !important;
+}
+.product-item__image .lazy-image:before, .product-item__image .lazy-image:after {
+  border-radius: var(--border-radius-cards) 0 0;
+}
+.product-item__image--no-text .product-item__image-figure {
+  border-radius: var(--border-radius-cards);
+}
+.product-item__image-figure--secondary {
+  opacity: 0;
+  visibility: hidden;
+}
+.no-touchevents .product-item__image--has-secondary:hover .product-item__image-figure--primary {
+  opacity: 0;
+  visibility: hidden;
+}
+.no-touchevents .product-item__image--has-secondary:hover .product-item__image-figure--secondary {
+  opacity: 1;
+  visibility: visible;
+}
+
+div + .equalize-white-space {
+  margin-top: -0.1875rem;
+}
+
+.product-item__price span {
+  width: auto;
+}
+.product-item__price span:not(:first-child) {
+  padding-inline-start: 0.5rem;
+}
+.product-item__price span:empty {
+  display: none;
+}
+.product-item__price .product-price--unit {
+  display: block;
+  padding-inline-start: 0 !important;
+  opacity: 0.76;
+  font-size: 80%;
+  margin-top: -0.125rem;
+  margin-bottom: 0.125rem;
+}
+
+.product-item__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+.product-item__text.text-align--center {
+  align-items: center;
+}
+.product-item__text.text-align--right {
+  align-items: flex-end;
+}
+.product-item__text:empty {
+  display: none;
+}
+
+.product-item__quick-buy {
+  width: 100%;
+}
+.product-item__quick-buy .add-to-cart-preloader svg circle {
+  stroke: var(--color-text-cards);
+}
+.product-item__title + .product-item__quick-buy {
+  margin-top: 0.5rem;
+}
+
+.product-item__title:last-child {
+  margin-bottom: 0.5rem;
+}
+
+.product-item__text + .product-item__quick-buy {
+  margin-top: 0.25rem;
+}
+
+.product-item__local-availability .alert {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.product-item__local-availability .alert:before {
+  width: 0.625rem;
+  height: 0.625rem;
+  margin-inline-end: 0.3125rem;
+  top: 0.0625rem;
+}
+.product-item__local-availability .alert.alert--note:before {
+  border-color: var(--color-text-cards);
+}
+
+.product-item__badges {
+  position: absolute;
+  top: var(--gutter-small);
+  width: calc(100% - (var(--gutter-small) * 2));
+  pointer-events: none;
+}
+html[dir=rtl] .product-item__badges {
+  left: var(--gutter-small);
+}
+html[dir=ltr] .product-item__badges {
+  right: var(--gutter-small);
+}
+.product-text .product-item__badges {
+  position: static;
+  display: flex;
+  gap: 0.75rem;
+  width: auto;
+}
+
+.product-item__badge {
+  clear: both;
+  float: right;
+  margin-bottom: calc(var(--gutter-small) / 2);
+  width: auto;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-inline-start: 0.4375rem;
+  padding-inline-end: 0.4375rem;
+  height: 1.5rem;
+  border-radius: clamp(0px, var(--border-radius-buttons), 3px);
+  background-color: #bbb;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+.product-text .product-item__badge {
+  margin-bottom: 0;
+  max-width: none;
+  float: none;
+  height: 1.75rem;
+  line-height: 1.75rem;
+  padding-inline-start: 0.5625rem;
+  padding-inline-end: 0.5625rem;
+}
+
+.product-item__icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem 0;
+}
+
+.star-rating {
+  font-size: 0;
+  width: 100%;
+  height: 1rem;
+  display: grid;
+  grid-template-columns: max-content auto;
+  align-items: center;
+  gap: 0.625rem;
+}
+.star-rating__stars {
+  background-repeat: repeat-x;
+  font-size: 0;
+  display: inline-block;
+  text-align: start;
+}
+.star-rating__stars-active {
+  display: inline-block;
+  font-size: 0;
+  height: 0.875rem;
+  background-repeat: repeat-x;
+}
+
+.main-content--align-product-items .product-item {
+  display: flex;
+  flex-direction: column;
+}
+.main-content--align-product-items .product-item__text:first-of-type {
+  flex-grow: 1;
+}
+
+.product-item .stamped-badge-caption {
+  margin-inline-start: 8px;
+  font-size: 80%;
+}
+.product-item .yotpo .yotpo-bottomline .yotpo-icon-star, .product-item .yotpo .yotpo-bottomline .yotpo-icon-half-star, .product-item .yotpo .yotpo-bottomline .yotpo-icon-empty-star {
+  color: var(--color-text-cards);
+}
+.product-item .yotpo a, .product-item .yotpo a:hover {
+  color: var(--color-text-cards) !important;
+  margin-inline-start: 8px;
+  pointer-events: none !important;
+}
+.product-item .yotpo .standalone-bottomline.star-clickable, .product-item .yotpo .standalone-bottomline .star-clickable {
+  cursor: default !important;
+}
