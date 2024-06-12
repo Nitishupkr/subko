@@ -2,6 +2,12 @@
   "sections": {
     "featured_tab_nqrbct": {
       "type": "featured-tab",
+      "custom_css": [
+        "h1, h3 {font-weight: 400; line-height: 1.2; }",
+        " h3 {font-size: 32px; font-family: dashiell-bright, serif; }",
+        " h3 {font-size: 24px; }",
+        " @media (max-width: 768px) {h3 {font-size: 24px; } }"
+      ],
       "settings": {
         "heading1": "",
         "image1": "shopify:\/\/shop_images\/Group.svg",
