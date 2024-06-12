@@ -1,3 +1,4 @@
+{{ 'component-product-item.css' | asset_url | stylesheet_tag }}
 <div class="container--large {% unless section.settings.remove_margin %} container--vertical-space {% endunless %} {% if section.settings.section_background_color != "rgba(0,0,0,0)" %} container--has-background {% endif %} remove-empty-space">
 
   {%- render 'section-heading', heading: section.settings.heading, subheading: section.settings.subheading, button: section.settings.show_view_all, button_label: 'collections.view_all_collections', link: routes.collections_url, heading_tag: section.settings.seo_h_tag, layout: section.settings.section_heading_layout -%}
