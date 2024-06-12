@@ -3,7 +3,6 @@
         display: flex;
         justify-content: center;
         gap: {{ section.settings.tab_spacing }}px;
-        margin-top: {{ section.settings.tab_top_margin }}px;
     }
 
     .tab-heading h2 {
@@ -44,8 +43,30 @@
     .active-tab img {
         opacity: 0.7; /* Example effect for active tab */
     }
-</style>
 
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .tab-heading {
+            overflow-x: auto;
+            white-space: nowrap;
+            flex-wrap: nowrap;
+            gap: 10px;
+        }
+
+        .tab-heading h2::after {
+            display: none; /* Hide vertical lines on mobile */
+        }
+
+        .tab-heading img {
+            width: 80px;
+            flex: 0 0 auto;
+        }
+
+        .tab-heading {
+            flex-direction: row;
+        }
+    }
+</style>
 
 <div>
     <div class="tab-heading">
@@ -153,52 +174,36 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        function setActiveTab(tabIndex) {
+            const collections = document.querySelectorAll('.tab-indicator');
+            collections.forEach((collection, index) => {
+                collection.classList.toggle('hidden', index !== tabIndex);
+            });
+
+            const tabs = document.querySelectorAll('.tab-heading a');
+            tabs.forEach((tab, index) => {
+                tab.classList.toggle('active-tab', index === tabIndex);
+            });
+        }
+
         document.querySelector('.tab1').addEventListener('click', function (e) {
             e.preventDefault();
-            document.getElementById('collection1').classList.remove('hidden');
-            document.getElementById('collection2').classList.add('hidden');
-            document.getElementById('collection3').classList.add('hidden');
-            document.getElementById('collection4').classList.add('hidden');
-            document.querySelector('.tab1').classList.add('active-tab');
-            document.querySelector('.tab2').classList.remove('active-tab');
-            document.querySelector('.tab3').classList.remove('active-tab');
-            document.querySelector('.tab4').classList.remove('active-tab');
+            setActiveTab(0);
         });
 
         document.querySelector('.tab2').addEventListener('click', function (e) {
             e.preventDefault();
-            document.getElementById('collection1').classList.add('hidden');
-            document.getElementById('collection2').classList.remove('hidden');
-            document.getElementById('collection3').classList.add('hidden');
-            document.getElementById('collection4').classList.add('hidden');
-            document.querySelector('.tab1').classList.remove('active-tab');
-            document.querySelector('.tab2').classList.add('active-tab');
-            document.querySelector('.tab3').classList.remove('active-tab');
-            document.querySelector('.tab4').classList.remove('active-tab');
+            setActiveTab(1);
         });
 
         document.querySelector('.tab3').addEventListener('click', function (e) {
             e.preventDefault();
-            document.getElementById('collection1').classList.add('hidden');
-            document.getElementById('collection2').classList.add('hidden');
-            document.getElementById('collection3').classList.remove('hidden');
-            document.getElementById('collection4').classList.add('hidden');
-            document.querySelector('.tab1').classList.remove('active-tab');
-            document.querySelector('.tab2').classList.remove('active-tab');
-            document.querySelector('.tab3').classList.add('active-tab');
-            document.querySelector('.tab4').classList.remove('active-tab');
+            setActiveTab(2);
         });
 
         document.querySelector('.tab4').addEventListener('click', function (e) {
             e.preventDefault();
-            document.getElementById('collection1').classList.add('hidden');
-            document.getElementById('collection2').classList.add('hidden');
-            document.getElementById('collection3').classList.add('hidden');
-            document.getElementById('collection4').classList.remove('hidden');
-            document.querySelector('.tab1').classList.remove('active-tab');
-            document.querySelector('.tab2').classList.remove('active-tab');
-            document.querySelector('.tab3').classList.remove('active-tab');
-            document.querySelector('.tab4').classList.add('active-tab');
+            setActiveTab(3);
         });
     });
 </script>
@@ -352,27 +357,17 @@
       "default": 4
     },
     {
-      "type": "range",
-      "id": "tab_spacing",
-      "label": "Tab Spacing",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "default": 10
+      "type": "header",
+      "content": "General Settings"
     },
     {
       "type": "range",
-      "id": "tab_top_margin",
-      "label": "Tab Top Margin",
-      "min": 0,
+      "id": "tab_spacing",
+      "label": "Tab Spacing",
+      "min": 5,
       "max": 50,
       "step": 1,
-      "default": 10
-    }
-  ],
-  "presets": [
-    {
-      "name": "Tab Section"
+      "default": 20
     }
   ]
 }
