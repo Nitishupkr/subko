@@ -39,13 +39,7 @@
       }
     </style>
     {% for product in section.settings['feature-collection'].products %}
-      <div style="width: calc(100%/var(--product-column)); padding: 10px;">
-        <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: "medium"}}"></a>
-        <a href="{{ product.handle }}">
-          <h3>{{ product.title }}</h3>
-        </a>
-        <p>{{ product.price | money_with_currency }}</p>
-      </div>
+      {% render 'product-item', product: product %}
     {% endfor %}
   </div>
 
@@ -57,13 +51,7 @@
       }
     </style>
     {% for product in section.settings['best-collection'].products %}
-      <div style="width: calc(100%/var(--product-column2)); padding: 10px;">
-        <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: "medium"}}"></a>
-        <a href="{{ product.handle }}">
-          <h3>{{ product.title }}</h3>
-        </a>
-        <p>{{ product.price | money_with_currency }}</p>
-      </div>
+      {% render 'product-item', product: product %}
     {% endfor %}
   </div>
 </div>
