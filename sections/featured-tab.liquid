@@ -6,7 +6,6 @@
     }
 
     .tab-heading img {
-        width: 50px; /* Adjust the size as needed */
         height: auto;
         cursor: pointer;
     }
@@ -29,13 +28,13 @@
     <div class="tab-heading">
         <div>
             <h2>
-                <a href="#" class="tab1 active-tab"><img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}"></a>
+                <a href="#" class="tab1 active-tab"><img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}" style="width: {{ section.settings.image_width1 }}px;"></a>
             </h2>
         </div>
 
         <div>
             <h2>
-                <a href="#" class="tab2"><img src="{{ section.settings.image2 | img_url: 'small' }}" alt="{{ section.settings.heading2 }}"></a>
+                <a href="#" class="tab2"><img src="{{ section.settings.image2 | img_url: 'small' }}" alt="{{ section.settings.heading2 }}" style="width: {{ section.settings.image_width2 }}px;"></a>
             </h2>
         </div>
     </div>
@@ -110,6 +109,15 @@
       "label": "Image for Heading One"
     },
     {
+      "type": "range",
+      "id": "image_width1",
+      "label": "Image Width for Heading One",
+      "min": 20,
+      "max": 200,
+      "step": 2,
+      "default": 50
+    },
+    {
       "type": "collection",
       "id": "feature-collection",
       "label": "Collection One"
@@ -136,6 +144,15 @@
       "type": "image_picker",
       "id": "image2",
       "label": "Image for Heading Two"
+    },
+    {
+      "type": "range",
+      "id": "image_width2",
+      "label": "Image Width for Heading Two",
+      "min": 20,
+      "max": 200,
+      "step": 2,
+      "default": 50
     },
     {
       "type": "collection",
