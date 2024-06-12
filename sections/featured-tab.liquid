@@ -1,21 +1,21 @@
 <style>
-    .tab-heading{
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-    }
+  .tab-heading{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
   .tab1{
     color: #000;
     text-decoration: none;
   }
-    .tab2{
+  .tab2{
     color: #000;
     text-decoration: none;
   }
-    .tab-indicator{
-      display: flex;
-      flex-wrap: wrap;
-    }
+  .tab-indicator{
+    display: flex;
+    flex-wrap: wrap;
+  }
 </style>
 <div>
   <div class="tab-heading">
@@ -72,11 +72,13 @@
     $("#collection2").hide();
     $(".tab2").on('click', function(e){
       event.preventDefault();
-      $('.tab-indicator').toggle();
+      $('#collection1').hide();
+      $('#collection2').show();
     });
      $(".tab1").on('click', function(e){
        event.preventDefault();
-       $('.tab-indicator').toggle();
+       $('#collection2').hide();
+       $('#collection1').show();
     });
   });
 </script>
