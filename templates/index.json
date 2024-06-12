@@ -11,34 +11,6 @@
   "sections": {
     "featured_tab_nqrbct": {
       "type": "featured-tab",
-      "blocks": {
-        "tab_z36rQf": {
-          "type": "tab",
-          "settings": {
-            "tab_label": "Tab",
-            "collection": "events-experiences",
-            "heading": "Featured Collection",
-            "subheading": "Showcase your best products",
-            "products_number": 4,
-            "show_view_all": true
-          }
-        },
-        "tab_LrNKBq": {
-          "type": "tab",
-          "settings": {
-            "tab_label": "Tab",
-            "collection": "project-everest-pan-india",
-            "heading": "Featured Collection",
-            "subheading": "Showcase your best products",
-            "products_number": 4,
-            "show_view_all": true
-          }
-        }
-      },
-      "block_order": [
-        "tab_z36rQf",
-        "tab_LrNKBq"
-      ],
       "custom_css": [
         "h1,h3 {font-weight: 400; line-height: 1.2;}",
         "h3 {font-size: 14px; font-family: dashiell-bright, serif;}",
@@ -46,8 +18,23 @@
         "@media (max-width: 768px) {h3 {font-size: 24px; }}"
       ],
       "settings": {
-        "layout": "grid",
-        "section_heading_layout": "section-heading--center"
+        "heading1": "",
+        "image_width1": 50,
+        "feature_collection1": "all",
+        "product_show1": 4,
+        "heading2": "",
+        "image_width2": 50,
+        "feature_collection2": "",
+        "product_show2": 4,
+        "heading3": "",
+        "image_width3": 50,
+        "feature_collection3": "",
+        "product_show3": 4,
+        "heading4": "",
+        "image_width4": 50,
+        "feature_collection4": "",
+        "product_show4": 4,
+        "tab_spacing": 10
       }
     },
     "slideshow_no_slider_awwHJY": {
