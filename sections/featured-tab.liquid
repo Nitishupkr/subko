@@ -17,13 +17,14 @@
 .tab-heading div:not(:last-child)::after {
     content: '';
     position: absolute;
-    right: -{{ section.settings.tab_spacing }}px;
+    right: calc(-{{ section.settings.tab_spacing }}px / 2); /* Adjusted for center alignment */
     top: 50%;
     transform: translateY(-50%);
     height: 100px; /* Full height */
     width: 1px; /* Line width */
     background-color: #B5B5B5; /* Line color */
 }
+
 
 .tab-heading img {
     height: auto;
