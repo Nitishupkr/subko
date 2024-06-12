@@ -3,72 +3,77 @@
     display: flex;
     justify-content: center;
     gap: {{ section.settings.tab_spacing }}px;
-  
     margin-top: 20px; /* Adjust this value as needed for the top margin spacing */
 }
 
+.tab-heading h2 {
+    position: relative;
+    margin: 0;
+    padding: 0 10px; /* Additional padding for vertical line spacing */
+}
 
-    .tab-heading h2 {
-        position: relative;
-        margin: 0;
-        padding: 0 10px; /* Additional padding for vertical line spacing */
+.tab-heading h2::after {
+    content: '';
+    position: absolute;
+    right: calc(-{{ section.settings.tab_spacing }}px / 2);
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%; /* Full height */
+    width: 1px; /* Line width */
+    background-color: #B5B5B5; /* Line color */
+}
+
+.tab-heading h2:last-child::after {
+    display: none; /* No vertical line after the last tab */
+}
+
+.tab-heading img {
+    height: auto;
+    cursor: pointer;
+}
+
+.tab-heading hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #B5B5B5;
+    margin: 5px 0; /* Adjust margin for spacing as needed */
+}
+
+.tab-indicator {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hidden {
+    display: none;
+}
+
+.active-tab img {
+    opacity: 0.7; /* Example effect for active tab */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .tab-heading {
+        overflow-x: auto;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        gap: 10px;
     }
 
     .tab-heading h2::after {
-        content: '';
-        position: absolute;
-        right: calc(-{{ section.settings.tab_spacing }}px / 2);
-        top: 50%;
-        transform: translateY(-50%);
-        height: 100%; /* Full height */
-        width: 1px; /* Line width */
-        background-color: #B5B5B5; /* Line color */
-    }
-
-    .tab-heading h2:last-child::after {
-        display: none; /* No vertical line after the last tab */
+        display: none; /* Hide vertical lines on mobile */
     }
 
     .tab-heading img {
-        height: auto;
-        cursor: pointer;
+        width: 80px;
+        flex: 0 0 auto;
     }
 
-    .tab-indicator {
-        display: flex;
-        flex-wrap: wrap;
+    .tab-heading {
+        flex-direction: row;
     }
-
-    .hidden {
-        display: none;
-    }
-
-    .active-tab img {
-        opacity: 0.7; /* Example effect for active tab */
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-        .tab-heading {
-            overflow-x: auto;
-            white-space: nowrap;
-            flex-wrap: nowrap;
-            gap: 10px;
-        }
-
-        .tab-heading h2::after {
-            display: none; /* Hide vertical lines on mobile */
-        }
-
-        .tab-heading img {
-            width: 80px;
-            flex: 0 0 auto;
-        }
-
-        .tab-heading {
-            flex-direction: row;
-        }
-    }
+}
 </style>
 
 <div>
@@ -78,6 +83,7 @@
                 <a href="#" class="tab1 active-tab">
                     <img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}" style="width: {{ section.settings.image_width1 }}px;">
                 </a>
+                <hr>
             </h2>
         </div>
 
@@ -86,6 +92,7 @@
                 <a href="#" class="tab2">
                     <img src="{{ section.settings.image2 | img_url: 'small' }}" alt="{{ section.settings.heading2 }}" style="width: {{ section.settings.image_width2 }}px;">
                 </a>
+                <hr>
             </h2>
         </div>
 
@@ -94,6 +101,7 @@
                 <a href="#" class="tab3">
                     <img src="{{ section.settings.image3 | img_url: 'small' }}" alt="{{ section.settings.heading3 }}" style="width: {{ section.settings.image_width3 }}px;">
                 </a>
+                <hr>
             </h2>
         </div>
 
@@ -102,6 +110,7 @@
                 <a href="#" class="tab4">
                     <img src="{{ section.settings.image4 | img_url: 'small' }}" alt="{{ section.settings.heading4 }}" style="width: {{ section.settings.image_width4 }}px;">
                 </a>
+                <hr>
             </h2>
         </div>
     </div>
