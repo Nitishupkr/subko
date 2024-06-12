@@ -405,7 +405,8 @@
         "image4": "shopify:\/\/shop_images\/pearl.svg",
         "image_width4": 120,
         "feature-collection4": "project-pearl-pan-india",
-        "product_show4": 4
+        "product_show4": 4,
+        "tab_padding": 20
       }
     }
   },
