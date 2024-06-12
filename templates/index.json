@@ -18,23 +18,19 @@
         "@media (max-width: 768px) {h3 {font-size: 24px; }}"
       ],
       "settings": {
-        "heading1": "",
-        "image_width1": 50,
-        "feature_collection1": "all",
-        "product_show1": 4,
-        "heading2": "",
-        "image_width2": 50,
-        "feature_collection2": "",
-        "product_show2": 4,
-        "heading3": "",
-        "image_width3": 50,
-        "feature_collection3": "",
-        "product_show3": 4,
-        "heading4": "",
-        "image_width4": 50,
-        "feature_collection4": "",
-        "product_show4": 4,
-        "tab_spacing": 10
+        "heading": "",
+        "subheading": "",
+        "show_view_all": true,
+        "section_heading_layout": "section-heading--left",
+        "style": "grid",
+        "layout": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
+        "products_number": 8,
+        "collection_1": "all",
+        "tab_label_1": "Tab 1",
+        "collection_2": "project-pearl-pan-india",
+        "tab_label_2": "Tab 2",
+        "collection_3": "events-experiences",
+        "tab_label_3": "Tab 3"
       }
     },
     "slideshow_no_slider_awwHJY": {
