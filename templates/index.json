@@ -388,14 +388,24 @@
       "settings": {
         "heading1": "",
         "image1": "shopify:\/\/shop_images\/Group.svg",
-        "image_width1": 100,
-        "feature-collection": "subko-cacao-dark-milk-white-bars",
-        "product-show1": 4,
+        "image_width1": 120,
+        "feature-collection1": "subko-vlge-co-operative-agriculture",
+        "product_show1": 4,
         "heading2": "",
         "image2": "shopify:\/\/shop_images\/Group_1836ed09-dabe-4aef-9a89-50d9c1838640.svg",
-        "image_width2": 100,
-        "best-collection": "project-pearl-pan-india",
-        "product-show2": 4
+        "image_width2": 120,
+        "feature-collection2": "project-everest-pan-india",
+        "product_show2": 4,
+        "heading3": "",
+        "image3": "shopify:\/\/shop_images\/dfvgdbgfn.svg",
+        "image_width3": 70,
+        "feature-collection3": "",
+        "product_show3": 4,
+        "heading4": "",
+        "image4": "shopify:\/\/shop_images\/pearl.svg",
+        "image_width4": 120,
+        "feature-collection4": "project-pearl-pan-india",
+        "product_show4": 4
       }
     }
   },
