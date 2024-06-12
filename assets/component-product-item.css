@@ -1,6 +1,8 @@
 <style>
     .tab-heading {
         display: flex;
+        border-left: 2px solid green;
+  height: 500px;
         justify-content: center;
         gap: {{ section.settings.tab_spacing }}px;
         margin-top: 20px; /* Adjust this value as needed for the top margin spacing */
