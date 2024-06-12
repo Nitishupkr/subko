@@ -10,8 +10,7 @@
     .tab-heading h2 {
         position: relative;
         margin: 0;
-        border-left: 6px solid green;
-  height: 500px;
+      
         padding: 0 10px; /* Additional padding for vertical line spacing */
     }
 
@@ -33,6 +32,8 @@
     .tab-heading img {
         height: auto;
         cursor: pointer;
+        border-left: 6px solid green;
+  height: 500px;
     }
 
     .tab-indicator {
