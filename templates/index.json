@@ -23,7 +23,8 @@
         "image_width4": 120,
         "feature-collection4": "project-pearl-pan-india",
         "product_show4": 4,
-        "tab_spacing": 10
+        "tab_spacing": 23,
+        "tab_top_margin": 21
       }
     },
     "slideshow_no_slider_awwHJY": {
