@@ -5,9 +5,10 @@
         gap: 40px;
     }
 
-    .tab1, .tab2 {
-        color: #000;
-        text-decoration: none;
+    .tab-heading img {
+        width: 50px; /* Adjust the size as needed */
+        height: auto;
+        cursor: pointer;
     }
 
     .tab-indicator {
@@ -19,9 +20,8 @@
         display: none;
     }
 
-    .active-tab {
+    .active-tab img {
         border-bottom: 2px solid #000;
-        font-weight: bold;
     }
 </style>
 
@@ -29,13 +29,13 @@
     <div class="tab-heading">
         <div>
             <h2>
-                <a href="#" class="tab1 active-tab">{{ section.settings.heading1 }}</a>
+                <a href="#" class="tab1 active-tab"><img src="path/to/your/image1.jpg" alt="{{ section.settings.heading1 }}"></a>
             </h2>
         </div>
 
         <div>
             <h2>
-                <a href="#" class="tab2">{{ section.settings.heading2 }}</a>
+                <a href="#" class="tab2"><img src="path/to/your/image2.jpg" alt="{{ section.settings.heading2 }}"></a>
             </h2>
         </div>
     </div>
