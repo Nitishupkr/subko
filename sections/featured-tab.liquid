@@ -3,11 +3,13 @@
 <style>
   .featured-tabs-section {
     text-align: center;
+    padding: 20px;
   }
 
   .tabs-container {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin-bottom: 20px;
   }
 
@@ -15,7 +17,7 @@
     background-color: #f0f0f0;
     border: none;
     padding: 10px 20px;
-    margin: 0 10px;
+    margin: 5px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
@@ -27,6 +29,42 @@
 
   .tab-content {
     display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .product-item {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+  }
+
+  .product-item img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .product-item h3 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  .product-item p {
+    font-size: 16px;
+    color: #333;
+  }
+
+  @media (max-width: 768px) {
+    .tabs-container {
+      flex-direction: column;
+    }
+
+    .product-item {
+      margin: 10px auto;
+    }
   }
 </style>
 
@@ -80,9 +118,9 @@
         this.classList.add("active");
 
         tabContents.forEach(function(content) {
-          content.style.display = "none";
+          content.classList.remove("active");
         });
-        document.getElementById("tab-" + tabId).style.display = "block";
+        document.getElementById("tab-" + tabId).classList.add("active");
       });
     });
 
