@@ -11,18 +11,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 10px; /* Additional padding for vertical line spacing */
+    padding: 0 10px; /* Additional padding for horizontal line spacing */
 }
 
-.tab-heading div:not(:last-child)::after {
+.tab-heading div::before {
     content: '';
     position: absolute;
-    right: -{{ section.settings.tab_spacing }}px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 100px; /* Full height */
-    width: 1px; /* Line width */
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80%; /* Line width */
+    height: 1px; /* Line height */
     background-color: #B5B5B5; /* Line color */
+}
+
+.tab-heading div:not(:first-child)::before {
+    display: block; /* Show horizontal lines for all but the first tab */
+}
+
+.tab-heading div:first-child::before {
+    display: none; /* Hide horizontal line for the first tab */
 }
 
 .tab-heading img {
@@ -52,8 +60,8 @@
         gap: 10px;
     }
 
-    .tab-heading div:not(:last-child)::after {
-        display: none; /* Hide vertical lines on mobile */
+    .tab-heading div::before {
+        display: none; /* Hide horizontal lines on mobile */
     }
 
     .tab-heading img {
@@ -66,7 +74,6 @@
     }
 }
 </style>
-
 
 <div>
     <div class="tab-heading">
