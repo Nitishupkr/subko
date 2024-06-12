@@ -108,52 +108,73 @@
         </div>
     </div>
 
-<div class="page-width tab-indicator" id="collection1">
-    {% for product in section.settings['tab1-collection'].products %}
-    <div style="width: calc(100%/var(--product-column)); padding: 10px;">
-        <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
-        <a href="{{ product.handle }}">
-            <h3>{{ product.title }}</h3>
-        </a>
-        <p>{{ product.price | money_with_currency }}</p>
+    <div class="page-width tab-indicator" id="collection1">
+        <style>
+            :root {
+                --product-column: {{ section.settings.product_show1 }};
+            }
+        </style>
+        {% for product in section.settings['feature-collection1'].products %}
+        <div style="width: calc(100%/var(--product-column)); padding: 10px;">
+            <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
+            <a href="{{ product.handle }}">
+                <h3>{{ product.title }}</h3>
+            </a>
+            <p>{{ product.price | money_with_currency }}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
-<div class="page-width tab-indicator hidden" id="collection2">
-    {% for product in section.settings['tab2-collection'].products %}
-    <div style="width: calc(100%/var(--product-column2)); padding: 10px;">
-        <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
-        <a href="{{ product.handle }}">
-            <h3>{{ product.title }}</h3>
-        </a>
-        <p>{{ product.price | money_with_currency }}</p>
+    <div class="page-width tab-indicator hidden" id="collection2">
+        <style>
+            :root {
+                --product-column2: {{ section.settings.product_show2 }};
+            }
+        </style>
+        {% for product in section.settings['feature-collection2'].products %}
+        <div style="width: calc(100%/var(--product-column2)); padding: 10px;">
+            <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
+            <a href="{{ product.handle }}">
+                <h3>{{ product.title }}</h3>
+            </a>
+            <p>{{ product.price | money_with_currency }}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
-<div class="page-width tab-indicator hidden" id="collection3">
-    {% for product in section.settings['tab3-collection'].products %}
-    <div style="width: calc(100%/var(--product-column3)); padding: 10px;">
-        <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
-        <a href="{{ product.handle }}">
-            <h3>{{ product.title }}</h3>
-        </a>
-        <p>{{ product.price | money_with_currency }}</p>
+    <div class="page-width tab-indicator hidden" id="collection3">
+        <style>
+            :root {
+                --product-column3: {{ section.settings.product_show3 }};
+            }
+        </style>
+        {% for product in section.settings['feature-collection3'].products %}
+        <div style="width: calc(100%/var(--product-column3)); padding: 10px;">
+            <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
+            <a href="{{ product.handle }}">
+                <h3>{{ product.title }}</h3>
+            </a>
+            <p>{{ product.price | money_with_currency }}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
-<div class="page-width tab-indicator hidden" id="collection4">
-    {% for product in section.settings['tab4-collection'].products %}
-    <div style="width: calc(100%/var(--product-column4)); padding: 10px;">
-        <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
-        <a href="{{ product.handle }}">
-            <h3>{{ product.title }}</h3>
-        </a>
-        <p>{{ product.price | money_with_currency }}</p>
+    <div class="page-width tab-indicator hidden" id="collection4">
+        <style>
+            :root {
+                --product-column4: {{ section.settings.product_show4 }};
+            }
+        </style>
+        {% for product in section.settings['feature-collection4'].products %}
+        <div style="width: calc(100%/var(--product-column4)); padding: 10px;">
+            <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
+            <a href="{{ product.handle }}">
+                <h3>{{ product.title }}</h3>
+            </a>
+            <p>{{ product.price | money_with_currency }}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
 <script>
@@ -215,11 +236,11 @@
       "step": 2,
       "default": 50
     },
-{
-  "type": "collection",
-  "id": "tab1-collection",
-  "label": "Tab 1 Collection"
-},
+    {
+      "type": "collection",
+      "id": "feature-collection1",
+      "label": "Collection One"
+    },
     {
       "type": "range",
       "id": "product_show1",
@@ -252,11 +273,11 @@
       "step": 2,
       "default": 50
     },
-{
-  "type": "collection",
-  "id": "tab2-collection",
-  "label": "Tab 2 Collection"
-},
+    {
+      "type": "collection",
+      "id": "feature-collection2",
+      "label": "Collection Two"
+    },
     {
       "type": "range",
       "id": "product_show2",
@@ -289,11 +310,11 @@
       "step": 2,
       "default": 50
     },
-{
-  "type": "collection",
-  "id": "tab3-collection",
-  "label": "Tab 3 Collection"
-},
+    {
+      "type": "collection",
+      "id": "feature-collection3",
+      "label": "Collection Three"
+    },
     {
       "type": "range",
       "id": "product_show3",
@@ -326,11 +347,11 @@
       "step": 2,
       "default": 50
     },
-  {
-  "type": "collection",
-  "id": "tab4-collection",
-  "label": "Tab 4 Collection"
-},
+    {
+      "type": "collection",
+      "id": "feature-collection4",
+      "label": "Collection Four"
+    },
     {
       "type": "range",
       "id": "product_show4",
