@@ -6,16 +6,18 @@
     margin-top: 20px; /* Adjust this value as needed for the top margin spacing */
 }
 
-.tab-heading h2 {
+.tab-heading div {
     position: relative;
-    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0 10px; /* Additional padding for vertical line spacing */
 }
 
-.tab-heading h2::after {
+.tab-heading div:not(:last-child)::after {
     content: '';
     position: absolute;
-    right: calc(-{{ section.settings.tab_spacing }}px / 2);
+    right: -{{ section.settings.tab_spacing }}px;
     top: 50%;
     transform: translateY(-50%);
     height: 100%; /* Full height */
@@ -23,20 +25,9 @@
     background-color: #B5B5B5; /* Line color */
 }
 
-.tab-heading h2:last-child::after {
-    display: none; /* No vertical line after the last tab */
-}
-
 .tab-heading img {
     height: auto;
     cursor: pointer;
-}
-
-.tab-heading hr {
-    width: 100%;
-    border: none;
-    border-top: 1px solid #B5B5B5;
-    margin: 5px 0; /* Adjust margin for spacing as needed */
 }
 
 .tab-indicator {
@@ -61,7 +52,7 @@
         gap: 10px;
     }
 
-    .tab-heading h2::after {
+    .tab-heading div:not(:last-child)::after {
         display: none; /* Hide vertical lines on mobile */
     }
 
@@ -75,6 +66,7 @@
     }
 }
 </style>
+
 
 <div>
     <div class="tab-heading">
