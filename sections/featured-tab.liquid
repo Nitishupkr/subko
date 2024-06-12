@@ -13,16 +13,17 @@
         padding: 0 10px; /* Additional padding for vertical line spacing */
     }
 
-    .tab-heading h2::after {
-        content: '';
-        position: absolute;
-        right: calc(-{{ section.settings.tab_spacing }}px / 2);
-        top: 50%;
-        transform: translateY(-50%);
-        height: 50%;
-        width: 1px;
-        background-color: #B5B5B5;
-    }
+.tab-heading h2::after {
+    content: '';
+    position: absolute;
+    right: calc(-{{ section.settings.tab_spacing }}px / 2);
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50%;
+    width: 1px;
+    background-color: #B5B5B5; /* Change this color as needed */
+}
+
 
     .tab-heading h2:last-child::after {
         display: none; /* No vertical line after the last tab */
