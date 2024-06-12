@@ -157,8 +157,10 @@
                 <a href="#" class="tab1 active-tab">
                     <img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}" style="width: {{ section.settings.image_width1 }}px;">
                 </a>
+
             </h2>
         </div>
+
         <div>
             <h2>
                 <a href="#" class="tab2">
@@ -174,11 +176,10 @@
                 --product-column: {{ section.settings.product_show1 }};
             }
         </style>
-        {% assign collection1 = collections[section.settings.collection1] %}
-        {% for product in collection1.products %}
+        {% for product in section.settings['collection1'].products %}
         <div style="width: calc(100%/var(--product-column)); padding: 10px;">
-            <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
-            <a href="{{ product.url }}">
+            <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
+            <a href="{{ product.handle }}">
                 <h3>{{ product.title }}</h3>
             </a>
             <p>{{ product.price | money_with_currency }}</p>
@@ -192,11 +193,10 @@
                 --product-column2: {{ section.settings.product_show2 }};
             }
         </style>
-        {% assign collection2 = collections[section.settings.collection2] %}
-        {% for product in collection2.products %}
+        {% for product in section.settings['collection2'].products %}
         <div style="width: calc(100%/var(--product-column2)); padding: 10px;">
-            <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
-            <a href="{{ product.url }}">
+            <a href="{{ product.handle }}"><img src="{{ product.featured_image | img_url: 'medium' }}"></a>
+            <a href="{{ product.handle }}">
                 <h3>{{ product.title }}</h3>
             </a>
             <p>{{ product.price | money_with_currency }}</p>
