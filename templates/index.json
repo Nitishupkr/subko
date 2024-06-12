@@ -386,10 +386,14 @@
     "featured_tab_nqrbct": {
       "type": "featured-tab",
       "settings": {
-        "heading1": "Cacao",
+        "heading1": "",
+        "image1": "shopify:\/\/shop_images\/Group.svg",
+        "image_width1": 100,
         "feature-collection": "subko-cacao-dark-milk-white-bars",
         "product-show1": 4,
-        "heading2": "Coffee",
+        "heading2": "",
+        "image2": "shopify:\/\/shop_images\/Group_1836ed09-dabe-4aef-9a89-50d9c1838640.svg",
+        "image_width2": 100,
         "best-collection": "project-pearl-pan-india",
         "product-show2": 4
       }
