@@ -1,243 +1,384 @@
-{{ 'component-product-item.css' | asset_url | stylesheet_tag }}
-
 <style>
-  .featured-tabs-section {
-    text-align: center;
-    padding: 20px;
-  }
-
-  .tabs-container {
+.tab-heading {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
+    gap: {{ section.settings.tab_spacing }}px;
+    margin-top: 20px; /* Adjust this value as needed for the top margin spacing */
+}
 
-  .tab-button {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
+.tab-heading div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px; /* Additional padding for vertical line spacing */
+}
 
-  .tab-button.active {
-    background-color: #d0d0d0;
-  }
+.tab-heading div:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: calc(-{{ section.settings.tab_spacing }}px / 2); /* Adjusted for center alignment */
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100px; /* Full height */
+    width: 1px; /* Line width */
+    background-color: #B5B5B5; /* Line color */
+}
 
-  .tab-content {
-    display: none;
-  }
-
-  .tab-content.active {
-    display: block;
-  }
-
-  .product-item {
-    border: 1px solid #e0e0e0;
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-  }
-
-  .product-item img {
-    max-width: 100%;
+.tab-heading img {
     height: auto;
-  }
+    cursor: pointer;
+}
 
-  .product-item h3 {
-    font-size: 18px;
-    margin: 10px 0;
-  }
+.tab-indicator {
+    display: flex;
+    flex-wrap: wrap;
+}
 
-  .product-item p {
-    font-size: 16px;
-    color: #333;
-  }
+.hidden {
+    display: none;
+}
 
-  @media (max-width: 768px) {
-    .tabs-container {
-      flex-direction: column;
+.active-tab img {
+    opacity: 0.7; /* Example effect for active tab */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .tab-heading {
+        overflow-x: auto;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        gap: 10px;
     }
 
-    .product-item {
-      margin: 10px auto;
+    .tab-heading div:not(:last-child)::after {
+        display: none; /* Hide vertical lines on mobile */
     }
-  }
+
+    .tab-heading img {
+        width: 80px;
+        flex: 0 0 auto;
+    }
+
+    .tab-heading {
+        flex-direction: row;
+    }
+}
 </style>
 
-<div class="featured-tabs-section">
-  <div class="tabs-container">
-    {%- for tab in section.blocks -%}
-      <button class="tab-button" data-tab="{{ tab.id }}">{{ tab.settings.tab_label }}</button>
-    {%- endfor -%}
-  </div>
-
-  <div class="tabs-content">
-    {%- for tab in section.blocks -%}
-      <div class="tab-content" id="tab-{{ tab.id }}">
-        <div class="container--large">
-          {%- render 'section-heading', heading: tab.settings.heading, subheading: tab.settings.subheading, button: tab.settings.show_view_all, button_label: 'collections.view_all_products', link: collections[tab.settings.collection].url, heading_tag: tab.settings.seo_h_tag, layout: section.settings.section_heading_layout -%}
-          <div class="grid grid--layout {{ section.settings.layout }}">
-            {%- for product in collections[tab.settings.collection].products limit: tab.settings.products_number -%}
-              <div class="product-item">
-                <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-                <h3>{{ product.title }}</h3>
-                <p>{{ product.price | money }}</p>
-                {%- if section.blocks['rating'] -%}
-                  {%- render 'rating', product: product -%}
-                {%- endif -%}
-              </div>
-            {%- endfor -%}
-          </div>
-          {%- if tab.settings.show_view_all and section.settings.section_heading_layout contains 'center' -%}
-            <div class="gutter-top--large align-content align-content--horizontal-center">
-              <a class="button button--outline button--regular" href="{{ collections[tab.settings.collection].url }}">{{ 'collections.view_all_products' | t }}</a>
-            </div>
-          {%- endif -%}
+<div>
+    <div class="tab-heading">
+        <div>
+            <h2>
+                <a href="#" class="tab1 active-tab">
+                    <img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}" style="width: {{ section.settings.image_width1 }}px;">
+                </a>
+            </h2>
         </div>
-      </div>
-    {%- endfor -%}
-  </div>
+        <div>
+            <h2>
+                <a href="#" class="tab2">
+                    <img src="{{ section.settings.image2 | img_url: 'small' }}" alt="{{ section.settings.heading2 }}" style="width: {{ section.settings.image_width2 }}px;">
+                </a>
+            </h2>
+        </div>
+        <div>
+            <h2>
+                <a href="#" class="tab3">
+                    <img src="{{ section.settings.image3 | img_url: 'small' }}" alt="{{ section.settings.heading3 }}" style="width: {{ section.settings.image_width3 }}px;">
+                </a>
+            </h2>
+        </div>
+        <div>
+            <h2>
+                <a href="#" class="tab4">
+                    <img src="{{ section.settings.image4 | img_url: 'small' }}" alt="{{ section.settings.heading4 }}" style="width: {{ section.settings.image_width4 }}px;">
+                </a>
+            </h2>
+        </div>
+    </div>
+
+    <div class="page-width tab-indicator" id="collection1">
+        <style>
+            :root {
+                --product-column: {{ section.settings.product_show1 }};
+            }
+        </style>
+        <div class="grid" style="grid-template-columns: repeat(var(--product-column), 1fr);">
+            {% for product in collections[section.settings.feature_collection1].products %}
+            <div class="grid-item" style="padding: 10px;">
+                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
+                <a href="{{ product.url }}">
+                    <h3>{{ product.title }}</h3>
+                </a>
+                <p>{{ product.price | money_with_currency }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="page-width tab-indicator hidden" id="collection2">
+        <style>
+            :root {
+                --product-column2: {{ section.settings.product_show2 }};
+            }
+        </style>
+        <div class="grid" style="grid-template-columns: repeat(var(--product-column2), 1fr);">
+            {% for product in collections[section.settings.feature_collection2].products %}
+            <div class="grid-item" style="padding: 10px;">
+                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
+                <a href="{{ product.url }}">
+                    <h3>{{ product.title }}</h3>
+                </a>
+                <p>{{ product.price | money_with_currency }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="page-width tab-indicator hidden" id="collection3">
+        <style>
+            :root {
+                --product-column3: {{ section.settings.product_show3 }};
+            }
+        </style>
+        <div class="grid" style="grid-template-columns: repeat(var(--product-column3), 1fr);">
+            {% for product in collections[section.settings.feature_collection3].products %}
+            <div class="grid-item" style="padding: 10px;">
+                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
+                <a href="{{ product.url }}">
+                    <h3>{{ product.title }}</h3>
+                </a>
+                <p>{{ product.price | money_with_currency }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="page-width tab-indicator hidden" id="collection4">
+        <style>
+            :root {
+                --product-column4: {{ section.settings.product_show4 }};
+            }
+        </style>
+        <div class="grid" style="grid-template-columns: repeat(var(--product-column4), 1fr);">
+            {% for product in collections[section.settings.feature_collection4].products %}
+            <div class="grid-item" style="padding: 10px;">
+                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
+                <a href="{{ product.url }}">
+                    <h3>{{ product.title }}</h3>
+                </a>
+                <p>{{ product.price | money_with_currency }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var tabButtons = document.querySelectorAll(".tab-button");
-    var tabContents = document.querySelectorAll(".tab-content");
+    document.addEventListener('DOMContentLoaded', function () {
+        function setActiveTab(tabIndex) {
+            const collections = document.querySelectorAll('.tab-indicator');
+            collections.forEach((collection, index) => {
+                collection.classList.toggle('hidden', index !== tabIndex);
+            });
 
-    tabButtons.forEach(function(button) {
-      button.addEventListener("click", function() {
-        var tabId = this.getAttribute("data-tab");
+            const tabs = document.querySelectorAll('.tab-heading a');
+            tabs.forEach((tab, index) => {
+                tab.classList.toggle('active-tab', index === tabIndex);
+            });
+        }
 
-        tabButtons.forEach(function(btn) {
-          btn.classList.remove("active");
+        document.querySelector('.tab1').addEventListener('click', function (e) {
+            e.preventDefault();
+            setActiveTab(0);
         });
-        this.classList.add("active");
 
-        tabContents.forEach(function(content) {
-          content.classList.remove("active");
+        document.querySelector('.tab2').addEventListener('click', function (e) {
+            e.preventDefault();
+            setActiveTab(1);
         });
-        document.getElementById("tab-" + tabId).classList.add("active");
-      });
+
+        document.querySelector('.tab3').addEventListener('click', function (e) {
+            e.preventDefault();
+            setActiveTab(2);
+        });
+
+        document.querySelector('.tab4').addEventListener('click', function (e) {
+            e.preventDefault();
+            setActiveTab(3);
+        });
     });
-
-    tabButtons[0].click();
-  });
 </script>
 
-{%- schema -%}
+{% schema %}
 {
-  "name": "Featured Tabs",
-  "blocks": [
-    {
-      "type": "tab",
-      "name": "Tab",
-      "settings": [
-        {
-          "type": "text",
-          "id": "tab_label",
-          "label": "Tab Label",
-          "default": "Tab"
-        },
-        {
-          "type": "collection",
-          "id": "collection",
-          "label": "Collection"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Featured Collection"
-        },
-        {
-          "type": "text",
-          "id": "subheading",
-          "label": "Subheading",
-          "default": "Showcase your best products"
-        },
-        {
-          "type": "range",
-          "id": "products_number",
-          "label": "Number of Products",
-          "min": 1,
-          "max": 10,
-          "default": 4
-        },
-        {
-          "type": "checkbox",
-          "id": "show_view_all",
-          "label": "Show 'View All' Button",
-          "default": true
-        }
-      ]
-    }
-  ],
+  "name": "Tab Section",
   "settings": [
     {
-      "type": "select",
-      "id": "layout",
-      "label": "Layout",
-      "options": [
-        {
-          "label": "Grid",
-          "value": "grid"
-        },
-        {
-          "label": "Slider",
-          "value": "slider"
-        }
-      ],
-      "default": "grid"
+      "type": "text",
+      "id": "heading1",
+      "label": "Heading One"
     },
     {
-      "type": "select",
-      "id": "section_heading_layout",
-      "label": "Section Heading Layout",
-      "options": [
-        {
-          "label": "Left",
-          "value": "section-heading--left"
-        },
-        {
-          "label": "Center",
-          "value": "section-heading--center"
-        }
-      ],
-      "default": "section-heading--center"
+      "type": "image_picker",
+      "id": "image1",
+      "label": "Image for Heading One"
+    },
+    {
+      "type": "range",
+      "id": "image_width1",
+      "label": "Image Width for Heading One",
+      "min": 20,
+      "max": 200,
+      "step": 2,
+      "default": 50
+    },
+    {
+      "type": "collection",
+      "id": "feature_collection1",
+      "label": "Collection One"
+    },
+    {
+      "type": "range",
+      "id": "product_show1",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Products Per Row",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Second Tab Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading2",
+      "label": "Heading Two"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Image for Heading Two"
+    },
+    {
+      "type": "range",
+      "id": "image_width2",
+      "label": "Image Width for Heading Two",
+      "min": 20,
+      "max": 200,
+      "step": 2,
+      "default": 50
+    },
+    {
+      "type": "collection",
+      "id": "feature_collection2",
+      "label": "Collection Two"
+    },
+    {
+      "type": "range",
+      "id": "product_show2",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Products Per Row",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Third Tab Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading3",
+      "label": "Heading Three"
+    },
+    {
+      "type": "image_picker",
+      "id": "image3",
+      "label": "Image for Heading Three"
+    },
+    {
+      "type": "range",
+      "id": "image_width3",
+      "label": "Image Width for Heading Three",
+      "min": 20,
+      "max": 200,
+      "step": 2,
+      "default": 50
+    },
+    {
+      "type": "collection",
+      "id": "feature_collection3",
+      "label": "Collection Three"
+    },
+    {
+      "type": "range",
+      "id": "product_show3",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Products Per Row",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Fourth Tab Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading4",
+      "label": "Heading Four"
+    },
+    {
+      "type": "image_picker",
+      "id": "image4",
+      "label": "Image for Heading Four"
+    },
+    {
+      "type": "range",
+      "id": "image_width4",
+      "label": "Image Width for Heading Four",
+      "min": 20,
+      "max": 200,
+      "step": 2,
+      "default": 50
+    },
+    {
+      "type": "collection",
+      "id": "feature_collection4",
+      "label": "Collection Four"
+    },
+    {
+      "type": "range",
+      "id": "product_show4",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Products Per Row",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Styling Settings"
+    },
+    {
+      "type": "range",
+      "id": "tab_spacing",
+      "label": "Spacing Between Tabs (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 10
     }
   ],
   "presets": [
     {
-      "name": "Featured Tabs",
-      "blocks": [
-        {
-          "type": "tab",
-          "settings": {
-            "tab_label": "Tab 1",
-            "collection": "",
-            "heading": "Featured Collection",
-            "subheading": "Showcase your best products",
-            "products_number": 4,
-            "show_view_all": true
-          }
-        },
-        {
-          "type": "tab",
-          "settings": {
-            "tab_label": "Tab 2",
-            "collection": "",
-            "heading": "Featured Collection",
-            "subheading": "Showcase your best products",
-            "products_number": 4,
-            "show_view_all": true
-          }
-        }
-      ]
+      "name": "Tab Section",
+      "category": "Custom Sections"
     }
   ]
 }
-{%- endschema -%}
+{% endschema %}
