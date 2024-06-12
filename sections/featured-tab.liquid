@@ -4,35 +4,30 @@
     justify-content: center;
     gap: {{ section.settings.tab_spacing }}px;
     margin-top: 20px; /* Adjust this value as needed for the top margin spacing */
-    position: relative;
 }
 
 .tab-heading div {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 10px; /* Additional padding for horizontal line spacing */
-}
-
-.tab-heading div:not(:last-child) {
-    position: relative;
+    padding: 0 10px; /* Additional padding for vertical line spacing */
 }
 
 .tab-heading div:not(:last-child)::after {
     content: '';
     position: absolute;
-    right:{% assign half_tab_spacing = section.settings.tab_spacing | divided_by: 2 %}
-
-    bottom: -10px; /* Adjust this value for the vertical position of the line */
-    width: {{ section.settings.tab_spacing }}px; /* Line width */
-    height: 1px; /* Line height */
+    right: -{{ section.settings.tab_spacing }}px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100px; /* Full height */
+    width: 1px; /* Line width */
     background-color: #B5B5B5; /* Line color */
 }
 
 .tab-heading img {
     height: auto;
     cursor: pointer;
-    border: none; /* Remove underline effect */
 }
 
 .tab-indicator {
@@ -47,7 +42,9 @@
 .active-tab img {
     opacity: 0.7; /* Example effect for active tab */
 }
-
+.hr{
+  color:#ffffff
+}
 /* Responsive Styles */
 @media (max-width: 768px) {
     .tab-heading {
@@ -58,7 +55,7 @@
     }
 
     .tab-heading div:not(:last-child)::after {
-        display: none; /* Hide horizontal lines on mobile */
+        display: none; /* Hide vertical lines on mobile */
     }
 
     .tab-heading img {
@@ -70,7 +67,9 @@
         flex-direction: row;
     }
 }
+  
 </style>
+
 
 <div>
     <div class="tab-heading">
@@ -79,6 +78,7 @@
                 <a href="#" class="tab1 active-tab">
                     <img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}" style="width: {{ section.settings.image_width1 }}px;">
                 </a>
+                <hr>
             </h2>
         </div>
 
@@ -87,6 +87,7 @@
                 <a href="#" class="tab2">
                     <img src="{{ section.settings.image2 | img_url: 'small' }}" alt="{{ section.settings.heading2 }}" style="width: {{ section.settings.image_width2 }}px;">
                 </a>
+                <hr>
             </h2>
         </div>
 
@@ -95,6 +96,7 @@
                 <a href="#" class="tab3">
                     <img src="{{ section.settings.image3 | img_url: 'small' }}" alt="{{ section.settings.heading3 }}" style="width: {{ section.settings.image_width3 }}px;">
                 </a>
+                <hr>
             </h2>
         </div>
 
@@ -103,6 +105,7 @@
                 <a href="#" class="tab4">
                     <img src="{{ section.settings.image4 | img_url: 'small' }}" alt="{{ section.settings.heading4 }}" style="width: {{ section.settings.image_width4 }}px;">
                 </a>
+                <hr>
             </h2>
         </div>
     </div>
