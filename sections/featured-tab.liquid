@@ -173,118 +173,118 @@
         </div>
     </div>
 
-  {{ 'component-product-item.css' | asset_url | stylesheet_tag }}
-
-<div class="container--large {% unless section.settings.remove_margin %} container--vertical-space {% endunless %} {% if section.settings.section_background_color != "rgba(0,0,0,0)" %} container--has-background {% endif %} remove-empty-space">
-
-  {%- render 'section-heading', heading: section.settings.heading, subheading: section.settings.subheading, button: section.settings.show_view_all, button_label: 'collections.view_all_products', link: collections[section.settings.collection_1].url, heading_tag: section.settings.seo_h_tag, layout: section.settings.section_heading_layout -%}
-
-  <!-- Tab Buttons -->
-  <div class="tab-buttons">
-    <button class="tab-button active" data-tab="tab-1">{{ section.settings.tab_label_1 }}</button>
-    <button class="tab-button" data-tab="tab-2">{{ section.settings.tab_label_2 }}</button>
-    <button class="tab-button" data-tab="tab-3">{{ section.settings.tab_label_3 }}</button>
-  </div>
-
-  <!-- Tab Content -->
-  <div class="tab-content active" id="tab-1">
-    <div>
-      {% if section.settings.style == 'slider' %}
-        <css-slider data-options='{
-            "selector": ".product-item",
-            "indexNav": true,
-            "groupCells": true,
-            "navigationDOM": "<span class=\"css-slider-button css-slider-prev\" style=\"display:none\"><svg fill=\"none\" height=\"13\" viewBox=\"0 0 8 13\" width=\"8\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#000\" ><path d=\"m7.91419 1.41431-6.48529 6.48528-1.4142102-1.41422 6.4852802-6.48527702z\"/><path d=\"m6.48528 12.9849-6.48528027-6.48532 1.41421027-1.41421 6.48528 6.48523z\"/></g></svg></span><span class=\"css-slider-button css-slider-next\" style=\"display:none\"><svg width=\"9\" height=\"13\" viewBox=\"0 0 9 13\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0.914169 11.5857L7.39945 5.10041L8.81367 6.51463L2.32838 12.9999L0.914169 11.5857Z\" fill=\"black\"/><path d=\"M2.34307 0.0151367L8.82835 6.50042L7.41414 7.91463L0.928857 1.42935L2.34307 0.0151367Z\" fill=\"black\"/></svg></span>"
-          }'
-          class="css-slider css-slider--bottom-navigation"
-          id="css-slider-{{ section.id }}-1"
-        >
-        {%- render 'custom-shadow', section_id: section.id -%}
-      {% endif %}
-  
-      <div class="grid {% if section.settings.style == 'slider' %} grid--slider {% else %} grid--layout {% endif %} {{ section.settings.layout }}">
-        {%- for product in collections[section.settings.collection_1].products limit: section.settings.products_number %}
-          {%- render 'product-item', product: product, product_collection: collections[section.settings.collection_1], section_blocks: section.blocks, index: forloop.index -%}
-        {%- endfor %}
-      </div>
-
-      {% if section.settings.style == 'slider' %}
-        </css-slider>
-      {% endif %}
+    <div class="page-width tab-indicator" id="collection1">
+        <style>
+            :root {
+                --product-column: {{ section.settings.product_show1 }};
+            }
+        </style>
+        <div class="grid" style="grid-template-columns: repeat(var(--product-column), 1fr);">
+            {% for product in collections[section.settings.feature_collection1].products %}
+            <div class="grid-item" style="padding: 10px;">
+                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
+                <a href="{{ product.url }}">
+                    <h3>{{ product.title }}</h3>
+                </a>
+                <p>{{ product.price | money_with_currency }}</p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-  </div>
 
-  <div class="tab-content" id="tab-2">
-    <div>
-      {% if section.settings.style == 'slider' %}
-        <css-slider data-options='{
-            "selector": ".product-item",
-            "indexNav": true,
-            "groupCells": true,
-            "navigationDOM": "<span class=\"css-slider-button css-slider-prev\" style=\"display:none\"><svg fill=\"none\" height=\"13\" viewBox=\"0 0 8 13\" width=\"8\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#000\" ><path d=\"m7.91419 1.41431-6.48529 6.48528-1.4142102-1.41422 6.4852802-6.48527702z\"/><path d=\"m6.48528 12.9849-6.48528027-6.48532 1.41421027-1.41421 6.48528 6.48523z\"/></g></svg></span><span class=\"css-slider-button css-slider-next\" style=\"display:none\"><svg width=\"9\" height=\"13\" viewBox=\"0 0 9 13\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0.914169 11.5857L7.39945 5.10041L8.81367 6.51463L2.32838 12.9999L0.914169 11.5857Z\" fill=\"black\"/><path d=\"M2.34307 0.0151367L8.82835 6.50042L7.41414 7.91463L0.928857 1.42935L2.34307 0.0151367Z\" fill=\"black\"/></svg></span>"
-          }'
-          class="css-slider css-slider--bottom-navigation"
-          id="css-slider-{{ section.id }}-2"
-        >
-        {%- render 'custom-shadow', section_id: section.id -%}
-      {% endif %}
-  
-      <div class="grid {% if section.settings.style == 'slider' %} grid--slider {% else %} grid--layout {% endif %} {{ section.settings.layout }}">
-        {%- for product in collections[section.settings.collection_2].products limit: section.settings.products_number %}
-          {%- render 'product-item', product: product, product_collection: collections[section.settings.collection_2], section_blocks: section.blocks, index: forloop.index -%}
-        {%- endfor %}
-      </div>
-
-      {% if section.settings.style == 'slider' %}
-        </css-slider>
-      {% endif %}
+    <div class="page-width tab-indicator hidden" id="collection2">
+        <style>
+            :root {
+                --product-column2: {{ section.settings.product_show2 }};
+            }
+        </style>
+        <div class="grid" style="grid-template-columns: repeat(var(--product-column2), 1fr);">
+            {% for product in collections[section.settings.feature_collection2].products %}
+            <div class="grid-item" style="padding: 10px;">
+                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
+                <a href="{{ product.url }}">
+                    <h3>{{ product.title }}</h3>
+                </a>
+                <p>{{ product.price | money_with_currency }}</p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-  </div>
 
-
-  <div class="tab-content" id="tab-3">
-    <div>
-      {% if section.settings.style == 'slider' %}
-        <css-slider data-options='{
-            "selector": ".product-item",
-            "indexNav": true,
-            "groupCells": true,
-            "navigationDOM": "<span class=\"css-slider-button css-slider-prev\" style=\"display:none\"><svg fill=\"none\" height=\"13\" viewBox=\"0 0 8 13\" width=\"8\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#000\" ><path d=\"m7.91419 1.41431-6.48529 6.48528-1.4142102-1.41422 6.4852802-6.48527702z\"/><path d=\"m6.48528 12.9849-6.48528027-6.48532 1.41421027-1.41421 6.48528 6.48523z\"/></g></svg></span><span class=\"css-slider-button css-slider-next\" style=\"display:none\"><svg width=\"9\" height=\"13\" viewBox=\"0 0 9 13\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0.914169 11.5857L7.39945 5.10041L8.81367 6.51463L2.32838 12.9999L0.914169 11.5857Z\" fill=\"black\"/><path d=\"M2.34307 0.0151367L8.82835 6.50042L7.41414 7.91463L0.928857 1.42935L2.34307 0.0151367Z\" fill=\"black\"/></svg></span>"
-          }'
-          class="css-slider css-slider--bottom-navigation"
-          id="css-slider-{{ section.id }}"
-        >
-        {%- render 'custom-shadow', section_id: section.id -%}
-      {% endif %}
-  
-      <div class="grid {% if section.settings.style == 'slider' %} grid--slider {% else %} grid--layout {% endif %} {{ section.settings.layout }}">
-        {%- for product in collections[section.settings.collection_3].products limit: section.settings.products_number %}
-          {%- render 'product-item', product: product, product_collection: collections[section.settings.collection_3], section_blocks: section.blocks, index: forloop.index -%}
-        {%- endfor %}
-      </div>
-
-      {% if section.settings.style == 'slider' %}
-        </css-slider>
-      {% endif %}
+    <div class="page-width tab-indicator hidden" id="collection3">
+        <style>
+            :root {
+                --product-column3: {{ section.settings.product_show3 }};
+            }
+        </style>
+        <div class="grid" style="grid-template-columns: repeat(var(--product-column3), 1fr);">
+            {% for product in collections[section.settings.feature_collection3].products %}
+            <div class="grid-item" style="padding: 10px;">
+                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
+                <a href="{{ product.url }}">
+                    <h3>{{ product.title }}</h3>
+                </a>
+                <p>{{ product.price | money_with_currency }}</p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-  </div>
+
+    <div class="page-width tab-indicator hidden" id="collection4">
+        <style>
+            :root {
+                --product-column4: {{ section.settings.product_show4 }};
+            }
+        </style>
+        <div class="grid" style="grid-template-columns: repeat(var(--product-column4), 1fr);">
+            {% for product in collections[section.settings.feature_collection4].products %}
+            <div class="grid-item" style="padding: 10px;">
+                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
+                <a href="{{ product.url }}">
+                    <h3>{{ product.title }}</h3>
+                </a>
+                <p>{{ product.price | money_with_currency }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
-<!-- JavaScript for Tab Functionality -->
 <script>
-  document.querySelectorAll('.tab-button').forEach(button => {
-    button.addEventListener('click', () => {
-      const tabId = button.dataset.tab;
+    document.addEventListener('DOMContentLoaded', function () {
+        function setActiveTab(tabIndex) {
+            const collections = document.querySelectorAll('.tab-indicator');
+            collections.forEach((collection, index) => {
+                collection.classList.toggle('hidden', index !== tabIndex);
+            });
 
-      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            const tabs = document.querySelectorAll('.tab-heading a');
+            tabs.forEach((tab, index) => {
+                tab.classList.toggle('active-tab', index === tabIndex);
+            });
+        }
 
-      button.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
+        document.querySelector('.tab1').addEventListener('click', function (e) {
+            e.preventDefault();
+            setActiveTab(0);
+        });
+
+        document.querySelector('.tab2').addEventListener('click', function (e) {
+            e.preventDefault();
+            setActiveTab(1);
+        });
+
+        document.querySelector('.tab3').addEventListener('click', function (e) {
+            e.preventDefault();
+            setActiveTab(2);
+        });
+
+        document.querySelector('.tab4').addEventListener('click', function (e) {
+            e.preventDefault();
+            setActiveTab(3);
+        });
     });
-  });
 </script>
-
 
 {% schema %}
   {
