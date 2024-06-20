@@ -1,408 +1,298 @@
-{{ 'component-product-item.css' | asset_url | stylesheet_tag }}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
 
-<div class="container--large {% unless section.settings.remove_margin %} container--vertical-space {% endunless %} {% if section.settings.section_background_color != "rgba(0,0,0,0)" %} container--has-background {% endif %} remove-empty-space">
+<style>
+/* Base styles */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  max-width: 1400px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
 
-  {%- render 'section-heading', heading: section.settings.heading, subheading: section.settings.subheading, button: section.settings.show_view_all, button_label: 'collections.view_all_products', link: collections[section.settings.collection_1].url, heading_tag: section.settings.seo_h_tag, layout: section.settings.section_heading_layout -%}
+.calendar .day-names {
+  display: contents;
+}
 
-  <!-- Tab Buttons -->
-  <div class="tab-buttons">
-    <button class="tab-button active" data-tab="tab-1">{{ section.settings.tab_label_1 }}</button>
-    <button class="tab-button" data-tab="tab-2">{{ section.settings.tab_label_2 }}</button>
-    <button class="tab-button" data-tab="tab-3">{{ section.settings.tab_label_3 }}</button>
+.calendar .day-name {
+  text-align: center;
+  font-weight: bold;
+  padding: 8px 0;
+  font-family: dashiell-bright, serif;
+}
+
+.calendar .day {
+  border: 1px solid #ccc;
+  height: 100px;
+  position: relative;
+  cursor: pointer;
+}
+
+.calendar .day .event {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+  box-sizing: border-box;
+  color: white;
+}
+
+.green { background-color: #55AF7C; color: #3c763d; }
+.red { background-color: #E08889; color: #a94442; }
+.blue { background-color: #789DBF; color: #31708f; }
+
+.event .time {
+  font-size: 12px;
+}
+
+.event .title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.event .logo {
+  align-self: flex-end; /* Align logo to the bottom right corner */
+  width: 20px; /* Adjust size as needed */
+  height: 20px; /* Adjust size as needed */
+  margin-bottom: 10px; /* Add some margin to avoid touching the bottom */
+}
+
+/* Popup styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80%;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+.popup.active {
+  display: block;
+}
+
+.popup .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 768px) {
+  .calendar {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+
+  .calendar .day {
+    height: 80px;
+  }
+
+  .popup {
+    max-width: 90%;
+    width: 280px;
+  }
+}
+</style>
+
+<div class="calendar">
+  <!-- Day names row -->
+  <div class="day-names">
+    <div class="day-name">Monday</div>
+    <div class="day-name">Tuesday</div>
+    <div class="day-name">Wednesday</div>
+    <div class="day-name">Thursday</div>
+    <div class="day-name">Friday</div>
+    <div class="day-name">Saturday</div>
+    <div class="day-name">Sunday</div>
   </div>
-
-  <!-- Tab Content -->
-  <div class="tab-content active" id="tab-1">
-    <div>
-      {% if section.settings.style == 'slider' %}
-        <css-slider data-options='{
-            "selector": ".product-item",
-            "indexNav": true,
-            "groupCells": true,
-            "navigationDOM": "<span class=\"css-slider-button css-slider-prev\" style=\"display:none\"><svg fill=\"none\" height=\"13\" viewBox=\"0 0 8 13\" width=\"8\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#000\" ><path d=\"m7.91419 1.41431-6.48529 6.48528-1.4142102-1.41422 6.4852802-6.48527702z\"/><path d=\"m6.48528 12.9849-6.48528027-6.48532 1.41421027-1.41421 6.48528 6.48523z\"/></g></svg></span><span class=\"css-slider-button css-slider-next\" style=\"display:none\"><svg width=\"9\" height=\"13\" viewBox=\"0 0 9 13\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0.914169 11.5857L7.39945 5.10041L8.81367 6.51463L2.32838 12.9999L0.914169 11.5857Z\" fill=\"black\"/><path d=\"M2.34307 0.0151367L8.82835 6.50042L7.41414 7.91463L0.928857 1.42935L2.34307 0.0151367Z\" fill=\"black\"/></svg></span>"
-          }'
-          class="css-slider css-slider--bottom-navigation"
-          id="css-slider-{{ section.id }}-1"
-        >
-        {%- render 'custom-shadow', section_id: section.id -%}
-      {% endif %}
-  
-      <div class="grid {% if section.settings.style == 'slider' %} grid--slider {% else %} grid--layout {% endif %} {{ section.settings.layout }}">
-        {%- for product in collections[section.settings.collection_1].products limit: section.settings.products_number %}
-          {%- render 'product-item', product: product, product_collection: collections[section.settings.collection_1], section_blocks: section.blocks, index: forloop.index -%}
-        {%- endfor %}
-      </div>
-
-      {% if section.settings.style == 'slider' %}
-        </css-slider>
-      {% endif %}
+  <!-- Calendar dates -->
+  {% for day in (1..30) %}
+    {% assign date = '2024-06-' | append: day | date: "%Y-%m-%d" %}
+    <div class="day" data-date="{{ date }}">
+      <div>{{ day }}</div>
     </div>
-  </div>
-
-  <div class="tab-content" id="tab-2">
-    <div>
-      {% if section.settings.style == 'slider' %}
-        <css-slider data-options='{
-            "selector": ".product-item",
-            "indexNav": true,
-            "groupCells": true,
-            "navigationDOM": "<span class=\"css-slider-button css-slider-prev\" style=\"display:none\"><svg fill=\"none\" height=\"13\" viewBox=\"0 0 8 13\" width=\"8\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#000\" ><path d=\"m7.91419 1.41431-6.48529 6.48528-1.4142102-1.41422 6.4852802-6.48527702z\"/><path d=\"m6.48528 12.9849-6.48528027-6.48532 1.41421027-1.41421 6.48528 6.48523z\"/></g></svg></span><span class=\"css-slider-button css-slider-next\" style=\"display:none\"><svg width=\"9\" height=\"13\" viewBox=\"0 0 9 13\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0.914169 11.5857L7.39945 5.10041L8.81367 6.51463L2.32838 12.9999L0.914169 11.5857Z\" fill=\"black\"/><path d=\"M2.34307 0.0151367L8.82835 6.50042L7.41414 7.91463L0.928857 1.42935L2.34307 0.0151367Z\" fill=\"black\"/></svg></span>"
-          }'
-          class="css-slider css-slider--bottom-navigation"
-          id="css-slider-{{ section.id }}-2"
-        >
-        {%- render 'custom-shadow', section_id: section.id -%}
-      {% endif %}
-  
-      <div class="grid {% if section.settings.style == 'slider' %} grid--slider {% else %} grid--layout {% endif %} {{ section.settings.layout }}">
-        {%- for product in collections[section.settings.collection_2].products limit: section.settings.products_number %}
-          {%- render 'product-item', product: product, product_collection: collections[section.settings.collection_2], section_blocks: section.blocks, index: forloop.index -%}
-        {%- endfor %}
-      </div>
-
-      {% if section.settings.style == 'slider' %}
-        </css-slider>
-      {% endif %}
-    </div>
-  </div>
-
-
-  <div class="tab-content" id="tab-3">
-    <div>
-      {% if section.settings.style == 'slider' %}
-        <css-slider data-options='{
-            "selector": ".product-item",
-            "indexNav": true,
-            "groupCells": true,
-            "navigationDOM": "<span class=\"css-slider-button css-slider-prev\" style=\"display:none\"><svg fill=\"none\" height=\"13\" viewBox=\"0 0 8 13\" width=\"8\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#000\" ><path d=\"m7.91419 1.41431-6.48529 6.48528-1.4142102-1.41422 6.4852802-6.48527702z\"/><path d=\"m6.48528 12.9849-6.48528027-6.48532 1.41421027-1.41421 6.48528 6.48523z\"/></g></svg></span><span class=\"css-slider-button css-slider-next\" style=\"display:none\"><svg width=\"9\" height=\"13\" viewBox=\"0 0 9 13\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0.914169 11.5857L7.39945 5.10041L8.81367 6.51463L2.32838 12.9999L0.914169 11.5857Z\" fill=\"black\"/><path d=\"M2.34307 0.0151367L8.82835 6.50042L7.41414 7.91463L0.928857 1.42935L2.34307 0.0151367Z\" fill=\"black\"/></svg></span>"
-          }'
-          class="css-slider css-slider--bottom-navigation"
-          id="css-slider-{{ section.id }}"
-        >
-        {%- render 'custom-shadow', section_id: section.id -%}
-      {% endif %}
-  
-      <div class="grid {% if section.settings.style == 'slider' %} grid--slider {% else %} grid--layout {% endif %} {{ section.settings.layout }}">
-        {%- for product in collections[section.settings.collection_3].products limit: section.settings.products_number %}
-          {%- render 'product-item', product: product, product_collection: collections[section.settings.collection_3], section_blocks: section.blocks, index: forloop.index -%}
-        {%- endfor %}
-      </div>
-
-      {% if section.settings.style == 'slider' %}
-        </css-slider>
-      {% endif %}
-    </div>
-  </div>
+  {% endfor %}
 </div>
 
-<!-- JavaScript for Tab Functionality -->
+<div class="overlay"></div>
+<div class="popup">
+  <span class="close-btn">&times;</span>
+  <div class="popup-content"></div>
+</div>
+
 <script>
-  document.querySelectorAll('.tab-button').forEach(button => {
-    button.addEventListener('click', () => {
-      const tabId = button.dataset.tab;
+  document.addEventListener('DOMContentLoaded', function() {
+    const events = {
+      {% for block in section.blocks %}
+        '{{ block.settings.event_date }}': {
+          time: '{{ block.settings.event_time }}',
+          title: '{{ block.settings.event_title }}',
+          heading: '{{ block.settings.event_heading }}',
+          description: '{{ block.settings.event_description }}',
+          image: '{{ block.settings.event_image | img_url: "master" }}',
+          color: '{{ block.settings.event_color }}',
+          logo: '{{ block.settings.event_logo | img_url: "thumb" }}'
+        },
+      {% endfor %}
+    };
 
-      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    // Populate events in the calendar
+    Object.keys(events).forEach(date => {
+      const event = events[date];
+      const dayElement = document.querySelector(`.day[data-date="${date}"]`);
+      if (dayElement) {
+        const eventElement = document.createElement('div');
+        eventElement.className = `event ${event.color}`;
+        eventElement.dataset.event = date;
+        eventElement.innerHTML = `
+          <div class="time">${event.time}</div>
+          <div class="title">${event.heading}</div>
+          <img src="${event.logo}" alt="logo" class="logo" />
+        `;
+        dayElement.appendChild(eventElement);
+      }
+    });
 
-      button.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
+    const overlay = document.querySelector('.overlay');
+    const popup = document.querySelector('.popup');
+    const popupContent = document.querySelector('.popup-content');
+    const closeBtn = document.querySelector('.close-btn');
+
+    document.querySelectorAll('.event').forEach(eventEl => {
+      eventEl.addEventListener('click', function() {
+        const date = this.dataset.event;
+        const event = events[date];
+        popupContent.innerHTML = `
+          <h2>${event.heading}</h2>
+          <img src="${event.image}" alt="${event.title}" style="width: 100%; height: auto;" />
+          <p><strong>${event.time}</strong></p>
+          <p>${event.description}</p>
+          <button class="shop-btn">Shop Now</button>
+        `;
+        overlay.classList.add('active');
+        popup.classList.add('active');
+      });
+    });
+
+    closeBtn.addEventListener('click', function() {
+      overlay.classList.remove('active');
+      popup.classList.remove('active');
+    });
+
+    overlay.addEventListener('click', function() {
+      overlay.classList.remove('active');
+      popup.classList.remove('active');
     });
   });
 </script>
 
-<style>
-.tab-buttons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.tab-button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #f5f5f5;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 5px;
-}
-
-.tab-button.active {
-  background-color: #333;
-  color: #fff;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-</style>
-
-<div>
-    <div class="tab-heading">
-        <div>
-            <h2>
-                <a href="#" class="tab1 active-tab">
-                    <img src="{{ section.settings.image1 | img_url: 'small' }}" alt="{{ section.settings.heading1 }}" style="width: {{ section.settings.image_width1 }}px;">
-                </a>
-            </h2>
-        </div>
-        <div>
-            <h2>
-                <a href="#" class="tab2">
-                    <img src="{{ section.settings.image2 | img_url: 'small' }}" alt="{{ section.settings.heading2 }}" style="width: {{ section.settings.image_width2 }}px;">
-                </a>
-            </h2>
-        </div>
-        <div>
-            <h2>
-                <a href="#" class="tab3">
-                    <img src="{{ section.settings.image3 | img_url: 'small' }}" alt="{{ section.settings.heading3 }}" style="width: {{ section.settings.image_width3 }}px;">
-                </a>
-            </h2>
-        </div>
-        <div>
-            <h2>
-                <a href="#" class="tab4">
-                    <img src="{{ section.settings.image4 | img_url: 'small' }}" alt="{{ section.settings.heading4 }}" style="width: {{ section.settings.image_width4 }}px;">
-                </a>
-            </h2>
-        </div>
-    </div>
-
-    <div class="page-width tab-indicator" id="collection1">
-        <style>
-            :root {
-                --product-column: {{ section.settings.product_show1 }};
-            }
-        </style>
-        <div class="grid" style="grid-template-columns: repeat(var(--product-column), 1fr);">
-            {% for product in collections[section.settings.feature_collection1].products %}
-            <div class="grid-item" style="padding: 10px;">
-                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
-                <a href="{{ product.url }}">
-                    <h3>{{ product.title }}</h3>
-                </a>
-                <p>{{ product.price | money_with_currency }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-
-    <div class="page-width tab-indicator hidden" id="collection2">
-        <style>
-            :root {
-                --product-column2: {{ section.settings.product_show2 }};
-            }
-        </style>
-        <div class="grid" style="grid-template-columns: repeat(var(--product-column2), 1fr);">
-            {% for product in collections[section.settings.feature_collection2].products %}
-            <div class="grid-item" style="padding: 10px;">
-                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
-                <a href="{{ product.url }}">
-                    <h3>{{ product.title }}</h3>
-                </a>
-                <p>{{ product.price | money_with_currency }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-
-    <div class="page-width tab-indicator hidden" id="collection3">
-        <style>
-            :root {
-                --product-column3: {{ section.settings.product_show3 }};
-            }
-        </style>
-        <div class="grid" style="grid-template-columns: repeat(var(--product-column3), 1fr);">
-            {% for product in collections[section.settings.feature_collection3].products %}
-            <div class="grid-item" style="padding: 10px;">
-                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
-                <a href="{{ product.url }}">
-                    <h3>{{ product.title }}</h3>
-                </a>
-                <p>{{ product.price | money_with_currency }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-
-    <div class="page-width tab-indicator hidden" id="collection4">
-        <style>
-            :root {
-                --product-column4: {{ section.settings.product_show4 }};
-            }
-        </style>
-        <div class="grid" style="grid-template-columns: repeat(var(--product-column4), 1fr);">
-            {% for product in collections[section.settings.feature_collection4].products %}
-            <div class="grid-item" style="padding: 10px;">
-                <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}"></a>
-                <a href="{{ product.url }}">
-                    <h3>{{ product.title }}</h3>
-                </a>
-                <p>{{ product.price | money_with_currency }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function setActiveTab(tabIndex) {
-            const collections = document.querySelectorAll('.tab-indicator');
-            collections.forEach((collection, index) => {
-                collection.classList.toggle('hidden', index !== tabIndex);
-            });
-
-            const tabs = document.querySelectorAll('.tab-heading a');
-            tabs.forEach((tab, index) => {
-                tab.classList.toggle('active-tab', index === tabIndex);
-            });
-        }
-
-        document.querySelector('.tab1').addEventListener('click', function (e) {
-            e.preventDefault();
-            setActiveTab(0);
-        });
-
-        document.querySelector('.tab2').addEventListener('click', function (e) {
-            e.preventDefault();
-            setActiveTab(1);
-        });
-
-        document.querySelector('.tab3').addEventListener('click', function (e) {
-            e.preventDefault();
-            setActiveTab(2);
-        });
-
-        document.querySelector('.tab4').addEventListener('click', function (e) {
-            e.preventDefault();
-            setActiveTab(3);
-        });
-    });
-</script>
-
 {% schema %}
-  {
-    "name": "Featured Tabs",
-    "class": "mount-css-slider",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Main Settings"
-      },
-      {
-        "type": "text",
-        "id": "heading",
-        "label": "Heading",
-        "default": "Featured Collection"
-      },
-      {
-        "type": "text",
-        "id": "subheading",
-        "label": "Subheading",
-        "default": "Showcase your best products"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_view_all",
-        "label": "Show View All Button",
-        "default": true
-      },
-      {
-        "type": "select",
-        "id": "section_heading_layout",
-        "label": "Section Heading Layout",
-        "options": [
-          {
-            "value": "section-heading--left",
-            "label": "Left"
-          },
-          {
-            "value": "section-heading--center",
-            "label": "Center"
-          }
-        ],
-        "default": "section-heading--left"
-      },
-      {
-        "type": "select",
-        "id": "style",
-        "label": "Layout Style",
-        "options": [
-          {
-            "label": "Slider",
-            "value": "slider"
-          },
-          {
-            "label": "Grid",
-            "value": "grid"
-          }
-        ],
-        "default": "grid"
-      },
-      {
-        "type": "select",
-        "id": "layout",
-        "label": "Grid Layout",
-        "options": [
-          {
-            "value": "grid-3 grid-lap-2 grid-tiny-1",
-            "label": "3 Columns"
-          },
-          {
-            "value": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
-            "label": "4 Columns"
-          }
-        ],
-        "default": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1"
-      },
-      {
-        "type": "range",
-        "id": "products_number",
-        "label": "Number of Products",
-        "min": 4,
-        "max": 16,
-        "step": 1,
-        "default": 8
-      },
-      {
-        "type": "collection",
-        "id": "collection_1",
-        "label": "Collection 1"
-      },
-      {
-        "type": "text",
-        "id": "tab_label_1",
-        "label": "Tab Label 1",
-        "default": "Tab 1"
-      },
-      {
-        "type": "collection",
-        "id": "collection_2",
-        "label": "Collection 2"
-      },
-      {
-        "type": "text",
-        "id": "tab_label_2",
-        "label": "Tab Label 2",
-        "default": "Tab 2"
-      },
-      {
-        "type": "collection",
-        "id": "collection_3",
-        "label": "Collection 3"
-      },
-      {
-        "type": "text",
-        "id": "tab_label_3",
-        "label": "Tab Label 3",
-        "default": "Tab 3"
-      }
-    ]
-  }
+{
+  "name": "Calendar Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "event",
+      "name": "Event",
+      "settings": [
+        {
+          "type": "text",
+          "id": "event_date",
+          "label": "Event Date",
+          "info": "Format: YYYY-MM-DD"
+        },
+        {
+          "type": "text",
+          "id": "event_time",
+          "label": "Event Time"
+        },
+        {
+          "type": "text",
+          "id": "event_title",
+          "label": "Event Title"
+        },
+        {
+          "type": "text",
+          "id": "event_heading",
+          "label": "Event Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "event_description",
+          "label": "Event Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "event_image",
+          "label": "Event Image"
+        },
+        {
+          "type": "select",
+          "id": "event_color",
+          "label": "Event Color",
+          "options": [
+            {
+              "label": "Green",
+              "value": "green"
+            },
+            {
+              "label": "Red",
+              "value": "red"
+            },
+            {
+              "label": "Blue",
+              "value": "blue"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "event_logo",
+          "label": "Event Logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Calendar"
+    }
+  ]
+}
 {% endschema %}
