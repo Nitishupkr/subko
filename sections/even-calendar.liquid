@@ -64,8 +64,7 @@
   align-self: flex-end; /* Align logo to the bottom right corner */
   width: 20px; /* Adjust size as needed */
   height: 20px; /* Adjust size as needed */
-  margin-top: 5px; /* Add margin-top for control */
-  margin-bottom: 5px; /* Add margin-bottom for control */
+  margin-bottom: 10px; /* Add some margin to avoid touching the bottom */
 }
 
 /* Popup styles */
@@ -129,7 +128,6 @@
     width: 280px;
   }
 }
-
 </style>
 
 <div class="calendar">
@@ -159,70 +157,69 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const events = {
-    {% for block in section.blocks %}
-      '{{ block.settings.event_date }}': {
-        time: '{{ block.settings.event_time }}',
-        title: '{{ block.settings.event_title }}',
-        heading: '{{ block.settings.event_heading }}',
-        description: '{{ block.settings.event_description }}',
-        image: '{{ block.settings.event_image | img_url: "master" }}',
-        color: '{{ block.settings.event_color }}',
-        logo: '{{ block.settings.event_logo | img_url: "thumb" }}'
-      },
-    {% endfor %}
-  };
+  document.addEventListener('DOMContentLoaded', function() {
+    const events = {
+      {% for block in section.blocks %}
+        '{{ block.settings.event_date }}': {
+          time: '{{ block.settings.event_time }}',
+          title: '{{ block.settings.event_title }}',
+          heading: '{{ block.settings.event_heading }}',
+          description: '{{ block.settings.event_description }}',
+          image: '{{ block.settings.event_image | img_url: "master" }}',
+          color: '{{ block.settings.event_color }}',
+          logo: '{{ block.settings.event_logo | img_url: "thumb" }}'
+        },
+      {% endfor %}
+    };
 
-  // Populate events in the calendar
-  Object.keys(events).forEach(date => {
-    const event = events[date];
-    const dayElement = document.querySelector(`.day[data-date="${date}"]`);
-    if (dayElement) {
-      const eventElement = document.createElement('div');
-      eventElement.className = `event ${event.color}`;
-      eventElement.dataset.event = date;
-      eventElement.innerHTML = `
-        <div class="time">${event.time}</div>
-        <div class="title">${event.heading}</div>
-        <img src="${event.logo}" alt="logo" class="logo" />
-      `;
-      dayElement.appendChild(eventElement);
-    }
-  });
-
-  const overlay = document.querySelector('.overlay');
-  const popup = document.querySelector('.popup');
-  const popupContent = document.querySelector('.popup-content');
-  const closeBtn = document.querySelector('.close-btn');
-
-  document.querySelectorAll('.event').forEach(eventEl => {
-    eventEl.addEventListener('click', function() {
-      const date = this.dataset.event;
+    // Populate events in the calendar
+    Object.keys(events).forEach(date => {
       const event = events[date];
-      popupContent.innerHTML = `
-        <h2>${event.heading}</h2>
-        <img src="${event.image}" alt="${event.title}" style="width: 100%; height: auto;" />
-        <p><strong>${event.time}</strong></p>
-        <p>${event.description}</p>
-        <button class="shop-btn">Shop Now</button>
-      `;
-      overlay.classList.add('active');
-      popup.classList.add('active');
+      const dayElement = document.querySelector(`.day[data-date="${date}"]`);
+      if (dayElement) {
+        const eventElement = document.createElement('div');
+        eventElement.className = `event ${event.color}`;
+        eventElement.dataset.event = date;
+        eventElement.innerHTML = `
+          <div class="time">${event.time}</div>
+          <div class="title">${event.heading}</div>
+          <img src="${event.logo}" alt="logo" class="logo" />
+        `;
+        dayElement.appendChild(eventElement);
+      }
+    });
+
+    const overlay = document.querySelector('.overlay');
+    const popup = document.querySelector('.popup');
+    const popupContent = document.querySelector('.popup-content');
+    const closeBtn = document.querySelector('.close-btn');
+
+    document.querySelectorAll('.event').forEach(eventEl => {
+      eventEl.addEventListener('click', function() {
+        const date = this.dataset.event;
+        const event = events[date];
+        popupContent.innerHTML = `
+          <h2>${event.heading}</h2>
+          <img src="${event.image}" alt="${event.title}" style="width: 100%; height: auto;" />
+          <p><strong>${event.time}</strong></p>
+          <p>${event.description}</p>
+          <button class="shop-btn">Shop Now</button>
+        `;
+        overlay.classList.add('active');
+        popup.classList.add('active');
+      });
+    });
+
+    closeBtn.addEventListener('click', function() {
+      overlay.classList.remove('active');
+      popup.classList.remove('active');
+    });
+
+    overlay.addEventListener('click', function() {
+      overlay.classList.remove('active');
+      popup.classList.remove('active');
     });
   });
-
-  closeBtn.addEventListener('click', function() {
-    overlay.classList.remove('active');
-    popup.classList.remove('active');
-  });
-
-  overlay.addEventListener('click', function() {
-    overlay.classList.remove('active');
-    popup.classList.remove('active');
-  });
-});
-
 </script>
 
 {% schema %}
@@ -288,24 +285,6 @@ document.addEventListener('DOMContentLoaded', function() {
           "type": "image_picker",
           "id": "event_logo",
           "label": "Event Logo"
-        },
-        {
-          "type": "range",
-          "id": "logo_margin_top",
-          "label": "Logo Margin Top",
-          "default": 5,
-          "min": 0,
-          "max": 20,
-          "step": 1
-        },
-        {
-          "type": "range",
-          "id": "logo_margin_bottom",
-          "label": "Logo Margin Bottom",
-          "default": 5,
-          "min": 0,
-          "max": 20,
-          "step": 1
         }
       ]
     }
