@@ -26,13 +26,29 @@
             "logo_margin_top": -7,
             "logo_margin_bottom": 0
           }
+        },
+        "event_6xbdnp": {
+          "type": "event",
+          "settings": {
+            "event_date": "2024-06-28",
+            "event_time": "5:00 AM - 7:00 AM",
+            "event_title": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
+            "event_heading": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
+            "event_description": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..Kids Tour: A Day At The Cacao Mill: Subko Cacao..Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
+            "event_image": "shopify:\/\/shop_images\/Group_1836ed09-dabe-4aef-9a89-50d9c1838640.svg",
+            "event_color": "red",
+            "event_logo": "shopify:\/\/shop_images\/Group_1495f8c8-dba0-4258-b835-d7d0f45c296a.svg",
+            "logo_margin_top": -7,
+            "logo_margin_bottom": 0
+          }
         }
       },
       "block_order": [
-        "event_qm6tz4"
+        "event_qm6tz4",
+        "event_6xbdnp"
       ],
       "custom_css": [
-        "h2,.h2{font-family: dashiell-bright, sans-serif;font-weight: 700;font-style: normal;}"
+        "h2,.h2 {font-family: dashiell-bright, sans-serif; font-weight: 700; font-style: normal;}"
       ],
       "settings": {
       }
