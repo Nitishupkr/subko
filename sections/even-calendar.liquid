@@ -205,7 +205,7 @@
         const event = events[date];
         popupContent.innerHTML = `
           <h2>${event.heading}</h2>
-          <img src="${event.image}" alt="${event.title}" style="width: 100%; height: auto;" />
+          <img src="${event.image}" alt="${event.title}" style="width: 100%; height: auto; max-width: 300px;" />
           <p><strong>${event.time}</strong></p>
           <p>${event.description}</p>
           <button class="shop-btn">Shop Now</button>
