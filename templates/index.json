@@ -491,6 +491,31 @@
       ],
       "settings": {
       }
+    },
+    "17189535284ed29ac5": {
+      "type": "apps",
+      "blocks": {
+        "the_shop_calendar_the_shop_calendar_tNL7xn": {
+          "type": "shopify:\/\/apps\/the-shop-calendar\/blocks\/the_shop_calendar\/217451ff-da34-48a6-90b4-e904111bb75a",
+          "settings": {
+            "title": "",
+            "calendar_uuid": "",
+            "center_header_text": false,
+            "list_calendar": false,
+            "accordion_calendar": false,
+            "width": 100,
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "the_shop_calendar_the_shop_calendar_tNL7xn"
+      ],
+      "settings": {
+        "full_width": false,
+        "remove_margin": false
+      }
     }
   },
   "order": [
@@ -503,6 +528,7 @@
     "rich_text_qqYiye",
     "rich_text_DciYQK",
     "rich_text_9mUkaP",
-    "custom_tabs_KQkhmx"
+    "custom_tabs_KQkhmx",
+    "17189535284ed29ac5"
   ]
 }
