@@ -420,6 +420,29 @@
       ],
       "settings": {
       }
+    },
+    "even_calendar_NeCJhT": {
+      "type": "even-calendar",
+      "blocks": {
+        "event_qm6tz4": {
+          "type": "event",
+          "settings": {
+            "event_date": "",
+            "event_time": "",
+            "event_title": "",
+            "event_heading": "",
+            "event_description": "",
+            "event_color": "green",
+            "logo_margin_top": 5,
+            "logo_margin_bottom": 5
+          }
+        }
+      },
+      "block_order": [
+        "event_qm6tz4"
+      ],
+      "settings": {
+      }
     }
   },
   "order": [
@@ -431,6 +454,7 @@
     "rich_text_qqYiye",
     "rich_text_DciYQK",
     "rich_text_9mUkaP",
-    "custom_tabs_KQkhmx"
+    "custom_tabs_KQkhmx",
+    "even_calendar_NeCJhT"
   ]
 }
