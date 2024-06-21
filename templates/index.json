@@ -9,26 +9,33 @@
 */
 {
   "sections": {
-    "featured_tab_nqrbct": {
-      "type": "featured-tab",
+    "even_calendar_NeCJhT": {
+      "type": "even-calendar",
       "blocks": {
-        "event_tPgLX6": {
+        "event_qm6tz4": {
           "type": "event",
           "settings": {
             "event_date": "2024-06-26",
             "event_time": "5:00 AM - 7:00 AM",
             "event_title": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
             "event_heading": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
-            "event_description": "",
-            "event_image": "shopify:\/\/shop_images\/Artboard_11_1_1-2.png",
+            "event_description": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..Kids Tour: A Day At The Cacao Mill: Subko Cacao..Kids Tour: A Day At The Cacao Mill: Subko Cacao..Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
+            "event_image": "shopify:\/\/shop_images\/Bookphotos-5044.jpg",
             "event_color": "green",
-            "event_logo": "shopify:\/\/shop_images\/Group_1495f8c8-dba0-4258-b835-d7d0f45c296a.svg"
+            "event_logo": "shopify:\/\/shop_images\/Group_1495f8c8-dba0-4258-b835-d7d0f45c296a.svg",
+            "logo_margin_top": 5,
+            "logo_margin_bottom": 5
           }
         }
       },
       "block_order": [
-        "event_tPgLX6"
+        "event_qm6tz4"
       ],
+      "settings": {
+      }
+    },
+    "featured_tab_nqrbct": {
+      "type": "featured-tab",
       "custom_css": [
         "h1,h3 {font-weight: 400; line-height: 1.2;}",
         "h3 {font-size: 14px; font-family: dashiell-bright, serif;}",
@@ -36,6 +43,19 @@
         "@media (max-width: 768px) {h3 {font-size: 24px; }}"
       ],
       "settings": {
+        "heading": "Featured Collection",
+        "subheading": "Showcase your best products",
+        "show_view_all": true,
+        "section_heading_layout": "section-heading--left",
+        "style": "grid",
+        "layout": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
+        "products_number": 8,
+        "collection_1": "",
+        "tab_label_1": "Tab 1",
+        "collection_2": "",
+        "tab_label_2": "Tab 2",
+        "collection_3": "",
+        "tab_label_3": "Tab 3"
       }
     },
     "slideshow_no_slider_awwHJY": {
@@ -420,34 +440,10 @@
       ],
       "settings": {
       }
-    },
-    "even_calendar_NeCJhT": {
-      "type": "even-calendar",
-      "blocks": {
-        "event_qm6tz4": {
-          "type": "event",
-          "settings": {
-            "event_date": "2024-06-26",
-            "event_time": "5:00 AM - 7:00 AM",
-            "event_title": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
-            "event_heading": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
-            "event_description": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..Kids Tour: A Day At The Cacao Mill: Subko Cacao..Kids Tour: A Day At The Cacao Mill: Subko Cacao..Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
-            "event_image": "shopify:\/\/shop_images\/Bookphotos-5044.jpg",
-            "event_color": "green",
-            "event_logo": "shopify:\/\/shop_images\/Group_1495f8c8-dba0-4258-b835-d7d0f45c296a.svg",
-            "logo_margin_top": 5,
-            "logo_margin_bottom": 5
-          }
-        }
-      },
-      "block_order": [
-        "event_qm6tz4"
-      ],
-      "settings": {
-      }
     }
   },
   "order": [
+    "even_calendar_NeCJhT",
     "featured_tab_nqrbct",
     "slideshow_no_slider_awwHJY",
     "custom_liquid_BA984f",
@@ -456,7 +452,6 @@
     "rich_text_qqYiye",
     "rich_text_DciYQK",
     "rich_text_9mUkaP",
-    "custom_tabs_KQkhmx",
-    "even_calendar_NeCJhT"
+    "custom_tabs_KQkhmx"
   ]
 }
