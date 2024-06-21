@@ -61,11 +61,11 @@
     }
 
     .event .logo {
-      align-self: flex-end;
-      width: 20px;
-      height: 20px;
-      margin-top: 5px;
-      margin-bottom: 5px;
+      align-self: flex-end; /* Align logo to the bottom right corner */
+      width: 20px; /* Adjust size as needed */
+      height: 20px; /* Adjust size as needed */
+      margin-top: 5px; /* Add margin-top for control */
+      margin-bottom: 5px; /* Add margin-bottom for control */
     }
 
     /* Popup styles */
@@ -79,12 +79,11 @@
       padding: 20px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      width: 90%;
       max-width: 600px;
+      width: 90%;
       max-height: 80%;
       overflow-y: auto;
       border-radius: 10px;
-      text-align: left; /* Ensure text alignment */
     }
 
     .popup.active {
@@ -97,10 +96,6 @@
       right: 10px;
       cursor: pointer;
       font-size: 24px;
-    }
-
-    .popup-content {
-      margin-bottom: 20px; /* Add bottom margin for the button */
     }
 
     .overlay {
@@ -193,7 +188,7 @@
         eventElement.innerHTML = `
           <div class="time">${event.time}</div>
           <div class="title">${event.heading}</div>
-          <img src="${event.logo}" alt="logo" class="logo" />
+          <img src="${event.logo}" alt="logo" class="logo" style="margin-top: ${event.logoMarginTop}; margin-bottom: ${event.logoMarginBottom};" />
         `;
         dayElement.innerHTML += eventElement.outerHTML;
       }
