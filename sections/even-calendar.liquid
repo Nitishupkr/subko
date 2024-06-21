@@ -1,134 +1,137 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Base styles */
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      max-width: 1400px;
+      margin: 20px auto;
+      background-color: #ffffff;
+      padding: 20px;
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+
+    .calendar .day-names {
+      display: contents;
+    }
+
+    .calendar .day-name {
+      text-align: center;
+      font-weight: bold;
+      padding: 8px 0;
+      font-family: dashiell-bright, serif;
+    }
+
+    .calendar .day {
+      border: 1px solid #ccc;
+      height: 100px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .calendar .day .event {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5px;
+      box-sizing: border-box;
+      color: white;
+    }
+
+    .green { background-color: #55AF7C; color: #3c763d; }
+    .red { background-color: #E08889; color: #a94442; }
+    .blue { background-color: #789DBF; color: #31708f; }
+
+    .event .time {
+      font-size: 12px;
+    }
+
+    .event .title {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .event .logo {
+      align-self: flex-end; /* Align logo to the bottom right corner */
+      width: 20px; /* Adjust size as needed */
+      height: 20px; /* Adjust size as needed */
+      margin-top: 5px; /* Add margin-top for control */
+      margin-bottom: 5px; /* Add margin-bottom for control */
+    }
+
+    /* Popup styles */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80%;
+      overflow-y: auto;
+      border-radius: 10px;
+    }
+
+    .popup.active {
+      display: block;
+    }
+
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Media queries for responsiveness */
+    @media only screen and (max-width: 768px) {
+      .calendar {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+      }
+
+      .calendar .day {
+        height: 80px;
+      }
+
+      .popup {
+        max-width: 90%;
+        width: 280px;
+      }
+    }
+  </style>
 </head>
-
-<style>
-/* Base styles */
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  max-width: 1400px;
-  margin: 20px auto;
-  background-color: #ffffff;
-  padding: 20px;
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
-.calendar .day-names {
-  display: contents;
-}
-
-.calendar .day-name {
-  text-align: center;
-  font-weight: bold;
-  padding: 8px 0;
-  font-family: dashiell-bright, serif;
-}
-
-.calendar .day {
-  border: 1px solid #ccc;
-  height: 100px;
-  position: relative;
-  cursor: pointer;
-}
-
-.calendar .day .event {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 5px;
-  box-sizing: border-box;
-  color: white;
-}
-
-.green { background-color: #55AF7C; color: #3c763d; }
-.red { background-color: #E08889; color: #a94442; }
-.blue { background-color: #789DBF; color: #31708f; }
-
-.event .time {
-  font-size: 12px;
-}
-
-.event .title {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.event .logo {
-  align-self: flex-end; /* Align logo to the bottom right corner */
-  width: 20px; /* Adjust size as needed */
-  height: 20px; /* Adjust size as needed */
-  margin-bottom: 10px; /* Add some margin to avoid touching the bottom */
-}
-
-/* Popup styles */
-.popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  max-width: 600px;
-  width: 90%;
-  max-height: 80%;
-  overflow-y: auto;
-  border-radius: 10px;
-}
-
-.popup.active {
-  display: block;
-}
-
-.popup .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 24px;
-}
-
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-}
-
-.overlay.active {
-  display: block;
-}
-
-/* Media queries for responsiveness */
-@media only screen and (max-width: 768px) {
-  .calendar {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-  }
-
-  .calendar .day {
-    height: 80px;
-  }
-
-  .popup {
-    max-width: 90%;
-    width: 280px;
-  }
-}
-</style>
+<body>
 
 <div class="calendar">
   <!-- Day names row -->
@@ -167,7 +170,9 @@
           description: '{{ block.settings.event_description }}',
           image: '{{ block.settings.event_image | img_url: "master" }}',
           color: '{{ block.settings.event_color }}',
-          logo: '{{ block.settings.event_logo | img_url: "thumb" }}'
+          logo: '{{ block.settings.event_logo | img_url: "thumb" }}',
+          logoMarginTop: '{{ block.settings.logo_margin_top }}px',
+          logoMarginBottom: '{{ block.settings.logo_margin_bottom }}px'
         },
       {% endfor %}
     };
@@ -183,7 +188,7 @@
         eventElement.innerHTML = `
           <div class="time">${event.time}</div>
           <div class="title">${event.heading}</div>
-          <img src="${event.logo}" alt="logo" class="logo" />
+          <img src="${event.logo}" alt="logo" class="logo" style="margin-top: ${event.logoMarginTop}; margin-bottom: ${event.logoMarginBottom};" />
         `;
         dayElement.appendChild(eventElement);
       }
@@ -221,6 +226,9 @@
     });
   });
 </script>
+
+</body>
+</html>
 
 {% schema %}
 {
@@ -285,6 +293,22 @@
           "type": "image_picker",
           "id": "event_logo",
           "label": "Event Logo"
+        },
+        {
+          "type": "range",
+          "id": "logo_margin_top",
+          "label": "Logo Margin Top",
+          "default": 5,
+          "min": 0,
+          "max": 50
+        },
+        {
+          "type": "range",
+          "id": "logo_margin_bottom",
+          "label": "Logo Margin Bottom",
+          "default": 5,
+          "min": 0,
+          "max": 50
         }
       ]
     }
