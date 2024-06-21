@@ -190,7 +190,7 @@
           <div class="title">${event.heading}</div>
           <img src="${event.logo}" alt="logo" class="logo" style="margin-top: ${event.logoMarginTop}; margin-bottom: ${event.logoMarginBottom};" />
         `;
-        dayElement.appendChild(eventElement);
+        dayElement.innerHTML += eventElement.outerHTML;
       }
     });
 
