@@ -27,12 +27,19 @@
       font-family: dashiell-bright, serif;
     }
 
-    .calendar .day {
-      border: 1px solid #ccc;
-      height: 100px;
-      position: relative;
-      cursor: pointer;
-    }
+.calendar .day {
+  border: 1px solid #ccc;
+  height: 100px;
+  position: relative;
+  cursor: pointer;
+}
+
+.calendar .day .date {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+}
 
     .calendar .day .event {
       position: absolute;
@@ -53,11 +60,14 @@
 
     .event .time {
       font-size: 12px;
+      font-weight: bold;
+      margin-left:4px;
     }
 
     .event .title {
       font-size: 14px;
       font-weight: bold;
+       margin-left:4px;
     }
 
     .event .logo {
