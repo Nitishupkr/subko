@@ -27,19 +27,18 @@
       font-family: dashiell-bright, serif;
     }
 
-.calendar .day {
-  border: 1px solid #ccc;
-  height: 100px;
-  position: relative;
-  cursor: pointer;
-}
+    .calendar .day {
+      border: 1px solid #ccc;
+      height: 100px;
+      position: relative;
+      cursor: pointer;
+    }
 
-.calendar .day .date {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-
-}
+    .calendar .day .date {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+    }
 
     .calendar .day .event {
       position: absolute;
@@ -61,29 +60,41 @@
     .event .time {
       font-size: 12px;
       font-weight: bold;
-      margin-left:4px;
+      margin-left: 4px;
+    }
+
+    .calendar-heading {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .calendar-heading h1 {
+      font-size: 24px;
+      font-weight: bold;
+      font-family: dashiell-bright, serif;
+      color: #333;
     }
 
     .event .title {
       font-size: 14px;
       font-weight: bold;
-       margin-left:4px;
+      margin-left: 4px;
     }
 
     .event .logo {
-      align-self: flex-end; /* Align logo to the bottom right corner */
-      width: 20px; /* Adjust size as needed */
-      height: 20px; /* Adjust size as needed */
-      margin-top: 5px; /* Add margin-top for control */
-      margin-bottom: 5px; /* Add margin-bottom for control */
+      align-self: flex-end;
+      width: 20px;
+      height: 20px;
+      margin-top: 5px;
+      margin-bottom: 5px;
     }
 
     /* Popup styles */
     .popup {
       display: none;
       position: fixed;
-      top: 50%;
-      left: 50%;
+      top: 20%;
+      left: 20%;
       transform: translate(-50%, -50%);
       background-color: white;
       padding: 20px;
@@ -108,6 +119,11 @@
       font-size: 24px;
     }
 
+    .popup .popup-content {
+      max-height: 100%;
+      overflow-y: auto;
+    }
+
     .overlay {
       display: none;
       position: fixed;
@@ -123,6 +139,25 @@
       display: block;
     }
 
+    /* Add to Cart Button styles */
+    .shop-btn {
+      display: inline-block;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .shop-btn:hover {
+      background-color: #333;
+    }
+
     /* Media queries for responsiveness */
     @media only screen and (max-width: 768px) {
       .calendar {
@@ -134,109 +169,142 @@
         height: 80px;
       }
 
+      .day-name {
+        display: none; /* Hide day names on smaller screens */
+      }
+
       .popup {
         max-width: 90%;
         width: 280px;
+        top: 10%;
+        left: 5%;
+        transform: translate(0, 0);
       }
     }
   </style>
 </head>
 <body>
-
-<div class="calendar">
-  <!-- Day names row -->
-  <div class="day-names">
-    <div class="day-name">Monday</div>
-    <div class="day-name">Tuesday</div>
-    <div class="day-name">Wednesday</div>
-    <div class="day-name">Thursday</div>
-    <div class="day-name">Friday</div>
-    <div class="day-name">Saturday</div>
-    <div class="day-name">Sunday</div>
+  <div class="calendar-heading">
+    <h1>July 2024</h1>
   </div>
-  <!-- Calendar dates -->
-  {% for day in (1..30) %}
-    {% assign date = '2024-06-' | append: day | date: "%Y-%m-%d" %}
-    <div class="day" data-date="{{ date }}">
-      <div>{{ day }}</div>
+
+  <div class="calendar">
+    <!-- Day names row -->
+    <div class="day-names">
+      <div class="day-name">Monday</div>
+      <div class="day-name">Tuesday</div>
+      <div class="day-name">Wednesday</div>
+      <div class="day-name">Thursday</div>
+      <div class="day-name">Friday</div>
+      <div class="day-name">Saturday</div>
+      <div class="day-name">Sunday</div>
     </div>
-  {% endfor %}
-</div>
+    <!-- Calendar dates -->
+    {% for day in (1..30) %}
+      {% assign date = '2024-06-' | append: day | date: "%Y-%m-%d" %}
+      <div class="day" data-date="{{ date }}">
+        <div class="date">{{ day }}</div>
+      </div>
+    {% endfor %}
+  </div>
 
-<div class="overlay"></div>
-<div class="popup">
-  <span class="close-btn">&times;</span>
-  <div class="popup-content"></div>
-</div>
+  <div class="overlay"></div>
+  <div class="popup">
+    <span class="close-btn">&times;</span>
+    <div class="popup-content"></div>
+  </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const events = {
-      {% for block in section.blocks %}
-        '{{ block.settings.event_date }}': {
-          time: '{{ block.settings.event_time }}',
-          title: '{{ block.settings.event_title }}',
-          heading: '{{ block.settings.event_heading }}',
-          description: '{{ block.settings.event_description }}',
-          image: '{{ block.settings.event_image | img_url: "master" }}',
-          color: '{{ block.settings.event_color }}',
-          logo: '{{ block.settings.event_logo | img_url: "thumb" }}',
-          logoMarginTop: '{{ block.settings.logo_margin_top }}px',
-          logoMarginBottom: '{{ block.settings.logo_margin_bottom }}px'
-        },
-      {% endfor %}
-    };
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const events = {
+        {% for block in section.blocks %}
+          '{{ block.settings.event_date }}': {
+            time: '{{ block.settings.event_time }}',
+            title: '{{ block.settings.event_title }}',
+            heading: '{{ block.settings.event_heading }}',
+            description: '{{ block.settings.event_description }}',
+            image: '{{ block.settings.event_image | img_url: "master" }}',
+            color: '{{ block.settings.event_color }}',
+            logo: '{{ block.settings.event_logo | img_url: "thumb" }}',
+            logoMarginTop: '{{ block.settings.logo_margin_top }}px',
+            logoMarginBottom: '{{ block.settings.logo_margin_bottom }}px',
+            price: '{{ block.settings.event_price }}',
+            shopLink: '{{ block.settings.shop_button_link }}'
+          },
+        {% endfor %}
+      };
 
-    // Populate events in the calendar
-    Object.keys(events).forEach(date => {
-      const event = events[date];
-      const dayElement = document.querySelector(`.day[data-date="${date}"]`);
-      if (dayElement) {
-        const eventElement = document.createElement('div');
-        eventElement.className = `event ${event.color}`;
-        eventElement.dataset.event = date;
-        eventElement.innerHTML = `
-          <div class="time">${event.time}</div>
-          <div class="title">${event.heading}</div>
-          <img src="${event.logo}" alt="logo" class="logo" style="margin-top: ${event.logoMarginTop}; margin-bottom: ${event.logoMarginBottom};" />
-        `;
-        dayElement.innerHTML += eventElement.outerHTML;
-      }
-    });
-
-    const overlay = document.querySelector('.overlay');
-    const popup = document.querySelector('.popup');
-    const popupContent = document.querySelector('.popup-content');
-    const closeBtn = document.querySelector('.close-btn');
-
-    document.querySelectorAll('.event').forEach(eventEl => {
-      eventEl.addEventListener('click', function() {
-        const date = this.dataset.event;
+      // Populate events in the calendar
+      Object.keys(events).forEach(date => {
         const event = events[date];
-        popupContent.innerHTML = `
-          <h2>${event.heading}</h2>
-          <img src="${event.image}" alt="${event.title}" style="width: 100%; height: auto;" />
-          <p><strong>${event.time}</strong></p>
-          <p>${event.description}</p>
-          <button class="shop-btn">Shop Now</button>
-        `;
-        overlay.classList.add('active');
-        popup.classList.add('active');
+        const dayElement = document.querySelector(`.day[data-date="${date}"]`);
+        if (dayElement) {
+          const eventElement = document.createElement('div');
+          eventElement.className = `event ${event.color}`;
+          eventElement.dataset.event = date;
+          eventElement.innerHTML = `
+            <div class="time">${event.time}</div>
+            <div class="title">${event.heading}</div>
+            <img src="${event.logo}" alt="logo" class="logo" style="margin-top: ${event.logoMarginTop}; margin-bottom: ${event.logoMarginBottom};" />
+          `;
+          dayElement.innerHTML += eventElement.outerHTML;
+        }
       });
-    });
 
-    closeBtn.addEventListener('click', function() {
-      overlay.classList.remove('active');
-      popup.classList.remove('active');
-    });
+      const overlay = document.querySelector('.overlay');
+      const popup = document.querySelector('.popup');
+      const popupContent = document.querySelector('.popup-content');
+      const closeBtn = document.querySelector('.close-btn');
 
-    overlay.addEventListener('click', function() {
-      overlay.classList.remove('active');
-      popup.classList.remove('active');
-    });
-  });
-</script>
+      document.querySelectorAll('.event').forEach(eventEl => {
+        eventEl.addEventListener('click', function() {
+          const date = this.dataset.event;
+          const event = events[date];
+          popupContent.innerHTML = `
+            <h2>${event.heading}</h2>
+            <img src="${event.image}" alt="${event.title}" style="width: 100%; height: auto;" />
+            <p><strong>${event.time}</strong></p>
+            <p>${event.description}</p>
+            <p><strong>Price: </strong>${event.price}</p>
+            <button class="shop-btn">Add to Cart</button>
+          `;
+          overlay.classList.add('active');
+          popup.classList.add('active');
+        });
+      });
 
+      closeBtn.addEventListener('click', function() {
+        overlay.classList.remove('active');
+        popup.classList.remove('active');
+      });
+
+      overlay.addEventListener('click', function() {
+        overlay.classList.remove('active');
+        popup.classList.remove('active');
+      });
+
+      // Dynamic management of popup size
+      const managePopupSize = (width, height) => {
+        popup.style.maxWidth = `${width}px`;
+        popup.style.maxHeight = `${height}px`;
+      };
+
+      // Adjust popup size based on window size
+      const adjustPopupSize = () => {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+
+        if (windowWidth < 768) {
+          managePopupSize(windowWidth * 0.9, windowHeight * 0.8);
+        } else {
+          managePopupSize(windowWidth * 0.5, windowHeight * 0.8);
+        }
+      };
+
+      window.addEventListener('resize', adjustPopupSize);
+      adjustPopupSize(); // Initial call to set the popup size
+    });
+  </script>
 </body>
 </html>
 
@@ -319,6 +387,16 @@
           "default": 5,
           "min": 0,
           "max": 50
+        },
+        {
+          "type": "text",
+          "id": "event_price",
+          "label": "Event Price"
+        },
+        {
+          "type": "url",
+          "id": "shop_button_link",
+          "label": "Shop Button Link"
         }
       ]
     }
