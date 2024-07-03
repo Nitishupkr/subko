@@ -24,9 +24,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         var dynamicHeadingLeft = document.getElementById('dynamic-heading-left');
         var colors = ['#55AF7C', '#E08889', '#789DBF']; // List of your dynamic background colors
-        var texts = [ /* List of your dynamic heading texts */ ];
         var colorIndex = 0;
-        var textIndex = 0;
 
         function changeBackground() {
             document.querySelector('.dynamic-section').style.backgroundColor = colors[colorIndex];
@@ -34,14 +32,7 @@
             setTimeout(changeBackground, 1000); // Change every second (1000ms)
         }
 
-        function changeHeadingText() {
-            dynamicHeadingLeft.textContent = texts[textIndex];
-            textIndex = (textIndex + 1) % texts.length;
-            setTimeout(changeHeadingText, 2000); // Change every 2 seconds (2000ms)
-        }
-
         // Initialize
         changeBackground();
-        changeHeadingText();
     });
 </script>
