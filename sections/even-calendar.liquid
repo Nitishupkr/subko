@@ -13,6 +13,12 @@
       "id": "subheading_text",
       "label": "Subheading Text",
       "default": "For any enquiries contact us by filling this form. We will reply as soon as possible."
+    },
+    {
+      "type": "image_picker",
+      "id": "city_icons",
+      "label": "City Icons",
+      "info": "Upload icons for each city."
     }
   ]
 }
@@ -22,9 +28,8 @@
   <div class="content-wrapper">
     <div class="text-content">
       <h1 id="dynamic-heading">{{ settings.heading_text | default: "Easy Bulk Order Delivery to Mumbai" }}</h1>
-      <img id="city-icon" src="path/to/default-icon.png" alt="City Icon">
       <p>{{ settings.subheading_text | default: "For any enquiries contact us by filling this form. We will reply as soon as possible." }}</p>
-      <div class="city-icon"></div>
+      <div class="city-icon"></div> <!-- This is where the icon will be dynamically added -->
     </div>
     <div class="form-content">
       <h2>Fill in your Details</h2>
@@ -81,12 +86,6 @@
   font-weight: bold;
   color: #fff;
   margin: 0;
-}
-.text-content img {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 10px;
-  width: 30px; /* Adjust the size as needed */
 }
 .text-content p {
   font-size: 1.2em;
@@ -159,19 +158,29 @@
 document.addEventListener('DOMContentLoaded', function() {
   var section = document.querySelector('.dynamic-color-section');
   var heading = document.getElementById('dynamic-heading');
-  var icon = document.getElementById('city-icon');
   var cities = [
-    { name: "Mumbai", color: "green", icon: "path/to/mumbai-icon.png" },
-    { name: "Delhi", color: "red", icon: "path/to/delhi-icon.png" },
-    { name: "Hyderabad", color: "blue", icon: "path/to/hyderabad-icon.png" },
-    { name: "Bangalore", color: "green", icon: "path/to/bangalore-icon.png" }
+    { name: "Mumbai", color: "green" },
+    { name: "Delhi", color: "red" },
+    { name: "Hyderabad", color: "blue" },
+    { name: "Bangalore", color: "green" }
   ];
+  var icons = {{ settings.city_icons | json }};
   var index = 0;
 
   function changeCity() {
-    heading.textContent = "Easy Bulk Order Delivery to " + cities[index].name;
-    section.className = 'dynamic-color-section ' + cities[index].color;
-    icon.src = cities[index].icon;
+    var city = cities[index];
+    var iconUrl = icons[index];
+    heading.textContent = "Easy Bulk Order Delivery to " + city.name;
+    section.className = 'dynamic-color-section ' + city.color;
+    
+    // Adding city icon dynamically
+    var iconContainer = document.querySelector('.city-icon');
+    iconContainer.innerHTML = ''; // Clear previous icon
+    var iconElement = document.createElement('img');
+    iconElement.src = iconUrl;
+    iconElement.alt = city.name + " Icon";
+    iconContainer.appendChild(iconElement);
+
     index = (index + 1) % cities.length;
   }
 
