@@ -1,3 +1,27 @@
+To center align all the content within the `.content-wrapper`, you can modify the CSS as follows:
+
+```css
+.content-wrapper {
+  display: flex;
+  width: 70%;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  flex-wrap: wrap;
+  margin: 0 auto; /* Center the .content-wrapper within its parent container */
+  height: 100vh; /* Ensure it takes full viewport height for vertical centering */
+  text-align: center; /* Center the text within the content */
+}
+
+.text-content, .form-content {
+  max-width: 100%; /* Ensure the content doesn't exceed the parent container */
+  padding: 20px;
+  box-sizing: border-box;
+}
+```
+
+Here is the complete code including the schema, HTML, and CSS:
+
+```liquid
 {% schema %}
 {
   "name": "Bulk Order Section",
@@ -60,23 +84,24 @@
 }
 .content-wrapper {
   display: flex;
-  width:100%;
+  width: 70%;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   flex-wrap: wrap;
   margin: 0 auto; /* Center the .content-wrapper within its parent container */
-  height: 100vh; /* Optional: Ensure it takes full viewport height for vertical centering */
+  height: 100vh; /* Ensure it takes full viewport height for vertical centering */
+  text-align: center; /* Center the text within the content */
 }
 
-.text-content {
-  max-width: 50%;
-  text-align: left;
+.text-content, .form-content {
+  max-width: 100%; /* Ensure the content doesn't exceed the parent container */
   padding: 20px;
   box-sizing: border-box;
 }
+
 .text-content h1 {
   font-size: 3em;
-    font-family: dashiell-bright, serif;
+  font-family: dashiell-bright, serif;
   font-weight: bold;
   color: #fff;
   margin: 0;
