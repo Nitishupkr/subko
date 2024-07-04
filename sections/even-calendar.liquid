@@ -22,7 +22,6 @@
   <div class="content-wrapper">
     <div class="text-content">
       <h1 id="dynamic-heading">{{ settings.heading_text | default: "Easy Bulk Order Delivery to Mumbai" }}</h1>
-      <p>{{ settings.subheading_text | default: "For any enquiries contact us by filling this form. We will reply as soon as possible." }}</p>
       <div class="city-icon"></div>
     </div>
     <div class="form-content">
@@ -54,33 +53,29 @@
   padding: 50px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   transition: background-color 1s;
   min-height: 100vh;
+  background-color: #55AF7C;
 }
 .content-wrapper {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 .text-content {
   max-width: 50%;
-  text-align: center;
+  text-align: left;
   padding: 20px;
   box-sizing: border-box;
 }
 .text-content h1 {
   font-size: 3em;
   font-weight: bold;
-  color: #fff;
+  color: #000;
   margin: 0;
-}
-.text-content p {
-  font-size: 1.2em;
-  margin-top: 10px;
-  color: #fff;
 }
 .form-content {
   background: #fff;
