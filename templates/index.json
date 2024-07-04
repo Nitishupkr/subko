@@ -9,6 +9,13 @@
 */
 {
   "sections": {
+    "even_calendar_dEzwip": {
+      "type": "even-calendar",
+      "settings": {
+        "heading_text": "reeeeeeeeeeeee",
+        "subheading_text": "Easy Bulk Order Delivery to Mumbai"
+      }
+    },
     "slideshow_no_slider_awwHJY": {
       "type": "slideshow-no-slider",
       "blocks": {
@@ -351,16 +358,10 @@
         "full_width": false,
         "remove_margin": false
       }
-    },
-    "even_calendar_dEzwip": {
-      "type": "even-calendar",
-      "settings": {
-        "heading_text": "reeeeeeeeeeeee",
-        "subheading_text": "Easy Bulk Order Delivery to Mumbai"
-      }
     }
   },
   "order": [
+    "even_calendar_dEzwip",
     "slideshow_no_slider_awwHJY",
     "custom_liquid_BA984f",
     "custom_liquid_DA4k8f",
@@ -368,7 +369,6 @@
     "rich_text_qqYiye",
     "rich_text_DciYQK",
     "rich_text_9mUkaP",
-    "17189535284ed29ac5",
-    "even_calendar_dEzwip"
+    "17189535284ed29ac5"
   ]
 }
