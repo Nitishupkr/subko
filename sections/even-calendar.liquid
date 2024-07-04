@@ -21,13 +21,13 @@
 <div class="dynamic-color-section">
   <div class="content-wrapper">
     <div class="text-content">
-      <h1>{{ settings.heading_text | default: "Easy Bulk Order Delivery to Mumbai" }}</h1>
-      <p>{{ settings.subheading_text | default: "For any enquiries contact us by filling this form. We will reply as soon as possible." }}</p>
+      <h1>{{ settings.heading_text }}</h1>
+      <p>{{ settings.subheading_text }}</p>
       <div class="mumbai-icon"></div>
     </div>
     <div class="form-content">
       <h2>Fill in your Details</h2>
-      <p>{{ settings.subheading_text | default: "For any enquiries contact us by filling this form. We will reply as soon as possible." }}</p>
+      <p>{{ settings.subheading_text }}</p>
       <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="contact-form">
         <input type="hidden" name="form_type" value="contact" />
         <input type="hidden" name="utf8" value="✓" />
@@ -68,10 +68,12 @@
 .text-content h1 {
   font-size: 48px;
   font-weight: bold;
+  color: #333;
 }
 .text-content p {
   font-size: 16px;
   margin-top: 10px;
+  color: #333;
 }
 .form-content {
   background: #fff;
@@ -83,6 +85,7 @@
 }
 .form-content h2 {
   margin-bottom: 10px;
+  color: #333;
 }
 .form-content p {
   margin-bottom: 20px;
@@ -98,6 +101,7 @@
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  font-size: 14px;
 }
 .form-group textarea {
   height: 100px;
@@ -109,6 +113,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
 }
 .btn:hover {
   background-color: #555;
