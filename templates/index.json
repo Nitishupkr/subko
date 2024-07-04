@@ -13,7 +13,8 @@
       "type": "even-calendar",
       "settings": {
         "heading_text": "reeeeeeeeeeeee",
-        "subheading_text": "Easy Bulk Order Delivery to Mumbai"
+        "subheading_text": "Easy Bulk Order Delivery to Mumbai",
+        "city_icons": "shopify:\/\/shop_images\/gateway-of-india.png"
       }
     },
     "slideshow_no_slider_awwHJY": {
