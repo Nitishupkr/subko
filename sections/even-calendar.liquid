@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "Bulk Order Section",
+  "name": "Dynamic Color Section",
   "settings": [
     {
       "type": "text",
@@ -9,36 +9,24 @@
       "default": "Easy Bulk Order Delivery to Mumbai"
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#f4a460"
-    },
-    {
       "type": "text",
-      "id": "form_heading",
-      "label": "Form Heading",
-      "default": "Fill in your Details"
-    },
-    {
-      "type": "textarea",
-      "id": "form_subheading",
-      "label": "Form Subheading",
+      "id": "subheading_text",
+      "label": "Subheading Text",
       "default": "For any enquiries contact us by filling this form. We will reply as soon as possible."
     }
   ]
 }
 {% endschema %}
 
-<div class="bulk-order-section" style="background-color: {{ settings.background_color }};">
+<div class="dynamic-color-section">
   <div class="content-wrapper">
     <div class="text-content">
       <h1>{{ settings.heading_text }}</h1>
       <div class="mumbai-icon">🏙️</div>
     </div>
     <div class="form-content">
-      <h2>{{ settings.form_heading }}</h2>
-      <p>{{ settings.form_subheading }}</p>
+      <h2>Fill in your Details</h2>
+      <p>{{ settings.subheading_text }}</p>
       <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="contact-form">
         <input type="hidden" name="form_type" value="contact" />
         <input type="hidden" name="utf8" value="✓" />
@@ -61,11 +49,12 @@
 </div>
 
 <style>
-.bulk-order-section {
+.dynamic-color-section {
   padding: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background-color 1s;
 }
 .content-wrapper {
   display: flex;
@@ -120,3 +109,18 @@
   background-color: #555;
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var section = document.querySelector('.dynamic-color-section');
+  var colors = ['#FFDDC1', '#FFABAB', '#FFC3A0', '#FF677D', '#D4A5A5', '#392F5A'];
+  var index = 0;
+
+  function changeColor() {
+    section.style.backgroundColor = colors[index];
+    index = (index + 1) % colors.length;
+  }
+
+  setInterval(changeColor, 1000);
+});
+</script>
