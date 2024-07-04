@@ -13,12 +13,6 @@
       "id": "subheading_text",
       "label": "Subheading Text",
       "default": "For any enquiries contact us by filling this form. We will reply as soon as possible."
-    },
-    {
-      "type": "image_picker",
-      "id": "city_icons",
-      "label": "City Icons",
-      "info": "Upload icons for each city."
     }
   ]
 }
@@ -27,18 +21,17 @@
 <div class="dynamic-color-section green">
   <div class="content-wrapper">
     <div class="text-content">
-      <h1 id="dynamic-heading">
-        {{ settings.heading_text | default: "Easy Bulk Order Delivery to Mumbai" }}
-        <img id="city-icon" src="{{ settings.city_icons | default: 'path/to/default-icon.png' }}" alt="City Icon">
-      </h1>
+      <h1 id="dynamic-heading">{{ settings.heading_text | default: "" }}</h1>
+      <img id="city-icon" src="path/to/default-icon.png" alt="City Icon">
       <p>{{ settings.subheading_text | default: "For any enquiries contact us by filling this form. We will reply as soon as possible." }}</p>
+      <div class="city-icon"></div>
     </div>
     <div class="form-content">
       <h2>Fill in your Details</h2>
       <p>{{ settings.subheading_text | default: "For any enquiries contact us by filling this form. We will reply as soon as possible." }}</p>
       <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="contact-form">
-        <input type="hidden" name="form_type" value="contact">
-        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="form_type" value="contact" />
+        <input type="hidden" name="utf8" value="✓" />
         <div class="form-group">
           <input type="text" name="contact[name]" placeholder="Name" required>
         </div>
@@ -68,12 +61,12 @@
 }
 .content-wrapper {
   display: flex;
-  width: 90%;
-  justify-content: center;
-  align-items: center;
+  width:90%;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
   flex-wrap: wrap;
-  margin: 0 auto;
-  height: 70vh;
+  margin: 0 auto; /* Center the .content-wrapper within its parent container */
+  height: 70vh; /* Optional: Ensure it takes full viewport height for vertical centering */
 }
 
 .text-content {
@@ -88,13 +81,16 @@
   font-weight: bold;
   color: #fff;
   margin: 0;
-  display: flex;
-  align-items: center;
 }
-.text-content h1 img {
+.text-content img {
+  display: inline-block;
+  vertical-align: middle;
   margin-left: 10px;
-  max-width: 50px;
-  max-height: 50px;
+  width: 30px; /* Adjust the size as needed */
+}
+  .city-icon img {
+  max-width: 200px; /* Adjust as per your design */
+  max-height: 200px; /* Adjust as per your design */
 }
 
 .text-content p {
@@ -138,6 +134,7 @@
   height: 100px;
   resize: vertical;
 }
+  
 .btn {
   background-color: #333;
   color: #fff;
