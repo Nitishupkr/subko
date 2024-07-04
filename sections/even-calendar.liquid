@@ -13,12 +13,6 @@
       "id": "subheading_text",
       "label": "Subheading Text",
       "default": "For any enquiries contact us by filling this form. We will reply as soon as possible."
-    },
-    {
-      "type": "image_picker",
-      "id": "city_icons",
-      "label": "City Icons",
-      "info": "Upload icons for each city."
     }
   ]
 }
@@ -29,7 +23,7 @@
     <div class="text-content">
       <h1 id="dynamic-heading">{{ settings.heading_text | default: "Easy Bulk Order Delivery to Mumbai" }}</h1>
       <p>{{ settings.subheading_text | default: "For any enquiries contact us by filling this form. We will reply as soon as possible." }}</p>
-      <div class="city-icon"></div> <!-- This is where the icon will be dynamically added -->
+      <div class="city-icon"></div>
     </div>
     <div class="form-content">
       <h2>Fill in your Details</h2>
@@ -164,23 +158,11 @@ document.addEventListener('DOMContentLoaded', function() {
     { name: "Hyderabad", color: "blue" },
     { name: "Bangalore", color: "green" }
   ];
-  var icons = {{ settings.city_icons | json }};
   var index = 0;
 
   function changeCity() {
-    var city = cities[index];
-    var iconUrl = icons[index];
-    heading.textContent = "Easy Bulk Order Delivery to " + city.name;
-    section.className = 'dynamic-color-section ' + city.color;
-    
-    // Adding city icon dynamically
-    var iconContainer = document.querySelector('.city-icon');
-    iconContainer.innerHTML = ''; // Clear previous icon
-    var iconElement = document.createElement('img');
-    iconElement.src = iconUrl;
-    iconElement.alt = city.name + " Icon";
-    iconContainer.appendChild(iconElement);
-
+    heading.textContent = "Easy Bulk Order Delivery to " + cities[index].name;
+    section.className = 'dynamic-color-section ' + cities[index].color;
     index = (index + 1) % cities.length;
   }
 
