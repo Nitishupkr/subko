@@ -419,29 +419,11 @@
     },
     "even_calendar_dEzwip": {
       "type": "even-calendar",
-      "blocks": {
-        "event_XETkTr": {
-          "type": "event",
-          "settings": {
-            "event_date": "2024-07-26",
-            "event_time": "5:00 AM - 7:00 AM",
-            "event_title": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
-            "event_heading": "Kids Tour: A Day At The Cacao Mill: Subko Cacao..",
-            "event_description": "",
-            "event_image": "shopify:\/\/shop_images\/coffee_brewing-03_1.png",
-            "event_color": "red",
-            "event_logo": "shopify:\/\/shop_images\/Group_1495f8c8-dba0-4258-b835-d7d0f45c296a.svg",
-            "logo_margin_top": -9,
-            "logo_margin_bottom": 0,
-            "event_price": "",
-            "shop_button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "event_XETkTr"
-      ],
       "settings": {
+        "heading_text": "Easy Bulk Order Delivery to Mumbai",
+        "background_color": "#508e67",
+        "form_heading": "Fill in your Details",
+        "form_subheading": "For any enquiries contact us by filling this form. We will reply as soon as possible."
       }
     }
   },
