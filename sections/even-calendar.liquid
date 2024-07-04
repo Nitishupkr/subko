@@ -18,12 +18,12 @@
 }
 {% endschema %}
 
-<div class="dynamic-color-section">
+<div class="dynamic-color-section green">
   <div class="content-wrapper">
     <div class="text-content">
-      <h1>{{ settings.heading_text | default: "Easy Bulk Order Delivery to Mumbai" }}</h1>
+      <h1 id="dynamic-heading">{{ settings.heading_text | default: "Easy Bulk Order Delivery to Mumbai" }}</h1>
       <p>{{ settings.subheading_text | default: "For any enquiries contact us by filling this form. We will reply as soon as possible." }}</p>
-      <div class="mumbai-icon"></div>
+      <div class="city-icon"></div>
     </div>
     <div class="form-content">
       <h2>Fill in your Details</h2>
@@ -68,12 +68,12 @@
 .text-content h1 {
   font-size: 48px;
   font-weight: bold;
-  color: #333;
+  color: #fff;
 }
 .text-content p {
   font-size: 16px;
   margin-top: 10px;
-  color: #333;
+  color: #fff;
 }
 .form-content {
   background: #fff;
@@ -118,19 +118,29 @@
 .btn:hover {
   background-color: #555;
 }
+.green { background-color: #55AF7C; color: #3c763d; }
+.red { background-color: #E08889; color: #a94442; }
+.blue { background-color: #789DBF; color: #31708f; }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var section = document.querySelector('.dynamic-color-section');
-  var colors = ['#FFDDC1', '#FFABAB', '#FFC3A0', '#FF677D', '#D4A5A5', '#392F5A'];
+  var heading = document.getElementById('dynamic-heading');
+  var cities = [
+    { name: "Mumbai", color: "green" },
+    { name: "Delhi", color: "red" },
+    { name: "Hyderabad", color: "blue" },
+    { name: "Bangalore", color: "green" }
+  ];
   var index = 0;
 
-  function changeColor() {
-    section.style.backgroundColor = colors[index];
-    index = (index + 1) % colors.length;
+  function changeCity() {
+    heading.textContent = "Easy Bulk Order Delivery to " + cities[index].name;
+    section.className = 'dynamic-color-section ' + cities[index].color;
+    index = (index + 1) % cities.length;
   }
 
-  setInterval(changeColor, 1000);
+  setInterval(changeCity, 2000);
 });
 </script>
