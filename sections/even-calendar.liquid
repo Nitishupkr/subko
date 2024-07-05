@@ -60,17 +60,16 @@
 }
 .content-wrapper {
   display: flex;
-  width:90%;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  flex-wrap: wrap;
-  margin: 0 auto; /* Center the .content-wrapper within its parent container */
-  height: 70vh; /* Optional: Ensure it takes full viewport height for vertical centering */
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  height: 70vh;
 }
-
 .text-content {
   max-width: 50%;
-  text-align: left;
+  text-align: center;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -85,13 +84,12 @@
   display: inline-block;
   vertical-align: middle;
   margin-left: 10px;
-  width: 30px; /* Adjust the size as needed */
+  width: 30px;
 }
-  .city-icon img {
-  max-width: 200px; /* Adjust as per your design */
-  max-height: 200px; /* Adjust as per your design */
+.city-icon img {
+  max-width: 200px;
+  max-height: 200px;
 }
-
 .text-content p {
   font-size: 1.2em;
   margin-top: 10px;
@@ -99,12 +97,15 @@
 }
 .form-content {
   background: #fff;
-  padding: 40px 30px;
+  padding: 30px;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .form-content h2 {
   margin-bottom: 20px;
@@ -112,14 +113,9 @@
   font-size: 1.5em;
   text-align: center;
 }
-.form-content p {
-  margin-bottom: 20px;
-  font-size: 1em;
-  color: #666;
-  text-align: center;
-}
 .form-group {
-  margin-bottom: 20px;
+  width: 100%;
+  margin-bottom: 15px;
 }
 .form-group input,
 .form-group textarea {
@@ -133,7 +129,6 @@
   height: 80px;
   resize: vertical;
 }
-  
 .btn {
   background-color: #333;
   color: #fff;
